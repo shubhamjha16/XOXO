@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dbeafe;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f43f5e;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#e11d48;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="200" cy="150" r="80" fill="#bae6fd" opacity="0.3" />
+  <circle cx="1000" cy="450" r="100" fill="#bae6fd" opacity="0.3" />
+  <circle cx="600" cy="100" r="50" fill="#bae6fd" opacity="0.3" />
+  <circle cx="400" cy="500" r="70" fill="#bae6fd" opacity="0.3" />
+  <circle cx="900" cy="200" r="60" fill="#bae6fd" opacity="0.3" />
+  
+  <!-- Two figures silhouette -->
+  <g transform="translate(600, 280) scale(0.9)">
+    <!-- Person 1 -->
+    <circle cx="-80" cy="-100" r="40" fill="#7f56d9" opacity="0.8" />
+    <path d="M-80 -60 L-80 30 M-120 -20 L-40 -20 M-80 30 L-110 90 M-80 30 L-50 90" 
+          stroke="#7f56d9" stroke-width="10" stroke-linecap="round" opacity="0.8" />
+          
+    <!-- Person 2 -->
+    <circle cx="80" cy="-100" r="40" fill="#f43f5e" opacity="0.8" />
+    <path d="M80 -60 L80 30 M40 -20 L120 -20 M80 30 L50 90 M80 30 L110 90" 
+          stroke="#f43f5e" stroke-width="10" stroke-linecap="round" opacity="0.8" />
+          
+    <!-- Heart between them -->
+    <path d="M0 -20 C-20 -50 -60 -50 -60 -20 C-60 10 -20 30 0 50 C20 30 60 10 60 -20 C60 -50 20 -50 0 -20Z" 
+          fill="url(#heartGradient)" />
+  </g>
+  
+  <!-- Text -->
+  <text x="600" y="450" font-family="Arial" font-size="52" text-anchor="middle" font-weight="bold" fill="#1e3a8a">XOXO</text>
+  <text x="600" y="510" font-family="Arial" font-size="32" text-anchor="middle" fill="#1e3a8a">Experience Partners</text>
+</svg>

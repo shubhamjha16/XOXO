@@ -1,0 +1,32 @@
+{
+    "trip_plan_id": "test_trip_123",
+    "travel_plan": {
+        "name": "Tokyo Adventure",
+        "destination": "Tokyo, Japan",
+        "starting_location": "New York",
+        "travel_dates": {
+            "start": "2024-03-15",
+            "end": "2024-03-22"
+        },
+        "duration": 7,
+        "traveling_with": "couple",
+        "adults": 2,
+        "children": 0,
+        "budget": 3000,
+        "budget_currency": "USD",
+        "travel_style": "balanced",
+        "vibes": [
+            "culture",
+            "food"
+        ],
+        "priorities": [
+            "temples",
+            "local_cuisine"
+        ],
+        "interests": "Japanese culture and food",
+        "rooms": 1,
+        "pace": [
+            3
+        ]
+    }
+}

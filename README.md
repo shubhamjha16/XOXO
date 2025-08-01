@@ -1,4 +1,4 @@
-# ✈️ XOXO Experience Planner
+#  XOXO
 
 **Your journey, perfectly crafted with intelligence.**
 

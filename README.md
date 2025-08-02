@@ -2,7 +2,7 @@
 
 **Your journey, perfectly crafted with intelligence.**
 
-Experience planning is overwhelming—juggling dozens of tabs, comparing conflicting info, spending hours just to get started. XOXO makes that disappear. It's a revolutionary multi-agent AI system that not only creates complete experience itineraries but also connects you with compatible co-experiencers for shared adventures. Experience blind matching based on trust and budget compatibility, plus AI-powered adventure challenges that make your journey unforgettable.
+Connect with like-minded experience seekers through our AI-powered matching system. Based on your budget and experience rating, we pair you with compatible partners and handle all bookings for you. We collect your budget upfront and optimally allocate funds to create personalized adventures with exciting dares and challenges. The more you invest, the more magical your experiences become!
 
 > **Note**: This project is currently under development and has some known issues.
 > Please see [KNOWN_ISSUES.md](KNOWN_ISSUES.md) for details.

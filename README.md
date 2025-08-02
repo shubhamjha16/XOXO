@@ -43,9 +43,9 @@ Make experience planning effortless, personal, and social. No stress, no endless
 
 ## 📸 Visuals
 
-![Image]([https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.26.06%20AM.png])
-![Image]([https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.28.14%20AM.png])
-![Image]([https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.28.27%20AM.png])
+![Image](https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.26.06%20AM.png)
+![Image](https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.28.14%20AM.png)
+![Image](https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.28.27%20AM.png)
 
 
 ---

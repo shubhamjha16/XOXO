@@ -1,5 +1,14 @@
 #  XOXO
 
+
+## 📸 Visuals
+
+![Image](https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.26.06%20AM.png)
+![Image](https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.28.14%20AM.png)
+![Image](https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.28.27%20AM.png)
+
+
+---
 **Your journey, perfectly crafted with intelligence.**
 
 Connect with like-minded experience seekers through our AI-powered matching system. Based on your budget and experience rating, we pair you with compatible partners and handle all bookings for you. We collect your budget upfront and optimally allocate funds to create personalized adventures with exciting dares and challenges. The more you invest, the more magical your experiences become!
@@ -41,20 +50,13 @@ Make experience planning effortless, personal, and social. No stress, no endless
 
 ---
 
-## 📸 Visuals
-
-![Image](https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.26.06%20AM.png)
-![Image](https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.28.14%20AM.png)
-![Image](https://github.com/shubhamjha16/XOXO/blob/main/Screenshot%202025-08-02%20at%2011.28.27%20AM.png)
-
-
 ---
 
 ## 👥 About
 
 **Built by**: Shubham Jha [@shubhamjha16](https://github.com/shubhamjha16)
 
-Full-stack developer and software engineer passionate about building intelligent systems that solve real-world problems. XOXO represents the intersection of advanced AI capabilities and practical experience planning needs.
+Agentic AI Full-stack developer and software engineer passionate about building intelligent systems that solve real-world problems. XOXO represents the intersection of advanced AI capabilities and practical experience planning needs.
 
 
 

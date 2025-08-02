@@ -4,8 +4,7 @@
 
 Connect with like-minded experience seekers through our AI-powered matching system. Based on your budget and experience rating, we pair you with compatible partners and handle all bookings for you. We collect your budget upfront and optimally allocate funds to create personalized adventures with exciting dares and challenges. The more you invest, the more magical your experiences become!
 
-> **Note**: This project is currently under development and has some known issues.
-> Please see [KNOWN_ISSUES.md](KNOWN_ISSUES.md) for details.
+
 
 ## 🎯 Goal
 
@@ -16,7 +15,7 @@ Make experience planning effortless, personal, and social. No stress, no endless
 ## ⚙️ How It Works
 
 1. **🎯 Input Your Vision** - Fill out a form with destination, dates, budget, travel style, and preferences
-2. **� Find Your Co-Traveler** - Get matched with a compatible travel partner based on budget alignment and experience ratings (optional)
+2. **� Find Your Co-Traveler** - Get matched with a compatible travel partner based on budget alignment and experience ratings
 3. **�🤖 AI Agents Collaborate** - Specialized agents handle flights, hotels, activities, and budgeting in parallel
 4. **🎲 Adventure Challenges** - Receive fun, romantic, and adventurous dares during your trip to create shared memories
 5. **🗺️ Get Your Itinerary** - Receive a complete day-by-day plan with bookings, costs, and recommendations
@@ -55,15 +54,11 @@ Make experience planning effortless, personal, and social. No stress, no endless
 
 ## 👥 About
 
-**Built by**: Amit Wani [@mtwn105](https://github.com/mtwn105)
+**Built by**: Shubham Jha [@shubhamjha16](https://github.com/shubhamjha16)
 
 Full-stack developer and software engineer passionate about building intelligent systems that solve real-world problems. XOXO represents the intersection of advanced AI capabilities and practical experience planning needs.
 
----
 
-## 🎬 Demo Video Link
-
-[https://youtu.be/eTll7EdQyY8](https://youtu.be/eTll7EdQyY8)
 
 ---
 

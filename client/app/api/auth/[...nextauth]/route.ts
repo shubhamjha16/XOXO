@@ -1,6 +1,3 @@
-import NextAuth from "next-auth";
-import { authOptions } from "@/lib/auth";
-
-// Create NextAuth handler
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+// Legacy NextAuth route file (deprecated in favor of better-auth)
+export const GET = () => new Response("Deprecated", { status: 404 });
+export const POST = () => new Response("Deprecated", { status: 404 });

@@ -199,17 +199,17 @@ exports.Prisma.TripPlanScalarFieldEnum = {
   name: 'name',
   destination: 'destination',
   startingLocation: 'startingLocation',
-  travelDatesStart: 'travelDatesStart',
-  travelDatesEnd: 'travelDatesEnd',
+  experienceDatesStart: 'experienceDatesStart',
+  experienceDatesEnd: 'experienceDatesEnd',
   dateInputType: 'dateInputType',
   duration: 'duration',
-  travelingWith: 'travelingWith',
+  experiencingWith: 'experiencingWith',
   adults: 'adults',
   children: 'children',
   ageGroups: 'ageGroups',
   budget: 'budget',
   budgetCurrency: 'budgetCurrency',
-  travelStyle: 'travelStyle',
+  experienceStyle: 'experienceStyle',
   budgetFlexible: 'budgetFlexible',
   vibes: 'vibes',
   priorities: 'priorities',
@@ -234,6 +234,34 @@ exports.Prisma.Plan_tasksScalarFieldEnum = {
   error_message: 'error_message',
   created_at: 'created_at',
   updated_at: 'updated_at'
+};
+
+exports.Prisma.PaymentMandateScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tripPlanId: 'tripPlanId',
+  limitAmount: 'limitAmount',
+  currency: 'currency',
+  signature: 'signature',
+  publicKey: 'publicKey',
+  scope: 'scope',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TransactionSplitScalarFieldEnum = {
+  id: 'id',
+  tripPlanId: 'tripPlanId',
+  totalAmount: 'totalAmount',
+  currency: 'currency',
+  user1Id: 'user1Id',
+  user2Id: 'user2Id',
+  user1Amount: 'user1Amount',
+  user2Amount: 'user2Amount',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -281,7 +309,9 @@ exports.Prisma.ModelName = {
   TripPlanStatus: 'TripPlanStatus',
   TripPlanOutput: 'TripPlanOutput',
   TripPlan: 'TripPlan',
-  plan_tasks: 'plan_tasks'
+  plan_tasks: 'plan_tasks',
+  PaymentMandate: 'PaymentMandate',
+  TransactionSplit: 'TransactionSplit'
 };
 
 /**

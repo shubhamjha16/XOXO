@@ -80,3 +80,58 @@ class TripPlanOutput(Base):
 
     # Relationship (optional)
     # trip_plan = relationship("TripPlan") # Define TripPlan model
+
+
+class PaymentMandate(Base):
+    """Model for storing payment mandates."""
+
+    __tablename__ = "payment_mandate"
+
+    id: Mapped[str] = mapped_column(
+        Text, primary_key=True, default=lambda: CUID_GENERATOR.generate()
+    )
+    userId: Mapped[str] = mapped_column(Text)
+    tripPlanId: Mapped[str] = mapped_column(Text, index=True)
+    limitAmount: Mapped[float] = mapped_column()
+    currency: Mapped[str] = mapped_column(Text, default="USD")
+    signature: Mapped[str] = mapped_column(Text)
+    publicKey: Mapped[str] = mapped_column(Text)
+    scope: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(Text, default="active")
+    createdAt: Mapped[datetime] = mapped_column(
+        DateTime(timezone=False),
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+    updatedAt: Mapped[datetime] = mapped_column(
+        DateTime(timezone=False),
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+        onupdate=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+
+
+class TransactionSplit(Base):
+    """Model for tracking transaction splits."""
+
+    __tablename__ = "transaction_split"
+
+    id: Mapped[str] = mapped_column(
+        Text, primary_key=True, default=lambda: CUID_GENERATOR.generate()
+    )
+    tripPlanId: Mapped[str] = mapped_column(Text, index=True)
+    totalAmount: Mapped[float] = mapped_column()
+    currency: Mapped[str] = mapped_column(Text, default="USD")
+    user1Id: Mapped[str] = mapped_column(Text)
+    user2Id: Mapped[str] = mapped_column(Text)
+    user1Amount: Mapped[float] = mapped_column()
+    user2Amount: Mapped[float] = mapped_column()
+    status: Mapped[str] = mapped_column(Text, default="pending")
+    createdAt: Mapped[datetime] = mapped_column(
+        DateTime(timezone=False),
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+    updatedAt: Mapped[datetime] = mapped_column(
+        DateTime(timezone=False),
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+        onupdate=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+

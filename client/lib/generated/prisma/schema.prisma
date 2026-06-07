@@ -105,36 +105,36 @@ model TripPlanOutput {
 }
 
 model TripPlan {
-  id               String          @id @default(cuid())
-  name             String
-  destination      String
-  startingLocation String
-  travelDatesStart String
-  travelDatesEnd   String?
-  dateInputType    String          @default("picker")
-  duration         Int?
-  travelingWith    String
-  adults           Int             @default(1)
-  children         Int             @default(0)
-  ageGroups        String[]
-  budget           Float
-  budgetCurrency   String          @default("USD")
-  travelStyle      String
-  budgetFlexible   Boolean         @default(false)
-  vibes            String[]
-  priorities       String[]
-  interests        String?
-  rooms            Int             @default(1)
-  pace             Int[]
-  beenThereBefore  String?
-  lovedPlaces      String?
-  additionalInfo   String?
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
-  userId           String?
-  user             User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  status           TripPlanStatus?
-  output           TripPlanOutput?
+  id                   String          @id @default(cuid())
+  name                 String
+  destination          String
+  startingLocation     String
+  experienceDatesStart String
+  experienceDatesEnd   String?
+  dateInputType        String          @default("picker")
+  duration             Int?
+  experiencingWith     String
+  adults               Int             @default(1)
+  children             Int             @default(0)
+  ageGroups            String[]
+  budget               Float
+  budgetCurrency       String          @default("USD")
+  experienceStyle      String
+  budgetFlexible       Boolean         @default(false)
+  vibes                String[]
+  priorities           String[]
+  interests            String?
+  rooms                Int             @default(1)
+  pace                 Int[]
+  beenThereBefore      String?
+  lovedPlaces          String?
+  additionalInfo       String?
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+  userId               String?
+  user                 User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status               TripPlanStatus?
+  output               TripPlanOutput?
 
   @@map("trip_plan")
 }
@@ -159,4 +159,36 @@ enum plan_task_status {
   in_progress
   success
   error
+}
+
+model PaymentMandate {
+  id          String   @id @default(cuid())
+  userId      String
+  tripPlanId  String
+  limitAmount Float
+  currency    String   @default("USD")
+  signature   String
+  publicKey   String
+  scope       String // e.g. "trip_booking"
+  status      String   @default("active") // active, authorized, completed, revoked
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("payment_mandate")
+}
+
+model TransactionSplit {
+  id          String   @id @default(cuid())
+  tripPlanId  String
+  totalAmount Float
+  currency    String   @default("USD")
+  user1Id     String
+  user2Id     String
+  user1Amount Float
+  user2Amount Float
+  status      String   @default("pending") // pending, executing, success, failed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("transaction_split")
 }

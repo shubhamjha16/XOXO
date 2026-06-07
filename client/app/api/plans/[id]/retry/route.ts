@@ -49,18 +49,18 @@ export async function POST(
         destination: tripPlan.destination,
         starting_location: tripPlan.startingLocation,
         experience_dates: {
-          start: tripPlan.travelDatesStart,
-          end: tripPlan.travelDatesEnd || ""
+          start: tripPlan.experienceDatesStart,
+          end: tripPlan.experienceDatesEnd || ""
         },
         date_input_type: tripPlan.dateInputType,
         duration: tripPlan.duration,
-        experiencing_with: tripPlan.travelingWith,
+        experiencing_with: tripPlan.experiencingWith,
         adults: tripPlan.adults,
         children: tripPlan.children,
         age_groups: tripPlan.ageGroups,
         budget: tripPlan.budget,
         budget_currency: tripPlan.budgetCurrency,
-        experience_style: tripPlan.travelStyle,
+        experience_style: tripPlan.experienceStyle,
         budget_flexible: tripPlan.budgetFlexible,
         vibes: tripPlan.vibes,
         priorities: tripPlan.priorities,

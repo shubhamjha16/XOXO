@@ -6,19 +6,14 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Luggage, UserCircle, LogOut } from "lucide-react";
-import { useSession, signOut } from "next-auth/react";
 
 export default function Header() {
   const router = useRouter();
-  const { data: session, status } = useSession();
   const { data: betterAuthSession, isPending } = authClient.useSession();
 
   async function handleLogout() {
     try {
-      // Try NextAuth first, fallback to BetterAuth
-      if (session) {
-        await signOut({ redirect: false });
-      } else if (betterAuthSession) {
+      if (betterAuthSession) {
         await authClient.signOut();
       }
       toast.success("Logged out successfully");
@@ -58,12 +53,12 @@ export default function Header() {
           <div className="flex items-center gap-4">
             {isPending ? (
               <div className="text-sm text-muted-foreground">Loading...</div>
-            ) : session || betterAuthSession?.user ? (
+            ) : betterAuthSession?.user ? (
               <div className="flex items-center gap-4">
                 <div className="text-sm">
                   <span className="text-muted-foreground">Welcome, </span>
                   <span className="font-medium">
-                    {session?.user?.name || betterAuthSession?.user?.name || session?.user?.email || betterAuthSession?.user?.email || "User"}
+                    {betterAuthSession?.user?.name || betterAuthSession?.user?.email || "User"}
                   </span>
                 </div>
                 <Button variant="outline" size="sm" onClick={handleLogout} className="flex items-center gap-2">

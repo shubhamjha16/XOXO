@@ -58,6 +58,16 @@ export type TripPlan = $Result.DefaultSelection<Prisma.$TripPlanPayload>
  * 
  */
 export type plan_tasks = $Result.DefaultSelection<Prisma.$plan_tasksPayload>
+/**
+ * Model PaymentMandate
+ * 
+ */
+export type PaymentMandate = $Result.DefaultSelection<Prisma.$PaymentMandatePayload>
+/**
+ * Model TransactionSplit
+ * 
+ */
+export type TransactionSplit = $Result.DefaultSelection<Prisma.$TransactionSplitPayload>
 
 /**
  * Enums
@@ -292,6 +302,26 @@ export class PrismaClient<
     * ```
     */
   get plan_tasks(): Prisma.plan_tasksDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.paymentMandate`: Exposes CRUD operations for the **PaymentMandate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PaymentMandates
+    * const paymentMandates = await prisma.paymentMandate.findMany()
+    * ```
+    */
+  get paymentMandate(): Prisma.PaymentMandateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.transactionSplit`: Exposes CRUD operations for the **TransactionSplit** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TransactionSplits
+    * const transactionSplits = await prisma.transactionSplit.findMany()
+    * ```
+    */
+  get transactionSplit(): Prisma.TransactionSplitDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -740,7 +770,9 @@ export namespace Prisma {
     TripPlanStatus: 'TripPlanStatus',
     TripPlanOutput: 'TripPlanOutput',
     TripPlan: 'TripPlan',
-    plan_tasks: 'plan_tasks'
+    plan_tasks: 'plan_tasks',
+    PaymentMandate: 'PaymentMandate',
+    TransactionSplit: 'TransactionSplit'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -759,7 +791,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "jwks" | "tripPlanStatus" | "tripPlanOutput" | "tripPlan" | "plan_tasks"
+      modelProps: "user" | "session" | "account" | "verification" | "jwks" | "tripPlanStatus" | "tripPlanOutput" | "tripPlan" | "plan_tasks" | "paymentMandate" | "transactionSplit"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1429,6 +1461,154 @@ export namespace Prisma {
           }
         }
       }
+      PaymentMandate: {
+        payload: Prisma.$PaymentMandatePayload<ExtArgs>
+        fields: Prisma.PaymentMandateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PaymentMandateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PaymentMandateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload>
+          }
+          findFirst: {
+            args: Prisma.PaymentMandateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PaymentMandateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload>
+          }
+          findMany: {
+            args: Prisma.PaymentMandateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload>[]
+          }
+          create: {
+            args: Prisma.PaymentMandateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload>
+          }
+          createMany: {
+            args: Prisma.PaymentMandateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PaymentMandateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload>[]
+          }
+          delete: {
+            args: Prisma.PaymentMandateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload>
+          }
+          update: {
+            args: Prisma.PaymentMandateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload>
+          }
+          deleteMany: {
+            args: Prisma.PaymentMandateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PaymentMandateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PaymentMandateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload>[]
+          }
+          upsert: {
+            args: Prisma.PaymentMandateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentMandatePayload>
+          }
+          aggregate: {
+            args: Prisma.PaymentMandateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePaymentMandate>
+          }
+          groupBy: {
+            args: Prisma.PaymentMandateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PaymentMandateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PaymentMandateCountArgs<ExtArgs>
+            result: $Utils.Optional<PaymentMandateCountAggregateOutputType> | number
+          }
+        }
+      }
+      TransactionSplit: {
+        payload: Prisma.$TransactionSplitPayload<ExtArgs>
+        fields: Prisma.TransactionSplitFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TransactionSplitFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TransactionSplitFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload>
+          }
+          findFirst: {
+            args: Prisma.TransactionSplitFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TransactionSplitFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload>
+          }
+          findMany: {
+            args: Prisma.TransactionSplitFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload>[]
+          }
+          create: {
+            args: Prisma.TransactionSplitCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload>
+          }
+          createMany: {
+            args: Prisma.TransactionSplitCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TransactionSplitCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload>[]
+          }
+          delete: {
+            args: Prisma.TransactionSplitDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload>
+          }
+          update: {
+            args: Prisma.TransactionSplitUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload>
+          }
+          deleteMany: {
+            args: Prisma.TransactionSplitDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TransactionSplitUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TransactionSplitUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload>[]
+          }
+          upsert: {
+            args: Prisma.TransactionSplitUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionSplitPayload>
+          }
+          aggregate: {
+            args: Prisma.TransactionSplitAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTransactionSplit>
+          }
+          groupBy: {
+            args: Prisma.TransactionSplitGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TransactionSplitGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TransactionSplitCountArgs<ExtArgs>
+            result: $Utils.Optional<TransactionSplitCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1530,6 +1710,8 @@ export namespace Prisma {
     tripPlanOutput?: TripPlanOutputOmit
     tripPlan?: TripPlanOmit
     plan_tasks?: plan_tasksOmit
+    paymentMandate?: PaymentMandateOmit
+    transactionSplit?: TransactionSplitOmit
   }
 
   /* Types for Logging */
@@ -9294,16 +9476,16 @@ export namespace Prisma {
     name: string | null
     destination: string | null
     startingLocation: string | null
-    travelDatesStart: string | null
-    travelDatesEnd: string | null
+    experienceDatesStart: string | null
+    experienceDatesEnd: string | null
     dateInputType: string | null
     duration: number | null
-    travelingWith: string | null
+    experiencingWith: string | null
     adults: number | null
     children: number | null
     budget: number | null
     budgetCurrency: string | null
-    travelStyle: string | null
+    experienceStyle: string | null
     budgetFlexible: boolean | null
     interests: string | null
     rooms: number | null
@@ -9320,16 +9502,16 @@ export namespace Prisma {
     name: string | null
     destination: string | null
     startingLocation: string | null
-    travelDatesStart: string | null
-    travelDatesEnd: string | null
+    experienceDatesStart: string | null
+    experienceDatesEnd: string | null
     dateInputType: string | null
     duration: number | null
-    travelingWith: string | null
+    experiencingWith: string | null
     adults: number | null
     children: number | null
     budget: number | null
     budgetCurrency: string | null
-    travelStyle: string | null
+    experienceStyle: string | null
     budgetFlexible: boolean | null
     interests: string | null
     rooms: number | null
@@ -9346,17 +9528,17 @@ export namespace Prisma {
     name: number
     destination: number
     startingLocation: number
-    travelDatesStart: number
-    travelDatesEnd: number
+    experienceDatesStart: number
+    experienceDatesEnd: number
     dateInputType: number
     duration: number
-    travelingWith: number
+    experiencingWith: number
     adults: number
     children: number
     ageGroups: number
     budget: number
     budgetCurrency: number
-    travelStyle: number
+    experienceStyle: number
     budgetFlexible: number
     vibes: number
     priorities: number
@@ -9396,16 +9578,16 @@ export namespace Prisma {
     name?: true
     destination?: true
     startingLocation?: true
-    travelDatesStart?: true
-    travelDatesEnd?: true
+    experienceDatesStart?: true
+    experienceDatesEnd?: true
     dateInputType?: true
     duration?: true
-    travelingWith?: true
+    experiencingWith?: true
     adults?: true
     children?: true
     budget?: true
     budgetCurrency?: true
-    travelStyle?: true
+    experienceStyle?: true
     budgetFlexible?: true
     interests?: true
     rooms?: true
@@ -9422,16 +9604,16 @@ export namespace Prisma {
     name?: true
     destination?: true
     startingLocation?: true
-    travelDatesStart?: true
-    travelDatesEnd?: true
+    experienceDatesStart?: true
+    experienceDatesEnd?: true
     dateInputType?: true
     duration?: true
-    travelingWith?: true
+    experiencingWith?: true
     adults?: true
     children?: true
     budget?: true
     budgetCurrency?: true
-    travelStyle?: true
+    experienceStyle?: true
     budgetFlexible?: true
     interests?: true
     rooms?: true
@@ -9448,17 +9630,17 @@ export namespace Prisma {
     name?: true
     destination?: true
     startingLocation?: true
-    travelDatesStart?: true
-    travelDatesEnd?: true
+    experienceDatesStart?: true
+    experienceDatesEnd?: true
     dateInputType?: true
     duration?: true
-    travelingWith?: true
+    experiencingWith?: true
     adults?: true
     children?: true
     ageGroups?: true
     budget?: true
     budgetCurrency?: true
-    travelStyle?: true
+    experienceStyle?: true
     budgetFlexible?: true
     vibes?: true
     priorities?: true
@@ -9565,17 +9747,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd: string | null
+    experienceDatesStart: string
+    experienceDatesEnd: string | null
     dateInputType: string
     duration: number | null
-    travelingWith: string
+    experiencingWith: string
     adults: number
     children: number
     ageGroups: string[]
     budget: number
     budgetCurrency: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible: boolean
     vibes: string[]
     priorities: string[]
@@ -9614,17 +9796,17 @@ export namespace Prisma {
     name?: boolean
     destination?: boolean
     startingLocation?: boolean
-    travelDatesStart?: boolean
-    travelDatesEnd?: boolean
+    experienceDatesStart?: boolean
+    experienceDatesEnd?: boolean
     dateInputType?: boolean
     duration?: boolean
-    travelingWith?: boolean
+    experiencingWith?: boolean
     adults?: boolean
     children?: boolean
     ageGroups?: boolean
     budget?: boolean
     budgetCurrency?: boolean
-    travelStyle?: boolean
+    experienceStyle?: boolean
     budgetFlexible?: boolean
     vibes?: boolean
     priorities?: boolean
@@ -9647,17 +9829,17 @@ export namespace Prisma {
     name?: boolean
     destination?: boolean
     startingLocation?: boolean
-    travelDatesStart?: boolean
-    travelDatesEnd?: boolean
+    experienceDatesStart?: boolean
+    experienceDatesEnd?: boolean
     dateInputType?: boolean
     duration?: boolean
-    travelingWith?: boolean
+    experiencingWith?: boolean
     adults?: boolean
     children?: boolean
     ageGroups?: boolean
     budget?: boolean
     budgetCurrency?: boolean
-    travelStyle?: boolean
+    experienceStyle?: boolean
     budgetFlexible?: boolean
     vibes?: boolean
     priorities?: boolean
@@ -9678,17 +9860,17 @@ export namespace Prisma {
     name?: boolean
     destination?: boolean
     startingLocation?: boolean
-    travelDatesStart?: boolean
-    travelDatesEnd?: boolean
+    experienceDatesStart?: boolean
+    experienceDatesEnd?: boolean
     dateInputType?: boolean
     duration?: boolean
-    travelingWith?: boolean
+    experiencingWith?: boolean
     adults?: boolean
     children?: boolean
     ageGroups?: boolean
     budget?: boolean
     budgetCurrency?: boolean
-    travelStyle?: boolean
+    experienceStyle?: boolean
     budgetFlexible?: boolean
     vibes?: boolean
     priorities?: boolean
@@ -9709,17 +9891,17 @@ export namespace Prisma {
     name?: boolean
     destination?: boolean
     startingLocation?: boolean
-    travelDatesStart?: boolean
-    travelDatesEnd?: boolean
+    experienceDatesStart?: boolean
+    experienceDatesEnd?: boolean
     dateInputType?: boolean
     duration?: boolean
-    travelingWith?: boolean
+    experiencingWith?: boolean
     adults?: boolean
     children?: boolean
     ageGroups?: boolean
     budget?: boolean
     budgetCurrency?: boolean
-    travelStyle?: boolean
+    experienceStyle?: boolean
     budgetFlexible?: boolean
     vibes?: boolean
     priorities?: boolean
@@ -9734,7 +9916,7 @@ export namespace Prisma {
     userId?: boolean
   }
 
-  export type TripPlanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "destination" | "startingLocation" | "travelDatesStart" | "travelDatesEnd" | "dateInputType" | "duration" | "travelingWith" | "adults" | "children" | "ageGroups" | "budget" | "budgetCurrency" | "travelStyle" | "budgetFlexible" | "vibes" | "priorities" | "interests" | "rooms" | "pace" | "beenThereBefore" | "lovedPlaces" | "additionalInfo" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["tripPlan"]>
+  export type TripPlanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "destination" | "startingLocation" | "experienceDatesStart" | "experienceDatesEnd" | "dateInputType" | "duration" | "experiencingWith" | "adults" | "children" | "ageGroups" | "budget" | "budgetCurrency" | "experienceStyle" | "budgetFlexible" | "vibes" | "priorities" | "interests" | "rooms" | "pace" | "beenThereBefore" | "lovedPlaces" | "additionalInfo" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["tripPlan"]>
   export type TripPlanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | TripPlan$userArgs<ExtArgs>
     status?: boolean | TripPlan$statusArgs<ExtArgs>
@@ -9759,17 +9941,17 @@ export namespace Prisma {
       name: string
       destination: string
       startingLocation: string
-      travelDatesStart: string
-      travelDatesEnd: string | null
+      experienceDatesStart: string
+      experienceDatesEnd: string | null
       dateInputType: string
       duration: number | null
-      travelingWith: string
+      experiencingWith: string
       adults: number
       children: number
       ageGroups: string[]
       budget: number
       budgetCurrency: string
-      travelStyle: string
+      experienceStyle: string
       budgetFlexible: boolean
       vibes: string[]
       priorities: string[]
@@ -10212,17 +10394,17 @@ export namespace Prisma {
     readonly name: FieldRef<"TripPlan", 'String'>
     readonly destination: FieldRef<"TripPlan", 'String'>
     readonly startingLocation: FieldRef<"TripPlan", 'String'>
-    readonly travelDatesStart: FieldRef<"TripPlan", 'String'>
-    readonly travelDatesEnd: FieldRef<"TripPlan", 'String'>
+    readonly experienceDatesStart: FieldRef<"TripPlan", 'String'>
+    readonly experienceDatesEnd: FieldRef<"TripPlan", 'String'>
     readonly dateInputType: FieldRef<"TripPlan", 'String'>
     readonly duration: FieldRef<"TripPlan", 'Int'>
-    readonly travelingWith: FieldRef<"TripPlan", 'String'>
+    readonly experiencingWith: FieldRef<"TripPlan", 'String'>
     readonly adults: FieldRef<"TripPlan", 'Int'>
     readonly children: FieldRef<"TripPlan", 'Int'>
     readonly ageGroups: FieldRef<"TripPlan", 'String[]'>
     readonly budget: FieldRef<"TripPlan", 'Float'>
     readonly budgetCurrency: FieldRef<"TripPlan", 'String'>
-    readonly travelStyle: FieldRef<"TripPlan", 'String'>
+    readonly experienceStyle: FieldRef<"TripPlan", 'String'>
     readonly budgetFlexible: FieldRef<"TripPlan", 'Boolean'>
     readonly vibes: FieldRef<"TripPlan", 'String[]'>
     readonly priorities: FieldRef<"TripPlan", 'String[]'>
@@ -11780,6 +11962,2228 @@ export namespace Prisma {
 
 
   /**
+   * Model PaymentMandate
+   */
+
+  export type AggregatePaymentMandate = {
+    _count: PaymentMandateCountAggregateOutputType | null
+    _avg: PaymentMandateAvgAggregateOutputType | null
+    _sum: PaymentMandateSumAggregateOutputType | null
+    _min: PaymentMandateMinAggregateOutputType | null
+    _max: PaymentMandateMaxAggregateOutputType | null
+  }
+
+  export type PaymentMandateAvgAggregateOutputType = {
+    limitAmount: number | null
+  }
+
+  export type PaymentMandateSumAggregateOutputType = {
+    limitAmount: number | null
+  }
+
+  export type PaymentMandateMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    tripPlanId: string | null
+    limitAmount: number | null
+    currency: string | null
+    signature: string | null
+    publicKey: string | null
+    scope: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PaymentMandateMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    tripPlanId: string | null
+    limitAmount: number | null
+    currency: string | null
+    signature: string | null
+    publicKey: string | null
+    scope: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PaymentMandateCountAggregateOutputType = {
+    id: number
+    userId: number
+    tripPlanId: number
+    limitAmount: number
+    currency: number
+    signature: number
+    publicKey: number
+    scope: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PaymentMandateAvgAggregateInputType = {
+    limitAmount?: true
+  }
+
+  export type PaymentMandateSumAggregateInputType = {
+    limitAmount?: true
+  }
+
+  export type PaymentMandateMinAggregateInputType = {
+    id?: true
+    userId?: true
+    tripPlanId?: true
+    limitAmount?: true
+    currency?: true
+    signature?: true
+    publicKey?: true
+    scope?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PaymentMandateMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    tripPlanId?: true
+    limitAmount?: true
+    currency?: true
+    signature?: true
+    publicKey?: true
+    scope?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PaymentMandateCountAggregateInputType = {
+    id?: true
+    userId?: true
+    tripPlanId?: true
+    limitAmount?: true
+    currency?: true
+    signature?: true
+    publicKey?: true
+    scope?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PaymentMandateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaymentMandate to aggregate.
+     */
+    where?: PaymentMandateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentMandates to fetch.
+     */
+    orderBy?: PaymentMandateOrderByWithRelationInput | PaymentMandateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PaymentMandateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentMandates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentMandates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PaymentMandates
+    **/
+    _count?: true | PaymentMandateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PaymentMandateAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PaymentMandateSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PaymentMandateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PaymentMandateMaxAggregateInputType
+  }
+
+  export type GetPaymentMandateAggregateType<T extends PaymentMandateAggregateArgs> = {
+        [P in keyof T & keyof AggregatePaymentMandate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePaymentMandate[P]>
+      : GetScalarType<T[P], AggregatePaymentMandate[P]>
+  }
+
+
+
+
+  export type PaymentMandateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaymentMandateWhereInput
+    orderBy?: PaymentMandateOrderByWithAggregationInput | PaymentMandateOrderByWithAggregationInput[]
+    by: PaymentMandateScalarFieldEnum[] | PaymentMandateScalarFieldEnum
+    having?: PaymentMandateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PaymentMandateCountAggregateInputType | true
+    _avg?: PaymentMandateAvgAggregateInputType
+    _sum?: PaymentMandateSumAggregateInputType
+    _min?: PaymentMandateMinAggregateInputType
+    _max?: PaymentMandateMaxAggregateInputType
+  }
+
+  export type PaymentMandateGroupByOutputType = {
+    id: string
+    userId: string
+    tripPlanId: string
+    limitAmount: number
+    currency: string
+    signature: string
+    publicKey: string
+    scope: string
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: PaymentMandateCountAggregateOutputType | null
+    _avg: PaymentMandateAvgAggregateOutputType | null
+    _sum: PaymentMandateSumAggregateOutputType | null
+    _min: PaymentMandateMinAggregateOutputType | null
+    _max: PaymentMandateMaxAggregateOutputType | null
+  }
+
+  type GetPaymentMandateGroupByPayload<T extends PaymentMandateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PaymentMandateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PaymentMandateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PaymentMandateGroupByOutputType[P]>
+            : GetScalarType<T[P], PaymentMandateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PaymentMandateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    tripPlanId?: boolean
+    limitAmount?: boolean
+    currency?: boolean
+    signature?: boolean
+    publicKey?: boolean
+    scope?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["paymentMandate"]>
+
+  export type PaymentMandateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    tripPlanId?: boolean
+    limitAmount?: boolean
+    currency?: boolean
+    signature?: boolean
+    publicKey?: boolean
+    scope?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["paymentMandate"]>
+
+  export type PaymentMandateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    tripPlanId?: boolean
+    limitAmount?: boolean
+    currency?: boolean
+    signature?: boolean
+    publicKey?: boolean
+    scope?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["paymentMandate"]>
+
+  export type PaymentMandateSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    tripPlanId?: boolean
+    limitAmount?: boolean
+    currency?: boolean
+    signature?: boolean
+    publicKey?: boolean
+    scope?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PaymentMandateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "tripPlanId" | "limitAmount" | "currency" | "signature" | "publicKey" | "scope" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["paymentMandate"]>
+
+  export type $PaymentMandatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PaymentMandate"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      tripPlanId: string
+      limitAmount: number
+      currency: string
+      signature: string
+      publicKey: string
+      scope: string
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["paymentMandate"]>
+    composites: {}
+  }
+
+  type PaymentMandateGetPayload<S extends boolean | null | undefined | PaymentMandateDefaultArgs> = $Result.GetResult<Prisma.$PaymentMandatePayload, S>
+
+  type PaymentMandateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PaymentMandateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PaymentMandateCountAggregateInputType | true
+    }
+
+  export interface PaymentMandateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PaymentMandate'], meta: { name: 'PaymentMandate' } }
+    /**
+     * Find zero or one PaymentMandate that matches the filter.
+     * @param {PaymentMandateFindUniqueArgs} args - Arguments to find a PaymentMandate
+     * @example
+     * // Get one PaymentMandate
+     * const paymentMandate = await prisma.paymentMandate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PaymentMandateFindUniqueArgs>(args: SelectSubset<T, PaymentMandateFindUniqueArgs<ExtArgs>>): Prisma__PaymentMandateClient<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PaymentMandate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PaymentMandateFindUniqueOrThrowArgs} args - Arguments to find a PaymentMandate
+     * @example
+     * // Get one PaymentMandate
+     * const paymentMandate = await prisma.paymentMandate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PaymentMandateFindUniqueOrThrowArgs>(args: SelectSubset<T, PaymentMandateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PaymentMandateClient<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PaymentMandate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentMandateFindFirstArgs} args - Arguments to find a PaymentMandate
+     * @example
+     * // Get one PaymentMandate
+     * const paymentMandate = await prisma.paymentMandate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PaymentMandateFindFirstArgs>(args?: SelectSubset<T, PaymentMandateFindFirstArgs<ExtArgs>>): Prisma__PaymentMandateClient<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PaymentMandate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentMandateFindFirstOrThrowArgs} args - Arguments to find a PaymentMandate
+     * @example
+     * // Get one PaymentMandate
+     * const paymentMandate = await prisma.paymentMandate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PaymentMandateFindFirstOrThrowArgs>(args?: SelectSubset<T, PaymentMandateFindFirstOrThrowArgs<ExtArgs>>): Prisma__PaymentMandateClient<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PaymentMandates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentMandateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PaymentMandates
+     * const paymentMandates = await prisma.paymentMandate.findMany()
+     * 
+     * // Get first 10 PaymentMandates
+     * const paymentMandates = await prisma.paymentMandate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const paymentMandateWithIdOnly = await prisma.paymentMandate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PaymentMandateFindManyArgs>(args?: SelectSubset<T, PaymentMandateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PaymentMandate.
+     * @param {PaymentMandateCreateArgs} args - Arguments to create a PaymentMandate.
+     * @example
+     * // Create one PaymentMandate
+     * const PaymentMandate = await prisma.paymentMandate.create({
+     *   data: {
+     *     // ... data to create a PaymentMandate
+     *   }
+     * })
+     * 
+     */
+    create<T extends PaymentMandateCreateArgs>(args: SelectSubset<T, PaymentMandateCreateArgs<ExtArgs>>): Prisma__PaymentMandateClient<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PaymentMandates.
+     * @param {PaymentMandateCreateManyArgs} args - Arguments to create many PaymentMandates.
+     * @example
+     * // Create many PaymentMandates
+     * const paymentMandate = await prisma.paymentMandate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PaymentMandateCreateManyArgs>(args?: SelectSubset<T, PaymentMandateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PaymentMandates and returns the data saved in the database.
+     * @param {PaymentMandateCreateManyAndReturnArgs} args - Arguments to create many PaymentMandates.
+     * @example
+     * // Create many PaymentMandates
+     * const paymentMandate = await prisma.paymentMandate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PaymentMandates and only return the `id`
+     * const paymentMandateWithIdOnly = await prisma.paymentMandate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PaymentMandateCreateManyAndReturnArgs>(args?: SelectSubset<T, PaymentMandateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PaymentMandate.
+     * @param {PaymentMandateDeleteArgs} args - Arguments to delete one PaymentMandate.
+     * @example
+     * // Delete one PaymentMandate
+     * const PaymentMandate = await prisma.paymentMandate.delete({
+     *   where: {
+     *     // ... filter to delete one PaymentMandate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PaymentMandateDeleteArgs>(args: SelectSubset<T, PaymentMandateDeleteArgs<ExtArgs>>): Prisma__PaymentMandateClient<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PaymentMandate.
+     * @param {PaymentMandateUpdateArgs} args - Arguments to update one PaymentMandate.
+     * @example
+     * // Update one PaymentMandate
+     * const paymentMandate = await prisma.paymentMandate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PaymentMandateUpdateArgs>(args: SelectSubset<T, PaymentMandateUpdateArgs<ExtArgs>>): Prisma__PaymentMandateClient<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PaymentMandates.
+     * @param {PaymentMandateDeleteManyArgs} args - Arguments to filter PaymentMandates to delete.
+     * @example
+     * // Delete a few PaymentMandates
+     * const { count } = await prisma.paymentMandate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PaymentMandateDeleteManyArgs>(args?: SelectSubset<T, PaymentMandateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PaymentMandates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentMandateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PaymentMandates
+     * const paymentMandate = await prisma.paymentMandate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PaymentMandateUpdateManyArgs>(args: SelectSubset<T, PaymentMandateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PaymentMandates and returns the data updated in the database.
+     * @param {PaymentMandateUpdateManyAndReturnArgs} args - Arguments to update many PaymentMandates.
+     * @example
+     * // Update many PaymentMandates
+     * const paymentMandate = await prisma.paymentMandate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PaymentMandates and only return the `id`
+     * const paymentMandateWithIdOnly = await prisma.paymentMandate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PaymentMandateUpdateManyAndReturnArgs>(args: SelectSubset<T, PaymentMandateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PaymentMandate.
+     * @param {PaymentMandateUpsertArgs} args - Arguments to update or create a PaymentMandate.
+     * @example
+     * // Update or create a PaymentMandate
+     * const paymentMandate = await prisma.paymentMandate.upsert({
+     *   create: {
+     *     // ... data to create a PaymentMandate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PaymentMandate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PaymentMandateUpsertArgs>(args: SelectSubset<T, PaymentMandateUpsertArgs<ExtArgs>>): Prisma__PaymentMandateClient<$Result.GetResult<Prisma.$PaymentMandatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PaymentMandates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentMandateCountArgs} args - Arguments to filter PaymentMandates to count.
+     * @example
+     * // Count the number of PaymentMandates
+     * const count = await prisma.paymentMandate.count({
+     *   where: {
+     *     // ... the filter for the PaymentMandates we want to count
+     *   }
+     * })
+    **/
+    count<T extends PaymentMandateCountArgs>(
+      args?: Subset<T, PaymentMandateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PaymentMandateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PaymentMandate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentMandateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PaymentMandateAggregateArgs>(args: Subset<T, PaymentMandateAggregateArgs>): Prisma.PrismaPromise<GetPaymentMandateAggregateType<T>>
+
+    /**
+     * Group by PaymentMandate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentMandateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PaymentMandateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PaymentMandateGroupByArgs['orderBy'] }
+        : { orderBy?: PaymentMandateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PaymentMandateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPaymentMandateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PaymentMandate model
+   */
+  readonly fields: PaymentMandateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PaymentMandate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PaymentMandateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PaymentMandate model
+   */
+  interface PaymentMandateFieldRefs {
+    readonly id: FieldRef<"PaymentMandate", 'String'>
+    readonly userId: FieldRef<"PaymentMandate", 'String'>
+    readonly tripPlanId: FieldRef<"PaymentMandate", 'String'>
+    readonly limitAmount: FieldRef<"PaymentMandate", 'Float'>
+    readonly currency: FieldRef<"PaymentMandate", 'String'>
+    readonly signature: FieldRef<"PaymentMandate", 'String'>
+    readonly publicKey: FieldRef<"PaymentMandate", 'String'>
+    readonly scope: FieldRef<"PaymentMandate", 'String'>
+    readonly status: FieldRef<"PaymentMandate", 'String'>
+    readonly createdAt: FieldRef<"PaymentMandate", 'DateTime'>
+    readonly updatedAt: FieldRef<"PaymentMandate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PaymentMandate findUnique
+   */
+  export type PaymentMandateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentMandate to fetch.
+     */
+    where: PaymentMandateWhereUniqueInput
+  }
+
+  /**
+   * PaymentMandate findUniqueOrThrow
+   */
+  export type PaymentMandateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentMandate to fetch.
+     */
+    where: PaymentMandateWhereUniqueInput
+  }
+
+  /**
+   * PaymentMandate findFirst
+   */
+  export type PaymentMandateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentMandate to fetch.
+     */
+    where?: PaymentMandateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentMandates to fetch.
+     */
+    orderBy?: PaymentMandateOrderByWithRelationInput | PaymentMandateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaymentMandates.
+     */
+    cursor?: PaymentMandateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentMandates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentMandates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaymentMandates.
+     */
+    distinct?: PaymentMandateScalarFieldEnum | PaymentMandateScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentMandate findFirstOrThrow
+   */
+  export type PaymentMandateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentMandate to fetch.
+     */
+    where?: PaymentMandateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentMandates to fetch.
+     */
+    orderBy?: PaymentMandateOrderByWithRelationInput | PaymentMandateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaymentMandates.
+     */
+    cursor?: PaymentMandateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentMandates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentMandates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaymentMandates.
+     */
+    distinct?: PaymentMandateScalarFieldEnum | PaymentMandateScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentMandate findMany
+   */
+  export type PaymentMandateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentMandates to fetch.
+     */
+    where?: PaymentMandateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentMandates to fetch.
+     */
+    orderBy?: PaymentMandateOrderByWithRelationInput | PaymentMandateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PaymentMandates.
+     */
+    cursor?: PaymentMandateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentMandates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentMandates.
+     */
+    skip?: number
+    distinct?: PaymentMandateScalarFieldEnum | PaymentMandateScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentMandate create
+   */
+  export type PaymentMandateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * The data needed to create a PaymentMandate.
+     */
+    data: XOR<PaymentMandateCreateInput, PaymentMandateUncheckedCreateInput>
+  }
+
+  /**
+   * PaymentMandate createMany
+   */
+  export type PaymentMandateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PaymentMandates.
+     */
+    data: PaymentMandateCreateManyInput | PaymentMandateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PaymentMandate createManyAndReturn
+   */
+  export type PaymentMandateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * The data used to create many PaymentMandates.
+     */
+    data: PaymentMandateCreateManyInput | PaymentMandateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PaymentMandate update
+   */
+  export type PaymentMandateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * The data needed to update a PaymentMandate.
+     */
+    data: XOR<PaymentMandateUpdateInput, PaymentMandateUncheckedUpdateInput>
+    /**
+     * Choose, which PaymentMandate to update.
+     */
+    where: PaymentMandateWhereUniqueInput
+  }
+
+  /**
+   * PaymentMandate updateMany
+   */
+  export type PaymentMandateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PaymentMandates.
+     */
+    data: XOR<PaymentMandateUpdateManyMutationInput, PaymentMandateUncheckedUpdateManyInput>
+    /**
+     * Filter which PaymentMandates to update
+     */
+    where?: PaymentMandateWhereInput
+    /**
+     * Limit how many PaymentMandates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaymentMandate updateManyAndReturn
+   */
+  export type PaymentMandateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * The data used to update PaymentMandates.
+     */
+    data: XOR<PaymentMandateUpdateManyMutationInput, PaymentMandateUncheckedUpdateManyInput>
+    /**
+     * Filter which PaymentMandates to update
+     */
+    where?: PaymentMandateWhereInput
+    /**
+     * Limit how many PaymentMandates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaymentMandate upsert
+   */
+  export type PaymentMandateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * The filter to search for the PaymentMandate to update in case it exists.
+     */
+    where: PaymentMandateWhereUniqueInput
+    /**
+     * In case the PaymentMandate found by the `where` argument doesn't exist, create a new PaymentMandate with this data.
+     */
+    create: XOR<PaymentMandateCreateInput, PaymentMandateUncheckedCreateInput>
+    /**
+     * In case the PaymentMandate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PaymentMandateUpdateInput, PaymentMandateUncheckedUpdateInput>
+  }
+
+  /**
+   * PaymentMandate delete
+   */
+  export type PaymentMandateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+    /**
+     * Filter which PaymentMandate to delete.
+     */
+    where: PaymentMandateWhereUniqueInput
+  }
+
+  /**
+   * PaymentMandate deleteMany
+   */
+  export type PaymentMandateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaymentMandates to delete
+     */
+    where?: PaymentMandateWhereInput
+    /**
+     * Limit how many PaymentMandates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaymentMandate without action
+   */
+  export type PaymentMandateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMandate
+     */
+    select?: PaymentMandateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentMandate
+     */
+    omit?: PaymentMandateOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TransactionSplit
+   */
+
+  export type AggregateTransactionSplit = {
+    _count: TransactionSplitCountAggregateOutputType | null
+    _avg: TransactionSplitAvgAggregateOutputType | null
+    _sum: TransactionSplitSumAggregateOutputType | null
+    _min: TransactionSplitMinAggregateOutputType | null
+    _max: TransactionSplitMaxAggregateOutputType | null
+  }
+
+  export type TransactionSplitAvgAggregateOutputType = {
+    totalAmount: number | null
+    user1Amount: number | null
+    user2Amount: number | null
+  }
+
+  export type TransactionSplitSumAggregateOutputType = {
+    totalAmount: number | null
+    user1Amount: number | null
+    user2Amount: number | null
+  }
+
+  export type TransactionSplitMinAggregateOutputType = {
+    id: string | null
+    tripPlanId: string | null
+    totalAmount: number | null
+    currency: string | null
+    user1Id: string | null
+    user2Id: string | null
+    user1Amount: number | null
+    user2Amount: number | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TransactionSplitMaxAggregateOutputType = {
+    id: string | null
+    tripPlanId: string | null
+    totalAmount: number | null
+    currency: string | null
+    user1Id: string | null
+    user2Id: string | null
+    user1Amount: number | null
+    user2Amount: number | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TransactionSplitCountAggregateOutputType = {
+    id: number
+    tripPlanId: number
+    totalAmount: number
+    currency: number
+    user1Id: number
+    user2Id: number
+    user1Amount: number
+    user2Amount: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TransactionSplitAvgAggregateInputType = {
+    totalAmount?: true
+    user1Amount?: true
+    user2Amount?: true
+  }
+
+  export type TransactionSplitSumAggregateInputType = {
+    totalAmount?: true
+    user1Amount?: true
+    user2Amount?: true
+  }
+
+  export type TransactionSplitMinAggregateInputType = {
+    id?: true
+    tripPlanId?: true
+    totalAmount?: true
+    currency?: true
+    user1Id?: true
+    user2Id?: true
+    user1Amount?: true
+    user2Amount?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TransactionSplitMaxAggregateInputType = {
+    id?: true
+    tripPlanId?: true
+    totalAmount?: true
+    currency?: true
+    user1Id?: true
+    user2Id?: true
+    user1Amount?: true
+    user2Amount?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TransactionSplitCountAggregateInputType = {
+    id?: true
+    tripPlanId?: true
+    totalAmount?: true
+    currency?: true
+    user1Id?: true
+    user2Id?: true
+    user1Amount?: true
+    user2Amount?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TransactionSplitAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TransactionSplit to aggregate.
+     */
+    where?: TransactionSplitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransactionSplits to fetch.
+     */
+    orderBy?: TransactionSplitOrderByWithRelationInput | TransactionSplitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TransactionSplitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransactionSplits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransactionSplits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TransactionSplits
+    **/
+    _count?: true | TransactionSplitCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TransactionSplitAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TransactionSplitSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TransactionSplitMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TransactionSplitMaxAggregateInputType
+  }
+
+  export type GetTransactionSplitAggregateType<T extends TransactionSplitAggregateArgs> = {
+        [P in keyof T & keyof AggregateTransactionSplit]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTransactionSplit[P]>
+      : GetScalarType<T[P], AggregateTransactionSplit[P]>
+  }
+
+
+
+
+  export type TransactionSplitGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionSplitWhereInput
+    orderBy?: TransactionSplitOrderByWithAggregationInput | TransactionSplitOrderByWithAggregationInput[]
+    by: TransactionSplitScalarFieldEnum[] | TransactionSplitScalarFieldEnum
+    having?: TransactionSplitScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TransactionSplitCountAggregateInputType | true
+    _avg?: TransactionSplitAvgAggregateInputType
+    _sum?: TransactionSplitSumAggregateInputType
+    _min?: TransactionSplitMinAggregateInputType
+    _max?: TransactionSplitMaxAggregateInputType
+  }
+
+  export type TransactionSplitGroupByOutputType = {
+    id: string
+    tripPlanId: string
+    totalAmount: number
+    currency: string
+    user1Id: string
+    user2Id: string
+    user1Amount: number
+    user2Amount: number
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: TransactionSplitCountAggregateOutputType | null
+    _avg: TransactionSplitAvgAggregateOutputType | null
+    _sum: TransactionSplitSumAggregateOutputType | null
+    _min: TransactionSplitMinAggregateOutputType | null
+    _max: TransactionSplitMaxAggregateOutputType | null
+  }
+
+  type GetTransactionSplitGroupByPayload<T extends TransactionSplitGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TransactionSplitGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TransactionSplitGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TransactionSplitGroupByOutputType[P]>
+            : GetScalarType<T[P], TransactionSplitGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TransactionSplitSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tripPlanId?: boolean
+    totalAmount?: boolean
+    currency?: boolean
+    user1Id?: boolean
+    user2Id?: boolean
+    user1Amount?: boolean
+    user2Amount?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["transactionSplit"]>
+
+  export type TransactionSplitSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tripPlanId?: boolean
+    totalAmount?: boolean
+    currency?: boolean
+    user1Id?: boolean
+    user2Id?: boolean
+    user1Amount?: boolean
+    user2Amount?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["transactionSplit"]>
+
+  export type TransactionSplitSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tripPlanId?: boolean
+    totalAmount?: boolean
+    currency?: boolean
+    user1Id?: boolean
+    user2Id?: boolean
+    user1Amount?: boolean
+    user2Amount?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["transactionSplit"]>
+
+  export type TransactionSplitSelectScalar = {
+    id?: boolean
+    tripPlanId?: boolean
+    totalAmount?: boolean
+    currency?: boolean
+    user1Id?: boolean
+    user2Id?: boolean
+    user1Amount?: boolean
+    user2Amount?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TransactionSplitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tripPlanId" | "totalAmount" | "currency" | "user1Id" | "user2Id" | "user1Amount" | "user2Amount" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["transactionSplit"]>
+
+  export type $TransactionSplitPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TransactionSplit"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tripPlanId: string
+      totalAmount: number
+      currency: string
+      user1Id: string
+      user2Id: string
+      user1Amount: number
+      user2Amount: number
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["transactionSplit"]>
+    composites: {}
+  }
+
+  type TransactionSplitGetPayload<S extends boolean | null | undefined | TransactionSplitDefaultArgs> = $Result.GetResult<Prisma.$TransactionSplitPayload, S>
+
+  type TransactionSplitCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TransactionSplitFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TransactionSplitCountAggregateInputType | true
+    }
+
+  export interface TransactionSplitDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TransactionSplit'], meta: { name: 'TransactionSplit' } }
+    /**
+     * Find zero or one TransactionSplit that matches the filter.
+     * @param {TransactionSplitFindUniqueArgs} args - Arguments to find a TransactionSplit
+     * @example
+     * // Get one TransactionSplit
+     * const transactionSplit = await prisma.transactionSplit.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TransactionSplitFindUniqueArgs>(args: SelectSubset<T, TransactionSplitFindUniqueArgs<ExtArgs>>): Prisma__TransactionSplitClient<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TransactionSplit that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TransactionSplitFindUniqueOrThrowArgs} args - Arguments to find a TransactionSplit
+     * @example
+     * // Get one TransactionSplit
+     * const transactionSplit = await prisma.transactionSplit.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TransactionSplitFindUniqueOrThrowArgs>(args: SelectSubset<T, TransactionSplitFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TransactionSplitClient<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TransactionSplit that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionSplitFindFirstArgs} args - Arguments to find a TransactionSplit
+     * @example
+     * // Get one TransactionSplit
+     * const transactionSplit = await prisma.transactionSplit.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TransactionSplitFindFirstArgs>(args?: SelectSubset<T, TransactionSplitFindFirstArgs<ExtArgs>>): Prisma__TransactionSplitClient<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TransactionSplit that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionSplitFindFirstOrThrowArgs} args - Arguments to find a TransactionSplit
+     * @example
+     * // Get one TransactionSplit
+     * const transactionSplit = await prisma.transactionSplit.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TransactionSplitFindFirstOrThrowArgs>(args?: SelectSubset<T, TransactionSplitFindFirstOrThrowArgs<ExtArgs>>): Prisma__TransactionSplitClient<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TransactionSplits that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionSplitFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TransactionSplits
+     * const transactionSplits = await prisma.transactionSplit.findMany()
+     * 
+     * // Get first 10 TransactionSplits
+     * const transactionSplits = await prisma.transactionSplit.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const transactionSplitWithIdOnly = await prisma.transactionSplit.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TransactionSplitFindManyArgs>(args?: SelectSubset<T, TransactionSplitFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TransactionSplit.
+     * @param {TransactionSplitCreateArgs} args - Arguments to create a TransactionSplit.
+     * @example
+     * // Create one TransactionSplit
+     * const TransactionSplit = await prisma.transactionSplit.create({
+     *   data: {
+     *     // ... data to create a TransactionSplit
+     *   }
+     * })
+     * 
+     */
+    create<T extends TransactionSplitCreateArgs>(args: SelectSubset<T, TransactionSplitCreateArgs<ExtArgs>>): Prisma__TransactionSplitClient<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TransactionSplits.
+     * @param {TransactionSplitCreateManyArgs} args - Arguments to create many TransactionSplits.
+     * @example
+     * // Create many TransactionSplits
+     * const transactionSplit = await prisma.transactionSplit.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TransactionSplitCreateManyArgs>(args?: SelectSubset<T, TransactionSplitCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TransactionSplits and returns the data saved in the database.
+     * @param {TransactionSplitCreateManyAndReturnArgs} args - Arguments to create many TransactionSplits.
+     * @example
+     * // Create many TransactionSplits
+     * const transactionSplit = await prisma.transactionSplit.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TransactionSplits and only return the `id`
+     * const transactionSplitWithIdOnly = await prisma.transactionSplit.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TransactionSplitCreateManyAndReturnArgs>(args?: SelectSubset<T, TransactionSplitCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TransactionSplit.
+     * @param {TransactionSplitDeleteArgs} args - Arguments to delete one TransactionSplit.
+     * @example
+     * // Delete one TransactionSplit
+     * const TransactionSplit = await prisma.transactionSplit.delete({
+     *   where: {
+     *     // ... filter to delete one TransactionSplit
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TransactionSplitDeleteArgs>(args: SelectSubset<T, TransactionSplitDeleteArgs<ExtArgs>>): Prisma__TransactionSplitClient<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TransactionSplit.
+     * @param {TransactionSplitUpdateArgs} args - Arguments to update one TransactionSplit.
+     * @example
+     * // Update one TransactionSplit
+     * const transactionSplit = await prisma.transactionSplit.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TransactionSplitUpdateArgs>(args: SelectSubset<T, TransactionSplitUpdateArgs<ExtArgs>>): Prisma__TransactionSplitClient<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TransactionSplits.
+     * @param {TransactionSplitDeleteManyArgs} args - Arguments to filter TransactionSplits to delete.
+     * @example
+     * // Delete a few TransactionSplits
+     * const { count } = await prisma.transactionSplit.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TransactionSplitDeleteManyArgs>(args?: SelectSubset<T, TransactionSplitDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TransactionSplits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionSplitUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TransactionSplits
+     * const transactionSplit = await prisma.transactionSplit.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TransactionSplitUpdateManyArgs>(args: SelectSubset<T, TransactionSplitUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TransactionSplits and returns the data updated in the database.
+     * @param {TransactionSplitUpdateManyAndReturnArgs} args - Arguments to update many TransactionSplits.
+     * @example
+     * // Update many TransactionSplits
+     * const transactionSplit = await prisma.transactionSplit.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TransactionSplits and only return the `id`
+     * const transactionSplitWithIdOnly = await prisma.transactionSplit.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TransactionSplitUpdateManyAndReturnArgs>(args: SelectSubset<T, TransactionSplitUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TransactionSplit.
+     * @param {TransactionSplitUpsertArgs} args - Arguments to update or create a TransactionSplit.
+     * @example
+     * // Update or create a TransactionSplit
+     * const transactionSplit = await prisma.transactionSplit.upsert({
+     *   create: {
+     *     // ... data to create a TransactionSplit
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TransactionSplit we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TransactionSplitUpsertArgs>(args: SelectSubset<T, TransactionSplitUpsertArgs<ExtArgs>>): Prisma__TransactionSplitClient<$Result.GetResult<Prisma.$TransactionSplitPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TransactionSplits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionSplitCountArgs} args - Arguments to filter TransactionSplits to count.
+     * @example
+     * // Count the number of TransactionSplits
+     * const count = await prisma.transactionSplit.count({
+     *   where: {
+     *     // ... the filter for the TransactionSplits we want to count
+     *   }
+     * })
+    **/
+    count<T extends TransactionSplitCountArgs>(
+      args?: Subset<T, TransactionSplitCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TransactionSplitCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TransactionSplit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionSplitAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TransactionSplitAggregateArgs>(args: Subset<T, TransactionSplitAggregateArgs>): Prisma.PrismaPromise<GetTransactionSplitAggregateType<T>>
+
+    /**
+     * Group by TransactionSplit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionSplitGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TransactionSplitGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TransactionSplitGroupByArgs['orderBy'] }
+        : { orderBy?: TransactionSplitGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TransactionSplitGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTransactionSplitGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TransactionSplit model
+   */
+  readonly fields: TransactionSplitFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TransactionSplit.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TransactionSplitClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TransactionSplit model
+   */
+  interface TransactionSplitFieldRefs {
+    readonly id: FieldRef<"TransactionSplit", 'String'>
+    readonly tripPlanId: FieldRef<"TransactionSplit", 'String'>
+    readonly totalAmount: FieldRef<"TransactionSplit", 'Float'>
+    readonly currency: FieldRef<"TransactionSplit", 'String'>
+    readonly user1Id: FieldRef<"TransactionSplit", 'String'>
+    readonly user2Id: FieldRef<"TransactionSplit", 'String'>
+    readonly user1Amount: FieldRef<"TransactionSplit", 'Float'>
+    readonly user2Amount: FieldRef<"TransactionSplit", 'Float'>
+    readonly status: FieldRef<"TransactionSplit", 'String'>
+    readonly createdAt: FieldRef<"TransactionSplit", 'DateTime'>
+    readonly updatedAt: FieldRef<"TransactionSplit", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TransactionSplit findUnique
+   */
+  export type TransactionSplitFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionSplit to fetch.
+     */
+    where: TransactionSplitWhereUniqueInput
+  }
+
+  /**
+   * TransactionSplit findUniqueOrThrow
+   */
+  export type TransactionSplitFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionSplit to fetch.
+     */
+    where: TransactionSplitWhereUniqueInput
+  }
+
+  /**
+   * TransactionSplit findFirst
+   */
+  export type TransactionSplitFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionSplit to fetch.
+     */
+    where?: TransactionSplitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransactionSplits to fetch.
+     */
+    orderBy?: TransactionSplitOrderByWithRelationInput | TransactionSplitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TransactionSplits.
+     */
+    cursor?: TransactionSplitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransactionSplits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransactionSplits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TransactionSplits.
+     */
+    distinct?: TransactionSplitScalarFieldEnum | TransactionSplitScalarFieldEnum[]
+  }
+
+  /**
+   * TransactionSplit findFirstOrThrow
+   */
+  export type TransactionSplitFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionSplit to fetch.
+     */
+    where?: TransactionSplitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransactionSplits to fetch.
+     */
+    orderBy?: TransactionSplitOrderByWithRelationInput | TransactionSplitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TransactionSplits.
+     */
+    cursor?: TransactionSplitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransactionSplits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransactionSplits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TransactionSplits.
+     */
+    distinct?: TransactionSplitScalarFieldEnum | TransactionSplitScalarFieldEnum[]
+  }
+
+  /**
+   * TransactionSplit findMany
+   */
+  export type TransactionSplitFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionSplits to fetch.
+     */
+    where?: TransactionSplitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransactionSplits to fetch.
+     */
+    orderBy?: TransactionSplitOrderByWithRelationInput | TransactionSplitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TransactionSplits.
+     */
+    cursor?: TransactionSplitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransactionSplits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransactionSplits.
+     */
+    skip?: number
+    distinct?: TransactionSplitScalarFieldEnum | TransactionSplitScalarFieldEnum[]
+  }
+
+  /**
+   * TransactionSplit create
+   */
+  export type TransactionSplitCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * The data needed to create a TransactionSplit.
+     */
+    data: XOR<TransactionSplitCreateInput, TransactionSplitUncheckedCreateInput>
+  }
+
+  /**
+   * TransactionSplit createMany
+   */
+  export type TransactionSplitCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TransactionSplits.
+     */
+    data: TransactionSplitCreateManyInput | TransactionSplitCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TransactionSplit createManyAndReturn
+   */
+  export type TransactionSplitCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * The data used to create many TransactionSplits.
+     */
+    data: TransactionSplitCreateManyInput | TransactionSplitCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TransactionSplit update
+   */
+  export type TransactionSplitUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * The data needed to update a TransactionSplit.
+     */
+    data: XOR<TransactionSplitUpdateInput, TransactionSplitUncheckedUpdateInput>
+    /**
+     * Choose, which TransactionSplit to update.
+     */
+    where: TransactionSplitWhereUniqueInput
+  }
+
+  /**
+   * TransactionSplit updateMany
+   */
+  export type TransactionSplitUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TransactionSplits.
+     */
+    data: XOR<TransactionSplitUpdateManyMutationInput, TransactionSplitUncheckedUpdateManyInput>
+    /**
+     * Filter which TransactionSplits to update
+     */
+    where?: TransactionSplitWhereInput
+    /**
+     * Limit how many TransactionSplits to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransactionSplit updateManyAndReturn
+   */
+  export type TransactionSplitUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * The data used to update TransactionSplits.
+     */
+    data: XOR<TransactionSplitUpdateManyMutationInput, TransactionSplitUncheckedUpdateManyInput>
+    /**
+     * Filter which TransactionSplits to update
+     */
+    where?: TransactionSplitWhereInput
+    /**
+     * Limit how many TransactionSplits to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransactionSplit upsert
+   */
+  export type TransactionSplitUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * The filter to search for the TransactionSplit to update in case it exists.
+     */
+    where: TransactionSplitWhereUniqueInput
+    /**
+     * In case the TransactionSplit found by the `where` argument doesn't exist, create a new TransactionSplit with this data.
+     */
+    create: XOR<TransactionSplitCreateInput, TransactionSplitUncheckedCreateInput>
+    /**
+     * In case the TransactionSplit was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TransactionSplitUpdateInput, TransactionSplitUncheckedUpdateInput>
+  }
+
+  /**
+   * TransactionSplit delete
+   */
+  export type TransactionSplitDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+    /**
+     * Filter which TransactionSplit to delete.
+     */
+    where: TransactionSplitWhereUniqueInput
+  }
+
+  /**
+   * TransactionSplit deleteMany
+   */
+  export type TransactionSplitDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TransactionSplits to delete
+     */
+    where?: TransactionSplitWhereInput
+    /**
+     * Limit how many TransactionSplits to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransactionSplit without action
+   */
+  export type TransactionSplitDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionSplit
+     */
+    select?: TransactionSplitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionSplit
+     */
+    omit?: TransactionSplitOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -11893,17 +14297,17 @@ export namespace Prisma {
     name: 'name',
     destination: 'destination',
     startingLocation: 'startingLocation',
-    travelDatesStart: 'travelDatesStart',
-    travelDatesEnd: 'travelDatesEnd',
+    experienceDatesStart: 'experienceDatesStart',
+    experienceDatesEnd: 'experienceDatesEnd',
     dateInputType: 'dateInputType',
     duration: 'duration',
-    travelingWith: 'travelingWith',
+    experiencingWith: 'experiencingWith',
     adults: 'adults',
     children: 'children',
     ageGroups: 'ageGroups',
     budget: 'budget',
     budgetCurrency: 'budgetCurrency',
-    travelStyle: 'travelStyle',
+    experienceStyle: 'experienceStyle',
     budgetFlexible: 'budgetFlexible',
     vibes: 'vibes',
     priorities: 'priorities',
@@ -11934,6 +14338,40 @@ export namespace Prisma {
   };
 
   export type Plan_tasksScalarFieldEnum = (typeof Plan_tasksScalarFieldEnum)[keyof typeof Plan_tasksScalarFieldEnum]
+
+
+  export const PaymentMandateScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    tripPlanId: 'tripPlanId',
+    limitAmount: 'limitAmount',
+    currency: 'currency',
+    signature: 'signature',
+    publicKey: 'publicKey',
+    scope: 'scope',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PaymentMandateScalarFieldEnum = (typeof PaymentMandateScalarFieldEnum)[keyof typeof PaymentMandateScalarFieldEnum]
+
+
+  export const TransactionSplitScalarFieldEnum: {
+    id: 'id',
+    tripPlanId: 'tripPlanId',
+    totalAmount: 'totalAmount',
+    currency: 'currency',
+    user1Id: 'user1Id',
+    user2Id: 'user2Id',
+    user1Amount: 'user1Amount',
+    user2Amount: 'user2Amount',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TransactionSplitScalarFieldEnum = (typeof TransactionSplitScalarFieldEnum)[keyof typeof TransactionSplitScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -12566,17 +15004,17 @@ export namespace Prisma {
     name?: StringFilter<"TripPlan"> | string
     destination?: StringFilter<"TripPlan"> | string
     startingLocation?: StringFilter<"TripPlan"> | string
-    travelDatesStart?: StringFilter<"TripPlan"> | string
-    travelDatesEnd?: StringNullableFilter<"TripPlan"> | string | null
+    experienceDatesStart?: StringFilter<"TripPlan"> | string
+    experienceDatesEnd?: StringNullableFilter<"TripPlan"> | string | null
     dateInputType?: StringFilter<"TripPlan"> | string
     duration?: IntNullableFilter<"TripPlan"> | number | null
-    travelingWith?: StringFilter<"TripPlan"> | string
+    experiencingWith?: StringFilter<"TripPlan"> | string
     adults?: IntFilter<"TripPlan"> | number
     children?: IntFilter<"TripPlan"> | number
     ageGroups?: StringNullableListFilter<"TripPlan">
     budget?: FloatFilter<"TripPlan"> | number
     budgetCurrency?: StringFilter<"TripPlan"> | string
-    travelStyle?: StringFilter<"TripPlan"> | string
+    experienceStyle?: StringFilter<"TripPlan"> | string
     budgetFlexible?: BoolFilter<"TripPlan"> | boolean
     vibes?: StringNullableListFilter<"TripPlan">
     priorities?: StringNullableListFilter<"TripPlan">
@@ -12599,17 +15037,17 @@ export namespace Prisma {
     name?: SortOrder
     destination?: SortOrder
     startingLocation?: SortOrder
-    travelDatesStart?: SortOrder
-    travelDatesEnd?: SortOrderInput | SortOrder
+    experienceDatesStart?: SortOrder
+    experienceDatesEnd?: SortOrderInput | SortOrder
     dateInputType?: SortOrder
     duration?: SortOrderInput | SortOrder
-    travelingWith?: SortOrder
+    experiencingWith?: SortOrder
     adults?: SortOrder
     children?: SortOrder
     ageGroups?: SortOrder
     budget?: SortOrder
     budgetCurrency?: SortOrder
-    travelStyle?: SortOrder
+    experienceStyle?: SortOrder
     budgetFlexible?: SortOrder
     vibes?: SortOrder
     priorities?: SortOrder
@@ -12635,17 +15073,17 @@ export namespace Prisma {
     name?: StringFilter<"TripPlan"> | string
     destination?: StringFilter<"TripPlan"> | string
     startingLocation?: StringFilter<"TripPlan"> | string
-    travelDatesStart?: StringFilter<"TripPlan"> | string
-    travelDatesEnd?: StringNullableFilter<"TripPlan"> | string | null
+    experienceDatesStart?: StringFilter<"TripPlan"> | string
+    experienceDatesEnd?: StringNullableFilter<"TripPlan"> | string | null
     dateInputType?: StringFilter<"TripPlan"> | string
     duration?: IntNullableFilter<"TripPlan"> | number | null
-    travelingWith?: StringFilter<"TripPlan"> | string
+    experiencingWith?: StringFilter<"TripPlan"> | string
     adults?: IntFilter<"TripPlan"> | number
     children?: IntFilter<"TripPlan"> | number
     ageGroups?: StringNullableListFilter<"TripPlan">
     budget?: FloatFilter<"TripPlan"> | number
     budgetCurrency?: StringFilter<"TripPlan"> | string
-    travelStyle?: StringFilter<"TripPlan"> | string
+    experienceStyle?: StringFilter<"TripPlan"> | string
     budgetFlexible?: BoolFilter<"TripPlan"> | boolean
     vibes?: StringNullableListFilter<"TripPlan">
     priorities?: StringNullableListFilter<"TripPlan">
@@ -12668,17 +15106,17 @@ export namespace Prisma {
     name?: SortOrder
     destination?: SortOrder
     startingLocation?: SortOrder
-    travelDatesStart?: SortOrder
-    travelDatesEnd?: SortOrderInput | SortOrder
+    experienceDatesStart?: SortOrder
+    experienceDatesEnd?: SortOrderInput | SortOrder
     dateInputType?: SortOrder
     duration?: SortOrderInput | SortOrder
-    travelingWith?: SortOrder
+    experiencingWith?: SortOrder
     adults?: SortOrder
     children?: SortOrder
     ageGroups?: SortOrder
     budget?: SortOrder
     budgetCurrency?: SortOrder
-    travelStyle?: SortOrder
+    experienceStyle?: SortOrder
     budgetFlexible?: SortOrder
     vibes?: SortOrder
     priorities?: SortOrder
@@ -12706,17 +15144,17 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"TripPlan"> | string
     destination?: StringWithAggregatesFilter<"TripPlan"> | string
     startingLocation?: StringWithAggregatesFilter<"TripPlan"> | string
-    travelDatesStart?: StringWithAggregatesFilter<"TripPlan"> | string
-    travelDatesEnd?: StringNullableWithAggregatesFilter<"TripPlan"> | string | null
+    experienceDatesStart?: StringWithAggregatesFilter<"TripPlan"> | string
+    experienceDatesEnd?: StringNullableWithAggregatesFilter<"TripPlan"> | string | null
     dateInputType?: StringWithAggregatesFilter<"TripPlan"> | string
     duration?: IntNullableWithAggregatesFilter<"TripPlan"> | number | null
-    travelingWith?: StringWithAggregatesFilter<"TripPlan"> | string
+    experiencingWith?: StringWithAggregatesFilter<"TripPlan"> | string
     adults?: IntWithAggregatesFilter<"TripPlan"> | number
     children?: IntWithAggregatesFilter<"TripPlan"> | number
     ageGroups?: StringNullableListFilter<"TripPlan">
     budget?: FloatWithAggregatesFilter<"TripPlan"> | number
     budgetCurrency?: StringWithAggregatesFilter<"TripPlan"> | string
-    travelStyle?: StringWithAggregatesFilter<"TripPlan"> | string
+    experienceStyle?: StringWithAggregatesFilter<"TripPlan"> | string
     budgetFlexible?: BoolWithAggregatesFilter<"TripPlan"> | boolean
     vibes?: StringNullableListFilter<"TripPlan">
     priorities?: StringNullableListFilter<"TripPlan">
@@ -12803,6 +15241,174 @@ export namespace Prisma {
     error_message?: StringNullableWithAggregatesFilter<"plan_tasks"> | string | null
     created_at?: DateTimeNullableWithAggregatesFilter<"plan_tasks"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"plan_tasks"> | Date | string | null
+  }
+
+  export type PaymentMandateWhereInput = {
+    AND?: PaymentMandateWhereInput | PaymentMandateWhereInput[]
+    OR?: PaymentMandateWhereInput[]
+    NOT?: PaymentMandateWhereInput | PaymentMandateWhereInput[]
+    id?: StringFilter<"PaymentMandate"> | string
+    userId?: StringFilter<"PaymentMandate"> | string
+    tripPlanId?: StringFilter<"PaymentMandate"> | string
+    limitAmount?: FloatFilter<"PaymentMandate"> | number
+    currency?: StringFilter<"PaymentMandate"> | string
+    signature?: StringFilter<"PaymentMandate"> | string
+    publicKey?: StringFilter<"PaymentMandate"> | string
+    scope?: StringFilter<"PaymentMandate"> | string
+    status?: StringFilter<"PaymentMandate"> | string
+    createdAt?: DateTimeFilter<"PaymentMandate"> | Date | string
+    updatedAt?: DateTimeFilter<"PaymentMandate"> | Date | string
+  }
+
+  export type PaymentMandateOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tripPlanId?: SortOrder
+    limitAmount?: SortOrder
+    currency?: SortOrder
+    signature?: SortOrder
+    publicKey?: SortOrder
+    scope?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PaymentMandateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PaymentMandateWhereInput | PaymentMandateWhereInput[]
+    OR?: PaymentMandateWhereInput[]
+    NOT?: PaymentMandateWhereInput | PaymentMandateWhereInput[]
+    userId?: StringFilter<"PaymentMandate"> | string
+    tripPlanId?: StringFilter<"PaymentMandate"> | string
+    limitAmount?: FloatFilter<"PaymentMandate"> | number
+    currency?: StringFilter<"PaymentMandate"> | string
+    signature?: StringFilter<"PaymentMandate"> | string
+    publicKey?: StringFilter<"PaymentMandate"> | string
+    scope?: StringFilter<"PaymentMandate"> | string
+    status?: StringFilter<"PaymentMandate"> | string
+    createdAt?: DateTimeFilter<"PaymentMandate"> | Date | string
+    updatedAt?: DateTimeFilter<"PaymentMandate"> | Date | string
+  }, "id">
+
+  export type PaymentMandateOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tripPlanId?: SortOrder
+    limitAmount?: SortOrder
+    currency?: SortOrder
+    signature?: SortOrder
+    publicKey?: SortOrder
+    scope?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PaymentMandateCountOrderByAggregateInput
+    _avg?: PaymentMandateAvgOrderByAggregateInput
+    _max?: PaymentMandateMaxOrderByAggregateInput
+    _min?: PaymentMandateMinOrderByAggregateInput
+    _sum?: PaymentMandateSumOrderByAggregateInput
+  }
+
+  export type PaymentMandateScalarWhereWithAggregatesInput = {
+    AND?: PaymentMandateScalarWhereWithAggregatesInput | PaymentMandateScalarWhereWithAggregatesInput[]
+    OR?: PaymentMandateScalarWhereWithAggregatesInput[]
+    NOT?: PaymentMandateScalarWhereWithAggregatesInput | PaymentMandateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PaymentMandate"> | string
+    userId?: StringWithAggregatesFilter<"PaymentMandate"> | string
+    tripPlanId?: StringWithAggregatesFilter<"PaymentMandate"> | string
+    limitAmount?: FloatWithAggregatesFilter<"PaymentMandate"> | number
+    currency?: StringWithAggregatesFilter<"PaymentMandate"> | string
+    signature?: StringWithAggregatesFilter<"PaymentMandate"> | string
+    publicKey?: StringWithAggregatesFilter<"PaymentMandate"> | string
+    scope?: StringWithAggregatesFilter<"PaymentMandate"> | string
+    status?: StringWithAggregatesFilter<"PaymentMandate"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"PaymentMandate"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PaymentMandate"> | Date | string
+  }
+
+  export type TransactionSplitWhereInput = {
+    AND?: TransactionSplitWhereInput | TransactionSplitWhereInput[]
+    OR?: TransactionSplitWhereInput[]
+    NOT?: TransactionSplitWhereInput | TransactionSplitWhereInput[]
+    id?: StringFilter<"TransactionSplit"> | string
+    tripPlanId?: StringFilter<"TransactionSplit"> | string
+    totalAmount?: FloatFilter<"TransactionSplit"> | number
+    currency?: StringFilter<"TransactionSplit"> | string
+    user1Id?: StringFilter<"TransactionSplit"> | string
+    user2Id?: StringFilter<"TransactionSplit"> | string
+    user1Amount?: FloatFilter<"TransactionSplit"> | number
+    user2Amount?: FloatFilter<"TransactionSplit"> | number
+    status?: StringFilter<"TransactionSplit"> | string
+    createdAt?: DateTimeFilter<"TransactionSplit"> | Date | string
+    updatedAt?: DateTimeFilter<"TransactionSplit"> | Date | string
+  }
+
+  export type TransactionSplitOrderByWithRelationInput = {
+    id?: SortOrder
+    tripPlanId?: SortOrder
+    totalAmount?: SortOrder
+    currency?: SortOrder
+    user1Id?: SortOrder
+    user2Id?: SortOrder
+    user1Amount?: SortOrder
+    user2Amount?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionSplitWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TransactionSplitWhereInput | TransactionSplitWhereInput[]
+    OR?: TransactionSplitWhereInput[]
+    NOT?: TransactionSplitWhereInput | TransactionSplitWhereInput[]
+    tripPlanId?: StringFilter<"TransactionSplit"> | string
+    totalAmount?: FloatFilter<"TransactionSplit"> | number
+    currency?: StringFilter<"TransactionSplit"> | string
+    user1Id?: StringFilter<"TransactionSplit"> | string
+    user2Id?: StringFilter<"TransactionSplit"> | string
+    user1Amount?: FloatFilter<"TransactionSplit"> | number
+    user2Amount?: FloatFilter<"TransactionSplit"> | number
+    status?: StringFilter<"TransactionSplit"> | string
+    createdAt?: DateTimeFilter<"TransactionSplit"> | Date | string
+    updatedAt?: DateTimeFilter<"TransactionSplit"> | Date | string
+  }, "id">
+
+  export type TransactionSplitOrderByWithAggregationInput = {
+    id?: SortOrder
+    tripPlanId?: SortOrder
+    totalAmount?: SortOrder
+    currency?: SortOrder
+    user1Id?: SortOrder
+    user2Id?: SortOrder
+    user1Amount?: SortOrder
+    user2Amount?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TransactionSplitCountOrderByAggregateInput
+    _avg?: TransactionSplitAvgOrderByAggregateInput
+    _max?: TransactionSplitMaxOrderByAggregateInput
+    _min?: TransactionSplitMinOrderByAggregateInput
+    _sum?: TransactionSplitSumOrderByAggregateInput
+  }
+
+  export type TransactionSplitScalarWhereWithAggregatesInput = {
+    AND?: TransactionSplitScalarWhereWithAggregatesInput | TransactionSplitScalarWhereWithAggregatesInput[]
+    OR?: TransactionSplitScalarWhereWithAggregatesInput[]
+    NOT?: TransactionSplitScalarWhereWithAggregatesInput | TransactionSplitScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TransactionSplit"> | string
+    tripPlanId?: StringWithAggregatesFilter<"TransactionSplit"> | string
+    totalAmount?: FloatWithAggregatesFilter<"TransactionSplit"> | number
+    currency?: StringWithAggregatesFilter<"TransactionSplit"> | string
+    user1Id?: StringWithAggregatesFilter<"TransactionSplit"> | string
+    user2Id?: StringWithAggregatesFilter<"TransactionSplit"> | string
+    user1Amount?: FloatWithAggregatesFilter<"TransactionSplit"> | number
+    user2Amount?: FloatWithAggregatesFilter<"TransactionSplit"> | number
+    status?: StringWithAggregatesFilter<"TransactionSplit"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TransactionSplit"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TransactionSplit"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -13336,17 +15942,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -13368,17 +15974,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -13400,17 +16006,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -13432,17 +16038,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -13464,17 +16070,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -13494,17 +16100,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -13523,17 +16129,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -13627,6 +16233,202 @@ export namespace Prisma {
     error_message?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PaymentMandateCreateInput = {
+    id?: string
+    userId: string
+    tripPlanId: string
+    limitAmount: number
+    currency?: string
+    signature: string
+    publicKey: string
+    scope: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PaymentMandateUncheckedCreateInput = {
+    id?: string
+    userId: string
+    tripPlanId: string
+    limitAmount: number
+    currency?: string
+    signature: string
+    publicKey: string
+    scope: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PaymentMandateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tripPlanId?: StringFieldUpdateOperationsInput | string
+    limitAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    scope?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaymentMandateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tripPlanId?: StringFieldUpdateOperationsInput | string
+    limitAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    scope?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaymentMandateCreateManyInput = {
+    id?: string
+    userId: string
+    tripPlanId: string
+    limitAmount: number
+    currency?: string
+    signature: string
+    publicKey: string
+    scope: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PaymentMandateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tripPlanId?: StringFieldUpdateOperationsInput | string
+    limitAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    scope?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaymentMandateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    tripPlanId?: StringFieldUpdateOperationsInput | string
+    limitAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    scope?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionSplitCreateInput = {
+    id?: string
+    tripPlanId: string
+    totalAmount: number
+    currency?: string
+    user1Id: string
+    user2Id: string
+    user1Amount: number
+    user2Amount: number
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionSplitUncheckedCreateInput = {
+    id?: string
+    tripPlanId: string
+    totalAmount: number
+    currency?: string
+    user1Id: string
+    user2Id: string
+    user1Amount: number
+    user2Amount: number
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionSplitUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tripPlanId?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    user1Id?: StringFieldUpdateOperationsInput | string
+    user2Id?: StringFieldUpdateOperationsInput | string
+    user1Amount?: FloatFieldUpdateOperationsInput | number
+    user2Amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionSplitUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tripPlanId?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    user1Id?: StringFieldUpdateOperationsInput | string
+    user2Id?: StringFieldUpdateOperationsInput | string
+    user1Amount?: FloatFieldUpdateOperationsInput | number
+    user2Amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionSplitCreateManyInput = {
+    id?: string
+    tripPlanId: string
+    totalAmount: number
+    currency?: string
+    user1Id: string
+    user2Id: string
+    user1Amount: number
+    user2Amount: number
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionSplitUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tripPlanId?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    user1Id?: StringFieldUpdateOperationsInput | string
+    user2Id?: StringFieldUpdateOperationsInput | string
+    user1Amount?: FloatFieldUpdateOperationsInput | number
+    user2Amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionSplitUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tripPlanId?: StringFieldUpdateOperationsInput | string
+    totalAmount?: FloatFieldUpdateOperationsInput | number
+    currency?: StringFieldUpdateOperationsInput | string
+    user1Id?: StringFieldUpdateOperationsInput | string
+    user2Id?: StringFieldUpdateOperationsInput | string
+    user1Amount?: FloatFieldUpdateOperationsInput | number
+    user2Amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -14094,17 +16896,17 @@ export namespace Prisma {
     name?: SortOrder
     destination?: SortOrder
     startingLocation?: SortOrder
-    travelDatesStart?: SortOrder
-    travelDatesEnd?: SortOrder
+    experienceDatesStart?: SortOrder
+    experienceDatesEnd?: SortOrder
     dateInputType?: SortOrder
     duration?: SortOrder
-    travelingWith?: SortOrder
+    experiencingWith?: SortOrder
     adults?: SortOrder
     children?: SortOrder
     ageGroups?: SortOrder
     budget?: SortOrder
     budgetCurrency?: SortOrder
-    travelStyle?: SortOrder
+    experienceStyle?: SortOrder
     budgetFlexible?: SortOrder
     vibes?: SortOrder
     priorities?: SortOrder
@@ -14133,16 +16935,16 @@ export namespace Prisma {
     name?: SortOrder
     destination?: SortOrder
     startingLocation?: SortOrder
-    travelDatesStart?: SortOrder
-    travelDatesEnd?: SortOrder
+    experienceDatesStart?: SortOrder
+    experienceDatesEnd?: SortOrder
     dateInputType?: SortOrder
     duration?: SortOrder
-    travelingWith?: SortOrder
+    experiencingWith?: SortOrder
     adults?: SortOrder
     children?: SortOrder
     budget?: SortOrder
     budgetCurrency?: SortOrder
-    travelStyle?: SortOrder
+    experienceStyle?: SortOrder
     budgetFlexible?: SortOrder
     interests?: SortOrder
     rooms?: SortOrder
@@ -14159,16 +16961,16 @@ export namespace Prisma {
     name?: SortOrder
     destination?: SortOrder
     startingLocation?: SortOrder
-    travelDatesStart?: SortOrder
-    travelDatesEnd?: SortOrder
+    experienceDatesStart?: SortOrder
+    experienceDatesEnd?: SortOrder
     dateInputType?: SortOrder
     duration?: SortOrder
-    travelingWith?: SortOrder
+    experiencingWith?: SortOrder
     adults?: SortOrder
     children?: SortOrder
     budget?: SortOrder
     budgetCurrency?: SortOrder
-    travelStyle?: SortOrder
+    experienceStyle?: SortOrder
     budgetFlexible?: SortOrder
     interests?: SortOrder
     rooms?: SortOrder
@@ -14390,6 +17192,110 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedJsonNullableFilter<$PrismaModel>
     _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type PaymentMandateCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tripPlanId?: SortOrder
+    limitAmount?: SortOrder
+    currency?: SortOrder
+    signature?: SortOrder
+    publicKey?: SortOrder
+    scope?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PaymentMandateAvgOrderByAggregateInput = {
+    limitAmount?: SortOrder
+  }
+
+  export type PaymentMandateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tripPlanId?: SortOrder
+    limitAmount?: SortOrder
+    currency?: SortOrder
+    signature?: SortOrder
+    publicKey?: SortOrder
+    scope?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PaymentMandateMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    tripPlanId?: SortOrder
+    limitAmount?: SortOrder
+    currency?: SortOrder
+    signature?: SortOrder
+    publicKey?: SortOrder
+    scope?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PaymentMandateSumOrderByAggregateInput = {
+    limitAmount?: SortOrder
+  }
+
+  export type TransactionSplitCountOrderByAggregateInput = {
+    id?: SortOrder
+    tripPlanId?: SortOrder
+    totalAmount?: SortOrder
+    currency?: SortOrder
+    user1Id?: SortOrder
+    user2Id?: SortOrder
+    user1Amount?: SortOrder
+    user2Amount?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionSplitAvgOrderByAggregateInput = {
+    totalAmount?: SortOrder
+    user1Amount?: SortOrder
+    user2Amount?: SortOrder
+  }
+
+  export type TransactionSplitMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tripPlanId?: SortOrder
+    totalAmount?: SortOrder
+    currency?: SortOrder
+    user1Id?: SortOrder
+    user2Id?: SortOrder
+    user1Amount?: SortOrder
+    user2Amount?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionSplitMinOrderByAggregateInput = {
+    id?: SortOrder
+    tripPlanId?: SortOrder
+    totalAmount?: SortOrder
+    currency?: SortOrder
+    user1Id?: SortOrder
+    user2Id?: SortOrder
+    user1Amount?: SortOrder
+    user2Amount?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionSplitSumOrderByAggregateInput = {
+    totalAmount?: SortOrder
+    user1Amount?: SortOrder
+    user2Amount?: SortOrder
   }
 
   export type AccountCreateNestedManyWithoutUserInput = {
@@ -15093,17 +17999,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -15124,17 +18030,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -15249,17 +18155,17 @@ export namespace Prisma {
     name?: StringFilter<"TripPlan"> | string
     destination?: StringFilter<"TripPlan"> | string
     startingLocation?: StringFilter<"TripPlan"> | string
-    travelDatesStart?: StringFilter<"TripPlan"> | string
-    travelDatesEnd?: StringNullableFilter<"TripPlan"> | string | null
+    experienceDatesStart?: StringFilter<"TripPlan"> | string
+    experienceDatesEnd?: StringNullableFilter<"TripPlan"> | string | null
     dateInputType?: StringFilter<"TripPlan"> | string
     duration?: IntNullableFilter<"TripPlan"> | number | null
-    travelingWith?: StringFilter<"TripPlan"> | string
+    experiencingWith?: StringFilter<"TripPlan"> | string
     adults?: IntFilter<"TripPlan"> | number
     children?: IntFilter<"TripPlan"> | number
     ageGroups?: StringNullableListFilter<"TripPlan">
     budget?: FloatFilter<"TripPlan"> | number
     budgetCurrency?: StringFilter<"TripPlan"> | string
-    travelStyle?: StringFilter<"TripPlan"> | string
+    experienceStyle?: StringFilter<"TripPlan"> | string
     budgetFlexible?: BoolFilter<"TripPlan"> | boolean
     vibes?: StringNullableListFilter<"TripPlan">
     priorities?: StringNullableListFilter<"TripPlan">
@@ -15407,17 +18313,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -15438,17 +18344,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -15485,17 +18391,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -15516,17 +18422,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -15547,17 +18453,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -15578,17 +18484,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -15625,17 +18531,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -15656,17 +18562,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -15884,17 +18790,17 @@ export namespace Prisma {
     name: string
     destination: string
     startingLocation: string
-    travelDatesStart: string
-    travelDatesEnd?: string | null
+    experienceDatesStart: string
+    experienceDatesEnd?: string | null
     dateInputType?: string
     duration?: number | null
-    travelingWith: string
+    experiencingWith: string
     adults?: number
     children?: number
     ageGroups?: TripPlanCreateageGroupsInput | string[]
     budget: number
     budgetCurrency?: string
-    travelStyle: string
+    experienceStyle: string
     budgetFlexible?: boolean
     vibes?: TripPlanCreatevibesInput | string[]
     priorities?: TripPlanCreateprioritiesInput | string[]
@@ -15988,17 +18894,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -16019,17 +18925,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]
@@ -16050,17 +18956,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     destination?: StringFieldUpdateOperationsInput | string
     startingLocation?: StringFieldUpdateOperationsInput | string
-    travelDatesStart?: StringFieldUpdateOperationsInput | string
-    travelDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceDatesStart?: StringFieldUpdateOperationsInput | string
+    experienceDatesEnd?: NullableStringFieldUpdateOperationsInput | string | null
     dateInputType?: StringFieldUpdateOperationsInput | string
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    travelingWith?: StringFieldUpdateOperationsInput | string
+    experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
     ageGroups?: TripPlanUpdateageGroupsInput | string[]
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
-    travelStyle?: StringFieldUpdateOperationsInput | string
+    experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
     vibes?: TripPlanUpdatevibesInput | string[]
     priorities?: TripPlanUpdateprioritiesInput | string[]

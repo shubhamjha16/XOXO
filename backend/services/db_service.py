@@ -44,15 +44,23 @@ async def initialize_db_pool(pool_size: int = 10, max_overflow: int = 20) -> Non
     logger.info("Initializing SQLAlchemy engine and session factory")
 
     try:
-        # For Supabase direct PostgreSQL connection (port 5432)
-        _engine = create_async_engine(
-            DATABASE_URL,
-            echo=False,  # Set to True for SQL query logging
-            pool_size=10,  # Normal pooling for direct connection
-            max_overflow=20,  # Allow overflow connections
-            pool_pre_ping=True,  # Enable pre-ping for connection health
-            pool_recycle=3600,  # Recycle connections every hour
-        )
+        # Determine if we are using SQLite (doesn't support pooling options)
+        if DATABASE_URL.startswith("sqlite"):
+            _engine = create_async_engine(
+                DATABASE_URL,
+                echo=False,
+                pool_pre_ping=True,
+            )
+        else:
+            # For Supabase direct PostgreSQL connection (port 5432)
+            _engine = create_async_engine(
+                DATABASE_URL,
+                echo=False,  # Set to True for SQL query logging
+                pool_size=10,  # Normal pooling for direct connection
+                max_overflow=20,  # Allow overflow connections
+                pool_pre_ping=True,  # Enable pre-ping for connection health
+                pool_recycle=3600,  # Recycle connections every hour
+            )
 
         _session_factory = async_sessionmaker(
             _engine,

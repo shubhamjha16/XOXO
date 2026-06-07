@@ -1,12 +1,5 @@
-"use client";
-
-import { SessionProvider } from "next-auth/react";
-import { ReactNode } from "react";
-
-interface NextAuthProviderProps {
-    children: ReactNode;
-}
-
-export function NextAuthProvider({ children }: NextAuthProviderProps) {
-    return <SessionProvider>{children}</SessionProvider>;
+// Deprecated NextAuth provider file
+import React, { ReactNode } from "react";
+export function NextAuthProvider({ children }: { children: ReactNode }) {
+    return <>{children}</>;
 }

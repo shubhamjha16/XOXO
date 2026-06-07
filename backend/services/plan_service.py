@@ -178,178 +178,19 @@ async def generate_travel_plan(request: TravelPlanAgentRequest) -> str:
         #     f"Last AI Response for conversion: {last_response_content[:500]}..."
         # )
 
-        # Update status for AI team generation
-        await update_trip_plan_status(
+        from agents.langgraph_team import run_langgraph_workflow
+
+        # Execute LangGraph Workflow
+        logger.info(f"Running LangGraph workflow for trip {trip_plan_id}")
+        final_state = await run_langgraph_workflow(
             trip_plan_id=trip_plan_id,
-            status="processing",
-            current_step="Researching about the destination",
+            travel_request_md=travel_request_md,
+            destination=request.travel_plan.destination
         )
-
-        # Destination Research
-        destionation_research_response = await destination_agent.arun(
-            f"""
-            Please research about the destination {request.travel_plan.destination}
-
-            Below are user's travel request:
-            {travel_request_md}
-
-            Provide a very detailed research about the destination, its attractions, activities, and other relevant information that user might be interested in.
-
-            Give 10 attractions/activities that user might be interested in.
-            """
-        )
-
-        logger.info(
-            f"Destination research response: {destionation_research_response.messages[-1].content}"
-        )
-
-        last_response_content = f"""
-        ## Destination Attractions:
-        ---
-        {destionation_research_response.messages[-1].content}
-        ---
-"""
-
-        # Update status for AI team generation
-        await update_trip_plan_status(
-            trip_plan_id=trip_plan_id,
-            status="processing",
-            current_step="Searching for the best flights",
-        )
-        # Flight Search
-        flight_search_response = await flight_search_agent.arun(
-            f"""
-            Please find flights according to the user's travel request:
-            {travel_request_md}
-
-            If user has not specified the exact flight date, please consider it by yourself based on the user's travel request.
-
-            Provide a very detailed research about the flights, its price, duration, and other relevant information that user might be interested in.
-
-            Give top 5 flights.
-            """
-        )
-
-        logger.info(
-            f"Flight search response: {flight_search_response.messages[-1].content}"
-        )
-
-        last_response_content += f"""
-        ## Flight recommendations:
-        ---
-        {flight_search_response.messages[-1].content}
-        ---
-        """
-
-        # Update status for AI team generation
-        await update_trip_plan_status(
-            trip_plan_id=trip_plan_id,
-            status="processing",
-            current_step="Searching for the best hotels",
-        )
-        # Hotel Search
-        hotel_search_response = await hotel_search_agent.arun(
-            f"""
-            Please find hotels according to the user's travel request:
-            {travel_request_md}
-
-            If user has not specified the exact hotel dates, please consider it by yourself based on the user's travel request.
-
-            Provide a very detailed research about the hotels, its price, amenities, and other relevant information that user might be interested in.
-
-            Give top 5 hotels.
-            """
-        )
-
-        last_response_content += f"""
-        ## Hotel recommendations:
-        ---
-        {hotel_search_response.messages[-1].content}
-        ---
-        """
-
-        logger.info(
-            f"Hotel search response: {hotel_search_response.messages[-1].content}"
-        )
-
-        # Update status for AI team generation
-        await update_trip_plan_status(
-            trip_plan_id=trip_plan_id,
-            status="processing",
-            current_step="Searching for the best restaurants",
-        )
-        # Restaurant Search
-        restaurant_search_response = await dining_agent.arun(
-            f"""
-            Please find restaurants according to the user's travel request:
-            {travel_request_md}
-
-            If user has not specified the exact restaurant dates, please consider it by yourself based on the user's travel request.
-
-            Provide a very detailed research about the restaurants, its price, menu, and other relevant information that user might be interested in.
-
-            Give top 5 restaurants.
-            """
-        )
-
-        last_response_content += f"""
-        ## Restaurant recommendations:
-        ---
-        {restaurant_search_response.messages[-1].content}
-        ---
-        """
-
-        logger.info(
-            f"Restaurant search response: {restaurant_search_response.messages[-1].content}"
-        )
-
-        # Update status for AI team generation
-        await update_trip_plan_status(
-            trip_plan_id=trip_plan_id,
-            status="processing",
-            current_step="Creating the day-by-day itinerary",
-        )
-        # Itinerary
-        itinerary_response = await itinerary_agent.arun(
-            f"""
-            Please create a detailed day-by-day itinerary for a trip to {request.travel_plan.destination}  for user's travel request:
-            {travel_request_md}
-
-            Based on the following information:
-            {last_response_content}
-            """
-        )
-
-        logger.info(f"Itinerary response: {itinerary_response.messages[-1].content}")
-
-        last_response_content += f"""
-        ## Day-by-day itinerary:
-        ---
-        {itinerary_response.messages[-1].content}
-        ---
-        """
-
-        # Update status for AI team generation
-        await update_trip_plan_status(
-            trip_plan_id=trip_plan_id,
-            status="processing",
-            current_step="Optimizing the budget",
-        )
-        # Budget
-        budget_response = await budget_agent.arun(
-            f"""
-            Please optimize the budget according to the user's travel request:
-            {travel_request_md}
-
-            Based on the following information:
-            {last_response_content}
-            """
-        )
-
-        logger.info(f"Budget response: {budget_response.messages[-1].content}")
+        logger.info(f"LangGraph workflow execution completed for trip {trip_plan_id}")
 
         time_end = time.time()
-        logger.info(f"Total time taken: {time_end - time_start:.2f} seconds")
+        logger.info(f"Total time taken by LangGraph workflow: {time_end - time_start:.2f} seconds")
 
         # Update status for response conversion
         await update_trip_plan_status(
@@ -357,6 +198,9 @@ async def generate_travel_plan(request: TravelPlanAgentRequest) -> str:
             status="processing",
             current_step="Adding finishing touches",
         )
+
+        # The itinerary and other parts are accumulated in final_state
+        last_response_content = final_state["accumulated_content"]
 
         json_response_output = await convert_to_model(
             last_response_content, TravelPlanTeamResponse
@@ -369,16 +213,12 @@ async def generate_travel_plan(request: TravelPlanAgentRequest) -> str:
         final_response = json.dumps(
             {
                 "itinerary": json_response_output,
-                "budget_agent_response": budget_response.messages[-1].content,
-                "destination_agent_response": destionation_research_response.messages[
-                    -1
-                ].content,
-                "flight_agent_response": flight_search_response.messages[-1].content,
-                "hotel_agent_response": hotel_search_response.messages[-1].content,
-                "restaurant_agent_response": restaurant_search_response.messages[
-                    -1
-                ].content,
-                "itinerary_agent_response": itinerary_response.messages[-1].content,
+                "budget_agent_response": final_state["budget"],
+                "destination_agent_response": final_state["destination_research"],
+                "flight_agent_response": final_state["flights"],
+                "hotel_agent_response": final_state["hotels"],
+                "restaurant_agent_response": final_state["restaurants"],
+                "itinerary_agent_response": final_state["itinerary"],
             },
             indent=2,
         )

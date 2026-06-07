@@ -14,6 +14,7 @@ from router.cotraveler import router as cotraveler_router
 from router.coexperiencer import router as coexperiencer_router
 from router.challenges import router as challenges_router
 from router.social_plan import router as social_plan_router
+from router.payment import router as payment_router
 
 router = APIRouter(prefix="/api")
 
@@ -66,3 +67,4 @@ app.include_router(cotraveler_router)
 app.include_router(coexperiencer_router)
 app.include_router(challenges_router)
 app.include_router(social_plan_router)
+app.include_router(payment_router)

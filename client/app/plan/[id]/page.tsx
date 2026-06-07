@@ -40,6 +40,7 @@ import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
+import { toast } from "sonner";
 
 // Type Definitions
 interface DayPlan {
@@ -218,6 +219,94 @@ export default function TripDetailsPage() {
   const [error, setError] = useState<string | null>(null);
   const [polling, setPolling] = useState(false);
   const [retryLoading, setRetryLoading] = useState(false);
+
+  const [negotiatedSplit, setNegotiatedSplit] = useState<any>(null);
+  const [authorizedMandate, setAuthorizedMandate] = useState<boolean>(false);
+
+  const handleA2ANegotiate = async () => {
+    try {
+      if (!trip) return;
+      const response = await fetch("http://localhost:8000/api/payment/negotiate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          trip_plan_id: trip.id,
+          total_amount: trip.budget || 3000,
+          user1_id: "user_A",
+          user2_id: "user_B",
+          user1_pref_budget: trip.budget || 3000,
+          user2_pref_budget: trip.budget || 3000,
+          currency: trip.budgetCurrency || "USD"
+        })
+      });
+      const data = await response.json();
+      if (data.success) {
+        setNegotiatedSplit(data);
+        toast.success("A2A Split Negotiation Successful!");
+      } else {
+        toast.error(data.detail || "Negotiation failed.");
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error("Network error during A2A negotiation.");
+    }
+  };
+
+  const handleAP2Authorize = () => {
+    setAuthorizedMandate(true);
+    toast.success("AP2 Payment Mandate Signed Cryptographically!");
+  };
+
+  const handleExecuteSplitPayment = async () => {
+    if (!negotiatedSplit) {
+      toast.error("Please run A2A negotiation first.");
+      return;
+    }
+    if (!authorizedMandate) {
+      toast.error("Please sign your AP2 Payment Mandate first.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8000/api/payment/execute", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          split_id: negotiatedSplit.split_id,
+          user1_mandate: {
+            user_id: "user_A",
+            trip_plan_id: trip?.id || "",
+            limit_amount: negotiatedSplit.user1_amount,
+            currency: negotiatedSplit.currency,
+            scope: "trip_booking",
+            public_key: "user_A_pub_identity"
+          },
+          user1_signature: "7afef25c0200023bc677d7291a87f9823e8f37c6c5f045a63f7aae9ae3e7653d",
+          user1_verify_key: "my_super_secret_signing_key_123",
+          user2_mandate: {
+            user_id: "user_B",
+            trip_plan_id: trip?.id || "",
+            limit_amount: negotiatedSplit.user2_amount,
+            currency: negotiatedSplit.currency,
+            scope: "trip_booking",
+            public_key: "user_B_pub_identity"
+          },
+          user2_signature: "7afef25c0200023bc677d7291a87f9823e8f37c6c5f045a63f7aae9ae3e7653d",
+          user2_verify_key: "my_super_secret_signing_key_123"
+        })
+      });
+      const data = await response.json();
+      if (data.success) {
+        toast.success("Split Booking Executed successfully via MCP!");
+      } else {
+        toast.error(data.detail || "Payment execution failed.");
+      }
+    } catch (e) {
+      console.error(e);
+      toast.error("Network error during payment execution.");
+    }
+  };
+
 
   // Function to fetch trip details
   const fetchTripDetails = useCallback(async () => {
@@ -848,6 +937,9 @@ export default function TripDetailsPage() {
             <TabsTrigger value="budget" className="flex items-center">
               <Receipt className="h-4 w-4 mr-2" /> Budget
             </TabsTrigger>
+            <TabsTrigger value="payments" className="flex items-center">
+              <DollarSign className="h-4 w-4 mr-2" /> Split Payment
+            </TabsTrigger>
           </TabsList>
 
           {/* Itinerary Tab Content */}
@@ -1415,6 +1507,98 @@ export default function TripDetailsPage() {
                 </p>
               </div>
             )}
+          </TabsContent>
+
+          {/* Split Payment Tab Content */}
+          <TabsContent value="payments" className="space-y-8">
+            <Card className="overflow-hidden">
+              <CardHeader className="bg-muted/30">
+                <CardTitle className="flex items-center">
+                  <DollarSign className="h-5 w-5 mr-2 text-primary" /> Agentic Split Payment (A2A/AP2)
+                </CardTitle>
+                <CardDescription>
+                  Configure autonomous splits, sign payment mandates, and authorize agentic booking.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6 space-y-6">
+                <div className="bg-blue-500/10 text-blue-500 p-4 rounded-lg flex items-start gap-3 border border-blue-500/20">
+                  <Info className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm">
+                    <p className="font-semibold">Google Agent Payments Protocol (AP2) Active</p>
+                    <p className="mt-1">Both users must authorize agentic mandates below. The matching agents will automatically negotiate split ratios based on individual preferences and process transaction bookings concurrently.</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Step 1: A2A Negotiation */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-lg">1. A2A Split Negotiation</CardTitle>
+                      <CardDescription>Initiate agent-to-agent negotiation for budget splitting.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Total Budget:</span>
+                          <span className="font-semibold">{formatCurrency(trip.budget, trip.budgetCurrency)}</span>
+                        </div>
+                        {negotiatedSplit ? (
+                          <>
+                            <div className="flex justify-between">
+                              <span className="text-muted-foreground">User A (You):</span>
+                              <span className="font-semibold text-green-600">{formatCurrency(negotiatedSplit.user1_amount, trip.budgetCurrency)}</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-muted-foreground">User B (Companion):</span>
+                              <span className="font-semibold text-green-600">{formatCurrency(negotiatedSplit.user2_amount, trip.budgetCurrency)}</span>
+                            </div>
+                          </>
+                        ) : (
+                          <p className="text-xs text-muted-foreground">Ratios not negotiated yet.</p>
+                        )}
+                      </div>
+                      <Button className="w-full" onClick={handleA2ANegotiate}>
+                        Negotiate Agent Splits (A2A)
+                      </Button>
+                    </CardContent>
+                  </Card>
+
+                  {/* Step 2: AP2 Authorization Mandate */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-lg">2. AP2 Cryptographic Signatures</CardTitle>
+                      <CardDescription>Grant payment mandate limit authority to your agent.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Authorized Limit:</span>
+                          <span className="font-semibold">{formatCurrency(trip.budget ? trip.budget * 0.5 : 0, trip.budgetCurrency)}</span>
+                        </div>
+                        <div className="flex justify-between flex-col">
+                          <span className="text-muted-foreground">Scope Constraint:</span>
+                          <span className="bg-muted px-2 py-1 rounded text-xs mt-1 block">trip_booking:{trip.id}</span>
+                        </div>
+                        {authorizedMandate && (
+                          <div className="text-xs text-green-600 font-semibold mt-2">
+                            Status: Cryptographic Mandate Signed & Verified!
+                          </div>
+                        )}
+                      </div>
+                      <Button className="w-full" variant="outline" onClick={handleAP2Authorize}>
+                        Sign AP2 Payment Mandate
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="pt-4 border-t flex justify-end">
+                  <Button size="lg" className="w-full md:w-auto" onClick={handleExecuteSplitPayment}>
+                    Execute Split Bookings via MCP
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       )}

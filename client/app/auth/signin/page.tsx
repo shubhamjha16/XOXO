@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { signIn } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import {
@@ -42,7 +42,7 @@ export default function SignInPage() {
                     )}
 
                     <Button
-                        onClick={() => signIn("google", { callbackUrl })}
+                        onClick={() => authClient.signIn.social({ provider: "google", callbackURL: callbackUrl })}
                         variant="outline"
                         className="w-full py-6 flex items-center justify-center gap-3"
                     >

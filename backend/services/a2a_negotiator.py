@@ -18,16 +18,21 @@ class A2ANegotiator:
         user2_id: str,
         user1_pref_budget: float,
         user2_pref_budget: float,
-        currency: str = "USD"
+        currency: str = "USD",
+        split_mode: str = "equal_split"
     ) -> Tuple[float, float, str]:
         """
         Simulates Agent2Agent (A2A) negotiation protocol.
-        Computes the split dynamically based on their individual preferred budgets.
+        Computes the split dynamically based on their individual preferred budgets,
+        or handles 100% sponsor traditional mode.
         """
-        logger.info(f"[A2A Negotiation] Initiating split negotiation between Agent {user1_id} and Agent {user2_id} for trip {trip_plan_id}")
+        logger.info(f"[A2A Negotiation] Initiating split negotiation between Agent {user1_id} and Agent {user2_id} for trip {trip_plan_id} using mode: {split_mode}")
         
-        # If preferred budgets sum up exactly or are equal, we propose 50/50
-        if user1_pref_budget == user2_pref_budget:
+        if split_mode == "traditional_sponsor":
+            user1_amount = total_amount
+            user2_amount = 0.0
+            split_ratio = "100% traditional sponsor (User 1 pays all)"
+        elif user1_pref_budget == user2_pref_budget:
             user1_amount = total_amount / 2
             user2_amount = total_amount / 2
             split_ratio = "50/50 equal split"
@@ -52,7 +57,9 @@ class A2ANegotiator:
             user2Id=user2_id,
             user1Amount=user1_amount,
             user2Amount=user2_amount,
-            status="pending"
+            status="pending",
+            escrowStatus="held",
+            splitMode=split_mode
         )
         
         self.db.add(db_split)

@@ -187,8 +187,49 @@ model TransactionSplit {
   user1Amount     Float
   user2Amount     Float
   status          String   @default("pending") // pending, executing, success, failed
+  escrowStatus    String   @default("held")    // held, released, refunded
+  splitMode       String   @default("equal_split") // traditional_sponsor, equal_split, proportional
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
   @@map("transaction_split")
+}
+
+model UserRating {
+  id          String   @id @default(cuid())
+  raterId     String
+  rateeId     String
+  rating      Int      // 1 to 5 stars
+  tags        String[] // e.g. ["safe", "punctual", "friendly"]
+  comment     String?
+  createdAt   DateTime @default(now())
+
+  @@map("user_rating")
+}
+
+model LocationDare {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  latitude     Float
+  longitude    Float
+  radiusMeters Float    @default(50.0)
+  pointsReward Int      @default(100)
+  targetCity   String
+  isSponsored  Boolean  @default(false)
+  sponsorName  String?
+
+  @@map("location_dare")
+}
+
+model UserDareStatus {
+  id           String   @id @default(cuid())
+  userId       String
+  companionId  String?
+  dareId       String
+  status       String   @default("active") // active, completed
+  completedAt  DateTime?
+  createdAt    DateTime @default(now())
+
+  @@map("user_dare_status")
 }

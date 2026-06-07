@@ -125,6 +125,8 @@ class TransactionSplit(Base):
     user1Amount: Mapped[float] = mapped_column()
     user2Amount: Mapped[float] = mapped_column()
     status: Mapped[str] = mapped_column(Text, default="pending")
+    escrowStatus: Mapped[str] = mapped_column(Text, default="held")
+    splitMode: Mapped[str] = mapped_column(Text, default="equal_split")
     createdAt: Mapped[datetime] = mapped_column(
         DateTime(timezone=False),
         default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
@@ -133,5 +135,64 @@ class TransactionSplit(Base):
         DateTime(timezone=False),
         default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
         onupdate=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+
+
+class UserRating(Base):
+    """Model for storing Uber-style user ratings."""
+
+    __tablename__ = "user_rating"
+
+    id: Mapped[str] = mapped_column(
+        Text, primary_key=True, default=lambda: CUID_GENERATOR.generate()
+    )
+    raterId: Mapped[str] = mapped_column(Text)
+    rateeId: Mapped[str] = mapped_column(Text)
+    rating: Mapped[int] = mapped_column()
+    tags: Mapped[str] = mapped_column(Text)  # Comma-separated tags to keep SQLite simple (e.g. "safe,friendly")
+    comment: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    createdAt: Mapped[datetime] = mapped_column(
+        DateTime(timezone=False),
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+
+
+class LocationDare(Base):
+    """Model for Pokemon Go style location challenges."""
+
+    __tablename__ = "location_dare"
+
+    id: Mapped[str] = mapped_column(
+        Text, primary_key=True, default=lambda: CUID_GENERATOR.generate()
+    )
+    title: Mapped[str] = mapped_column(Text)
+    description: Mapped[str] = mapped_column(Text)
+    latitude: Mapped[float] = mapped_column()
+    longitude: Mapped[float] = mapped_column()
+    radiusMeters: Mapped[float] = mapped_column(default=50.0)
+    pointsReward: Mapped[int] = mapped_column(default=100)
+    targetCity: Mapped[str] = mapped_column(Text)
+    isSponsored: Mapped[bool] = mapped_column(default=False)
+    sponsorName: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+
+
+class UserDareStatus(Base):
+    """Model for tracking completed user dares."""
+
+    __tablename__ = "user_dare_status"
+
+    id: Mapped[str] = mapped_column(
+        Text, primary_key=True, default=lambda: CUID_GENERATOR.generate()
+    )
+    userId: Mapped[str] = mapped_column(Text)
+    companionId: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    dareId: Mapped[str] = mapped_column(Text)
+    status: Mapped[str] = mapped_column(Text, default="active")
+    completedAt: Mapped[Optional[datetime]] = mapped_column(
+        DateTime(timezone=False), nullable=True
+    )
+    createdAt: Mapped[datetime] = mapped_column(
+        DateTime(timezone=False),
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
     )
 

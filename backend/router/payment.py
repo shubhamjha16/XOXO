@@ -24,6 +24,7 @@ class NegotiationRequest(BaseModel):
     user1_pref_budget: float
     user2_pref_budget: float
     currency: str = "USD"
+    split_mode: str = "equal_split"
 
 class ExecutionRequest(BaseModel):
     split_id: str
@@ -52,7 +53,8 @@ async def negotiate_payment_split(
             user2_id=request.user2_id,
             user1_pref_budget=request.user1_pref_budget,
             user2_pref_budget=request.user2_pref_budget,
-            currency=request.currency
+            currency=request.currency,
+            split_mode=request.split_mode
         )
         return {
             "success": True,

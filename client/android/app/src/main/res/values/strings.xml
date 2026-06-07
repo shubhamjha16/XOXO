@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">XOXO</string>
+    <string name="title_activity_main">XOXO</string>
+    <string name="package_name">com.xoxo.app</string>
+    <string name="custom_url_scheme">com.xoxo.app</string>
+</resources>

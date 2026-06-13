@@ -54,10 +54,10 @@ export type TripPlanOutput = $Result.DefaultSelection<Prisma.$TripPlanOutputPayl
  */
 export type TripPlan = $Result.DefaultSelection<Prisma.$TripPlanPayload>
 /**
- * Model plan_tasks
+ * Model PlanTask
  * 
  */
-export type plan_tasks = $Result.DefaultSelection<Prisma.$plan_tasksPayload>
+export type PlanTask = $Result.DefaultSelection<Prisma.$PlanTaskPayload>
 /**
  * Model PaymentMandate
  * 
@@ -68,25 +68,21 @@ export type PaymentMandate = $Result.DefaultSelection<Prisma.$PaymentMandatePayl
  * 
  */
 export type TransactionSplit = $Result.DefaultSelection<Prisma.$TransactionSplitPayload>
-
 /**
- * Enums
+ * Model UserRating
+ * 
  */
-export namespace $Enums {
-  export const plan_task_status: {
-  queued: 'queued',
-  in_progress: 'in_progress',
-  success: 'success',
-  error: 'error'
-};
-
-export type plan_task_status = (typeof plan_task_status)[keyof typeof plan_task_status]
-
-}
-
-export type plan_task_status = $Enums.plan_task_status
-
-export const plan_task_status: typeof $Enums.plan_task_status
+export type UserRating = $Result.DefaultSelection<Prisma.$UserRatingPayload>
+/**
+ * Model LocationDare
+ * 
+ */
+export type LocationDare = $Result.DefaultSelection<Prisma.$LocationDarePayload>
+/**
+ * Model UserDareStatus
+ * 
+ */
+export type UserDareStatus = $Result.DefaultSelection<Prisma.$UserDareStatusPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -294,14 +290,14 @@ export class PrismaClient<
   get tripPlan(): Prisma.TripPlanDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.plan_tasks`: Exposes CRUD operations for the **plan_tasks** model.
+   * `prisma.planTask`: Exposes CRUD operations for the **PlanTask** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Plan_tasks
-    * const plan_tasks = await prisma.plan_tasks.findMany()
+    * // Fetch zero or more PlanTasks
+    * const planTasks = await prisma.planTask.findMany()
     * ```
     */
-  get plan_tasks(): Prisma.plan_tasksDelegate<ExtArgs, ClientOptions>;
+  get planTask(): Prisma.PlanTaskDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.paymentMandate`: Exposes CRUD operations for the **PaymentMandate** model.
@@ -322,6 +318,36 @@ export class PrismaClient<
     * ```
     */
   get transactionSplit(): Prisma.TransactionSplitDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userRating`: Exposes CRUD operations for the **UserRating** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserRatings
+    * const userRatings = await prisma.userRating.findMany()
+    * ```
+    */
+  get userRating(): Prisma.UserRatingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.locationDare`: Exposes CRUD operations for the **LocationDare** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LocationDares
+    * const locationDares = await prisma.locationDare.findMany()
+    * ```
+    */
+  get locationDare(): Prisma.LocationDareDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userDareStatus`: Exposes CRUD operations for the **UserDareStatus** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserDareStatuses
+    * const userDareStatuses = await prisma.userDareStatus.findMany()
+    * ```
+    */
+  get userDareStatus(): Prisma.UserDareStatusDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -770,9 +796,12 @@ export namespace Prisma {
     TripPlanStatus: 'TripPlanStatus',
     TripPlanOutput: 'TripPlanOutput',
     TripPlan: 'TripPlan',
-    plan_tasks: 'plan_tasks',
+    PlanTask: 'PlanTask',
     PaymentMandate: 'PaymentMandate',
-    TransactionSplit: 'TransactionSplit'
+    TransactionSplit: 'TransactionSplit',
+    UserRating: 'UserRating',
+    LocationDare: 'LocationDare',
+    UserDareStatus: 'UserDareStatus'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -791,7 +820,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "jwks" | "tripPlanStatus" | "tripPlanOutput" | "tripPlan" | "plan_tasks" | "paymentMandate" | "transactionSplit"
+      modelProps: "user" | "session" | "account" | "verification" | "jwks" | "tripPlanStatus" | "tripPlanOutput" | "tripPlan" | "planTask" | "paymentMandate" | "transactionSplit" | "userRating" | "locationDare" | "userDareStatus"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1387,77 +1416,77 @@ export namespace Prisma {
           }
         }
       }
-      plan_tasks: {
-        payload: Prisma.$plan_tasksPayload<ExtArgs>
-        fields: Prisma.plan_tasksFieldRefs
+      PlanTask: {
+        payload: Prisma.$PlanTaskPayload<ExtArgs>
+        fields: Prisma.PlanTaskFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.plan_tasksFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload> | null
+            args: Prisma.PlanTaskFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.plan_tasksFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload>
+            args: Prisma.PlanTaskFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload>
           }
           findFirst: {
-            args: Prisma.plan_tasksFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload> | null
+            args: Prisma.PlanTaskFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.plan_tasksFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload>
+            args: Prisma.PlanTaskFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload>
           }
           findMany: {
-            args: Prisma.plan_tasksFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload>[]
+            args: Prisma.PlanTaskFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload>[]
           }
           create: {
-            args: Prisma.plan_tasksCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload>
+            args: Prisma.PlanTaskCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload>
           }
           createMany: {
-            args: Prisma.plan_tasksCreateManyArgs<ExtArgs>
+            args: Prisma.PlanTaskCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.plan_tasksCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload>[]
+            args: Prisma.PlanTaskCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload>[]
           }
           delete: {
-            args: Prisma.plan_tasksDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload>
+            args: Prisma.PlanTaskDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload>
           }
           update: {
-            args: Prisma.plan_tasksUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload>
+            args: Prisma.PlanTaskUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload>
           }
           deleteMany: {
-            args: Prisma.plan_tasksDeleteManyArgs<ExtArgs>
+            args: Prisma.PlanTaskDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.plan_tasksUpdateManyArgs<ExtArgs>
+            args: Prisma.PlanTaskUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.plan_tasksUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload>[]
+            args: Prisma.PlanTaskUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload>[]
           }
           upsert: {
-            args: Prisma.plan_tasksUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$plan_tasksPayload>
+            args: Prisma.PlanTaskUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlanTaskPayload>
           }
           aggregate: {
-            args: Prisma.Plan_tasksAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePlan_tasks>
+            args: Prisma.PlanTaskAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlanTask>
           }
           groupBy: {
-            args: Prisma.plan_tasksGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Plan_tasksGroupByOutputType>[]
+            args: Prisma.PlanTaskGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlanTaskGroupByOutputType>[]
           }
           count: {
-            args: Prisma.plan_tasksCountArgs<ExtArgs>
-            result: $Utils.Optional<Plan_tasksCountAggregateOutputType> | number
+            args: Prisma.PlanTaskCountArgs<ExtArgs>
+            result: $Utils.Optional<PlanTaskCountAggregateOutputType> | number
           }
         }
       }
@@ -1609,6 +1638,228 @@ export namespace Prisma {
           }
         }
       }
+      UserRating: {
+        payload: Prisma.$UserRatingPayload<ExtArgs>
+        fields: Prisma.UserRatingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserRatingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserRatingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload>
+          }
+          findFirst: {
+            args: Prisma.UserRatingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserRatingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload>
+          }
+          findMany: {
+            args: Prisma.UserRatingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload>[]
+          }
+          create: {
+            args: Prisma.UserRatingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload>
+          }
+          createMany: {
+            args: Prisma.UserRatingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserRatingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload>[]
+          }
+          delete: {
+            args: Prisma.UserRatingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload>
+          }
+          update: {
+            args: Prisma.UserRatingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserRatingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserRatingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserRatingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserRatingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserRatingPayload>
+          }
+          aggregate: {
+            args: Prisma.UserRatingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserRating>
+          }
+          groupBy: {
+            args: Prisma.UserRatingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserRatingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserRatingCountArgs<ExtArgs>
+            result: $Utils.Optional<UserRatingCountAggregateOutputType> | number
+          }
+        }
+      }
+      LocationDare: {
+        payload: Prisma.$LocationDarePayload<ExtArgs>
+        fields: Prisma.LocationDareFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LocationDareFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LocationDareFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload>
+          }
+          findFirst: {
+            args: Prisma.LocationDareFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LocationDareFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload>
+          }
+          findMany: {
+            args: Prisma.LocationDareFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload>[]
+          }
+          create: {
+            args: Prisma.LocationDareCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload>
+          }
+          createMany: {
+            args: Prisma.LocationDareCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LocationDareCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload>[]
+          }
+          delete: {
+            args: Prisma.LocationDareDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload>
+          }
+          update: {
+            args: Prisma.LocationDareUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload>
+          }
+          deleteMany: {
+            args: Prisma.LocationDareDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LocationDareUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LocationDareUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload>[]
+          }
+          upsert: {
+            args: Prisma.LocationDareUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationDarePayload>
+          }
+          aggregate: {
+            args: Prisma.LocationDareAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLocationDare>
+          }
+          groupBy: {
+            args: Prisma.LocationDareGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LocationDareGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LocationDareCountArgs<ExtArgs>
+            result: $Utils.Optional<LocationDareCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserDareStatus: {
+        payload: Prisma.$UserDareStatusPayload<ExtArgs>
+        fields: Prisma.UserDareStatusFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserDareStatusFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserDareStatusFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload>
+          }
+          findFirst: {
+            args: Prisma.UserDareStatusFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserDareStatusFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload>
+          }
+          findMany: {
+            args: Prisma.UserDareStatusFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload>[]
+          }
+          create: {
+            args: Prisma.UserDareStatusCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload>
+          }
+          createMany: {
+            args: Prisma.UserDareStatusCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserDareStatusCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload>[]
+          }
+          delete: {
+            args: Prisma.UserDareStatusDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload>
+          }
+          update: {
+            args: Prisma.UserDareStatusUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserDareStatusDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserDareStatusUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserDareStatusUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserDareStatusUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserDareStatusPayload>
+          }
+          aggregate: {
+            args: Prisma.UserDareStatusAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserDareStatus>
+          }
+          groupBy: {
+            args: Prisma.UserDareStatusGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserDareStatusGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserDareStatusCountArgs<ExtArgs>
+            result: $Utils.Optional<UserDareStatusCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1709,9 +1960,12 @@ export namespace Prisma {
     tripPlanStatus?: TripPlanStatusOmit
     tripPlanOutput?: TripPlanOutputOmit
     tripPlan?: TripPlanOmit
-    plan_tasks?: plan_tasksOmit
+    planTask?: PlanTaskOmit
     paymentMandate?: PaymentMandateOmit
     transactionSplit?: TransactionSplitOmit
+    userRating?: UserRatingOmit
+    locationDare?: LocationDareOmit
+    userDareStatus?: UserDareStatusOmit
   }
 
   /* Types for Logging */
@@ -2762,7 +3016,6 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -2781,7 +3034,6 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -3923,7 +4175,6 @@ export namespace Prisma {
      * The data used to create many Sessions.
      */
     data: SessionCreateManyInput | SessionCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -3942,7 +4193,6 @@ export namespace Prisma {
      * The data used to create many Sessions.
      */
     data: SessionCreateManyInput | SessionCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -5085,7 +5335,6 @@ export namespace Prisma {
      * The data used to create many Accounts.
      */
     data: AccountCreateManyInput | AccountCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -5104,7 +5353,6 @@ export namespace Prisma {
      * The data used to create many Accounts.
      */
     data: AccountCreateManyInput | AccountCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6117,7 +6365,6 @@ export namespace Prisma {
      * The data used to create many Verifications.
      */
     data: VerificationCreateManyInput | VerificationCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -6136,7 +6383,6 @@ export namespace Prisma {
      * The data used to create many Verifications.
      */
     data: VerificationCreateManyInput | VerificationCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -7099,7 +7345,6 @@ export namespace Prisma {
      * The data used to create many Jwks.
      */
     data: JwksCreateManyInput | JwksCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -7118,7 +7363,6 @@ export namespace Prisma {
      * The data used to create many Jwks.
      */
     data: JwksCreateManyInput | JwksCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -7276,10 +7520,10 @@ export namespace Prisma {
     status: string | null
     currentStep: string | null
     error: string | null
-    startedAt: Date | null
-    completedAt: Date | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    startedAt: string | null
+    completedAt: string | null
+    createdAt: string | null
+    updatedAt: string | null
   }
 
   export type TripPlanStatusMaxAggregateOutputType = {
@@ -7288,10 +7532,10 @@ export namespace Prisma {
     status: string | null
     currentStep: string | null
     error: string | null
-    startedAt: Date | null
-    completedAt: Date | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    startedAt: string | null
+    completedAt: string | null
+    createdAt: string | null
+    updatedAt: string | null
   }
 
   export type TripPlanStatusCountAggregateOutputType = {
@@ -7423,10 +7667,10 @@ export namespace Prisma {
     status: string
     currentStep: string | null
     error: string | null
-    startedAt: Date | null
-    completedAt: Date | null
-    createdAt: Date
-    updatedAt: Date
+    startedAt: string | null
+    completedAt: string | null
+    createdAt: string | null
+    updatedAt: string | null
     _count: TripPlanStatusCountAggregateOutputType | null
     _min: TripPlanStatusMinAggregateOutputType | null
     _max: TripPlanStatusMaxAggregateOutputType | null
@@ -7519,10 +7763,10 @@ export namespace Prisma {
       status: string
       currentStep: string | null
       error: string | null
-      startedAt: Date | null
-      completedAt: Date | null
-      createdAt: Date
-      updatedAt: Date
+      startedAt: string | null
+      completedAt: string | null
+      createdAt: string | null
+      updatedAt: string | null
     }, ExtArgs["result"]["tripPlanStatus"]>
     composites: {}
   }
@@ -7952,10 +8196,10 @@ export namespace Prisma {
     readonly status: FieldRef<"TripPlanStatus", 'String'>
     readonly currentStep: FieldRef<"TripPlanStatus", 'String'>
     readonly error: FieldRef<"TripPlanStatus", 'String'>
-    readonly startedAt: FieldRef<"TripPlanStatus", 'DateTime'>
-    readonly completedAt: FieldRef<"TripPlanStatus", 'DateTime'>
-    readonly createdAt: FieldRef<"TripPlanStatus", 'DateTime'>
-    readonly updatedAt: FieldRef<"TripPlanStatus", 'DateTime'>
+    readonly startedAt: FieldRef<"TripPlanStatus", 'String'>
+    readonly completedAt: FieldRef<"TripPlanStatus", 'String'>
+    readonly createdAt: FieldRef<"TripPlanStatus", 'String'>
+    readonly updatedAt: FieldRef<"TripPlanStatus", 'String'>
   }
     
 
@@ -8185,7 +8429,6 @@ export namespace Prisma {
      * The data used to create many TripPlanStatuses.
      */
     data: TripPlanStatusCreateManyInput | TripPlanStatusCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -8204,7 +8447,6 @@ export namespace Prisma {
      * The data used to create many TripPlanStatuses.
      */
     data: TripPlanStatusCreateManyInput | TripPlanStatusCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -8385,8 +8627,8 @@ export namespace Prisma {
     tripPlanId: string | null
     itinerary: string | null
     summary: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    createdAt: string | null
+    updatedAt: string | null
   }
 
   export type TripPlanOutputMaxAggregateOutputType = {
@@ -8394,8 +8636,8 @@ export namespace Prisma {
     tripPlanId: string | null
     itinerary: string | null
     summary: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    createdAt: string | null
+    updatedAt: string | null
   }
 
   export type TripPlanOutputCountAggregateOutputType = {
@@ -8514,8 +8756,8 @@ export namespace Prisma {
     tripPlanId: string
     itinerary: string
     summary: string | null
-    createdAt: Date
-    updatedAt: Date
+    createdAt: string | null
+    updatedAt: string | null
     _count: TripPlanOutputCountAggregateOutputType | null
     _min: TripPlanOutputMinAggregateOutputType | null
     _max: TripPlanOutputMaxAggregateOutputType | null
@@ -8595,8 +8837,8 @@ export namespace Prisma {
       tripPlanId: string
       itinerary: string
       summary: string | null
-      createdAt: Date
-      updatedAt: Date
+      createdAt: string | null
+      updatedAt: string | null
     }, ExtArgs["result"]["tripPlanOutput"]>
     composites: {}
   }
@@ -9025,8 +9267,8 @@ export namespace Prisma {
     readonly tripPlanId: FieldRef<"TripPlanOutput", 'String'>
     readonly itinerary: FieldRef<"TripPlanOutput", 'String'>
     readonly summary: FieldRef<"TripPlanOutput", 'String'>
-    readonly createdAt: FieldRef<"TripPlanOutput", 'DateTime'>
-    readonly updatedAt: FieldRef<"TripPlanOutput", 'DateTime'>
+    readonly createdAt: FieldRef<"TripPlanOutput", 'String'>
+    readonly updatedAt: FieldRef<"TripPlanOutput", 'String'>
   }
     
 
@@ -9256,7 +9498,6 @@ export namespace Prisma {
      * The data used to create many TripPlanOutputs.
      */
     data: TripPlanOutputCreateManyInput | TripPlanOutputCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -9275,7 +9516,6 @@ export namespace Prisma {
      * The data used to create many TripPlanOutputs.
      */
     data: TripPlanOutputCreateManyInput | TripPlanOutputCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -9459,7 +9699,6 @@ export namespace Prisma {
     children: number | null
     budget: number | null
     rooms: number | null
-    pace: number | null
   }
 
   export type TripPlanSumAggregateOutputType = {
@@ -9468,7 +9707,6 @@ export namespace Prisma {
     children: number | null
     budget: number | null
     rooms: number | null
-    pace: number[]
   }
 
   export type TripPlanMinAggregateOutputType = {
@@ -9483,12 +9721,16 @@ export namespace Prisma {
     experiencingWith: string | null
     adults: number | null
     children: number | null
+    ageGroups: string | null
     budget: number | null
     budgetCurrency: string | null
     experienceStyle: string | null
     budgetFlexible: boolean | null
+    vibes: string | null
+    priorities: string | null
     interests: string | null
     rooms: number | null
+    pace: string | null
     beenThereBefore: string | null
     lovedPlaces: string | null
     additionalInfo: string | null
@@ -9509,12 +9751,16 @@ export namespace Prisma {
     experiencingWith: string | null
     adults: number | null
     children: number | null
+    ageGroups: string | null
     budget: number | null
     budgetCurrency: string | null
     experienceStyle: string | null
     budgetFlexible: boolean | null
+    vibes: string | null
+    priorities: string | null
     interests: string | null
     rooms: number | null
+    pace: string | null
     beenThereBefore: string | null
     lovedPlaces: string | null
     additionalInfo: string | null
@@ -9561,7 +9807,6 @@ export namespace Prisma {
     children?: true
     budget?: true
     rooms?: true
-    pace?: true
   }
 
   export type TripPlanSumAggregateInputType = {
@@ -9570,7 +9815,6 @@ export namespace Prisma {
     children?: true
     budget?: true
     rooms?: true
-    pace?: true
   }
 
   export type TripPlanMinAggregateInputType = {
@@ -9585,12 +9829,16 @@ export namespace Prisma {
     experiencingWith?: true
     adults?: true
     children?: true
+    ageGroups?: true
     budget?: true
     budgetCurrency?: true
     experienceStyle?: true
     budgetFlexible?: true
+    vibes?: true
+    priorities?: true
     interests?: true
     rooms?: true
+    pace?: true
     beenThereBefore?: true
     lovedPlaces?: true
     additionalInfo?: true
@@ -9611,12 +9859,16 @@ export namespace Prisma {
     experiencingWith?: true
     adults?: true
     children?: true
+    ageGroups?: true
     budget?: true
     budgetCurrency?: true
     experienceStyle?: true
     budgetFlexible?: true
+    vibes?: true
+    priorities?: true
     interests?: true
     rooms?: true
+    pace?: true
     beenThereBefore?: true
     lovedPlaces?: true
     additionalInfo?: true
@@ -9754,16 +10006,16 @@ export namespace Prisma {
     experiencingWith: string
     adults: number
     children: number
-    ageGroups: string[]
+    ageGroups: string
     budget: number
     budgetCurrency: string
     experienceStyle: string
     budgetFlexible: boolean
-    vibes: string[]
-    priorities: string[]
+    vibes: string
+    priorities: string
     interests: string | null
     rooms: number
-    pace: number[]
+    pace: string
     beenThereBefore: string | null
     lovedPlaces: string | null
     additionalInfo: string | null
@@ -9948,16 +10200,16 @@ export namespace Prisma {
       experiencingWith: string
       adults: number
       children: number
-      ageGroups: string[]
+      ageGroups: string
       budget: number
       budgetCurrency: string
       experienceStyle: string
       budgetFlexible: boolean
-      vibes: string[]
-      priorities: string[]
+      vibes: string
+      priorities: string
       interests: string | null
       rooms: number
-      pace: number[]
+      pace: string
       beenThereBefore: string | null
       lovedPlaces: string | null
       additionalInfo: string | null
@@ -10401,16 +10653,16 @@ export namespace Prisma {
     readonly experiencingWith: FieldRef<"TripPlan", 'String'>
     readonly adults: FieldRef<"TripPlan", 'Int'>
     readonly children: FieldRef<"TripPlan", 'Int'>
-    readonly ageGroups: FieldRef<"TripPlan", 'String[]'>
+    readonly ageGroups: FieldRef<"TripPlan", 'String'>
     readonly budget: FieldRef<"TripPlan", 'Float'>
     readonly budgetCurrency: FieldRef<"TripPlan", 'String'>
     readonly experienceStyle: FieldRef<"TripPlan", 'String'>
     readonly budgetFlexible: FieldRef<"TripPlan", 'Boolean'>
-    readonly vibes: FieldRef<"TripPlan", 'String[]'>
-    readonly priorities: FieldRef<"TripPlan", 'String[]'>
+    readonly vibes: FieldRef<"TripPlan", 'String'>
+    readonly priorities: FieldRef<"TripPlan", 'String'>
     readonly interests: FieldRef<"TripPlan", 'String'>
     readonly rooms: FieldRef<"TripPlan", 'Int'>
-    readonly pace: FieldRef<"TripPlan", 'Int[]'>
+    readonly pace: FieldRef<"TripPlan", 'String'>
     readonly beenThereBefore: FieldRef<"TripPlan", 'String'>
     readonly lovedPlaces: FieldRef<"TripPlan", 'String'>
     readonly additionalInfo: FieldRef<"TripPlan", 'String'>
@@ -10646,7 +10898,6 @@ export namespace Prisma {
      * The data used to create many TripPlans.
      */
     data: TripPlanCreateManyInput | TripPlanCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -10665,7 +10916,6 @@ export namespace Prisma {
      * The data used to create many TripPlans.
      */
     data: TripPlanCreateManyInput | TripPlanCreateManyInput[]
-    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -10889,46 +11139,50 @@ export namespace Prisma {
 
 
   /**
-   * Model plan_tasks
+   * Model PlanTask
    */
 
-  export type AggregatePlan_tasks = {
-    _count: Plan_tasksCountAggregateOutputType | null
-    _avg: Plan_tasksAvgAggregateOutputType | null
-    _sum: Plan_tasksSumAggregateOutputType | null
-    _min: Plan_tasksMinAggregateOutputType | null
-    _max: Plan_tasksMaxAggregateOutputType | null
+  export type AggregatePlanTask = {
+    _count: PlanTaskCountAggregateOutputType | null
+    _avg: PlanTaskAvgAggregateOutputType | null
+    _sum: PlanTaskSumAggregateOutputType | null
+    _min: PlanTaskMinAggregateOutputType | null
+    _max: PlanTaskMaxAggregateOutputType | null
   }
 
-  export type Plan_tasksAvgAggregateOutputType = {
+  export type PlanTaskAvgAggregateOutputType = {
     id: number | null
   }
 
-  export type Plan_tasksSumAggregateOutputType = {
+  export type PlanTaskSumAggregateOutputType = {
     id: number | null
   }
 
-  export type Plan_tasksMinAggregateOutputType = {
-    id: number | null
-    trip_plan_id: string | null
-    task_type: string | null
-    status: $Enums.plan_task_status | null
-    error_message: string | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type Plan_tasksMaxAggregateOutputType = {
+  export type PlanTaskMinAggregateOutputType = {
     id: number | null
     trip_plan_id: string | null
     task_type: string | null
-    status: $Enums.plan_task_status | null
+    status: string | null
+    input_data: string | null
+    output_data: string | null
     error_message: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    created_at: string | null
+    updated_at: string | null
   }
 
-  export type Plan_tasksCountAggregateOutputType = {
+  export type PlanTaskMaxAggregateOutputType = {
+    id: number | null
+    trip_plan_id: string | null
+    task_type: string | null
+    status: string | null
+    input_data: string | null
+    output_data: string | null
+    error_message: string | null
+    created_at: string | null
+    updated_at: string | null
+  }
+
+  export type PlanTaskCountAggregateOutputType = {
     id: number
     trip_plan_id: number
     task_type: number
@@ -10942,35 +11196,39 @@ export namespace Prisma {
   }
 
 
-  export type Plan_tasksAvgAggregateInputType = {
+  export type PlanTaskAvgAggregateInputType = {
     id?: true
   }
 
-  export type Plan_tasksSumAggregateInputType = {
+  export type PlanTaskSumAggregateInputType = {
     id?: true
   }
 
-  export type Plan_tasksMinAggregateInputType = {
+  export type PlanTaskMinAggregateInputType = {
     id?: true
     trip_plan_id?: true
     task_type?: true
     status?: true
+    input_data?: true
+    output_data?: true
     error_message?: true
     created_at?: true
     updated_at?: true
   }
 
-  export type Plan_tasksMaxAggregateInputType = {
+  export type PlanTaskMaxAggregateInputType = {
     id?: true
     trip_plan_id?: true
     task_type?: true
     status?: true
+    input_data?: true
+    output_data?: true
     error_message?: true
     created_at?: true
     updated_at?: true
   }
 
-  export type Plan_tasksCountAggregateInputType = {
+  export type PlanTaskCountAggregateInputType = {
     id?: true
     trip_plan_id?: true
     task_type?: true
@@ -10983,124 +11241,124 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type Plan_tasksAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which plan_tasks to aggregate.
+     * Filter which PlanTask to aggregate.
      */
-    where?: plan_tasksWhereInput
+    where?: PlanTaskWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of plan_tasks to fetch.
+     * Determine the order of PlanTasks to fetch.
      */
-    orderBy?: plan_tasksOrderByWithRelationInput | plan_tasksOrderByWithRelationInput[]
+    orderBy?: PlanTaskOrderByWithRelationInput | PlanTaskOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: plan_tasksWhereUniqueInput
+    cursor?: PlanTaskWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` plan_tasks from the position of the cursor.
+     * Take `±n` PlanTasks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` plan_tasks.
+     * Skip the first `n` PlanTasks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned plan_tasks
+     * Count returned PlanTasks
     **/
-    _count?: true | Plan_tasksCountAggregateInputType
+    _count?: true | PlanTaskCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: Plan_tasksAvgAggregateInputType
+    _avg?: PlanTaskAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: Plan_tasksSumAggregateInputType
+    _sum?: PlanTaskSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Plan_tasksMinAggregateInputType
+    _min?: PlanTaskMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Plan_tasksMaxAggregateInputType
+    _max?: PlanTaskMaxAggregateInputType
   }
 
-  export type GetPlan_tasksAggregateType<T extends Plan_tasksAggregateArgs> = {
-        [P in keyof T & keyof AggregatePlan_tasks]: P extends '_count' | 'count'
+  export type GetPlanTaskAggregateType<T extends PlanTaskAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlanTask]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregatePlan_tasks[P]>
-      : GetScalarType<T[P], AggregatePlan_tasks[P]>
+        : GetScalarType<T[P], AggregatePlanTask[P]>
+      : GetScalarType<T[P], AggregatePlanTask[P]>
   }
 
 
 
 
-  export type plan_tasksGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: plan_tasksWhereInput
-    orderBy?: plan_tasksOrderByWithAggregationInput | plan_tasksOrderByWithAggregationInput[]
-    by: Plan_tasksScalarFieldEnum[] | Plan_tasksScalarFieldEnum
-    having?: plan_tasksScalarWhereWithAggregatesInput
+  export type PlanTaskGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlanTaskWhereInput
+    orderBy?: PlanTaskOrderByWithAggregationInput | PlanTaskOrderByWithAggregationInput[]
+    by: PlanTaskScalarFieldEnum[] | PlanTaskScalarFieldEnum
+    having?: PlanTaskScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Plan_tasksCountAggregateInputType | true
-    _avg?: Plan_tasksAvgAggregateInputType
-    _sum?: Plan_tasksSumAggregateInputType
-    _min?: Plan_tasksMinAggregateInputType
-    _max?: Plan_tasksMaxAggregateInputType
+    _count?: PlanTaskCountAggregateInputType | true
+    _avg?: PlanTaskAvgAggregateInputType
+    _sum?: PlanTaskSumAggregateInputType
+    _min?: PlanTaskMinAggregateInputType
+    _max?: PlanTaskMaxAggregateInputType
   }
 
-  export type Plan_tasksGroupByOutputType = {
+  export type PlanTaskGroupByOutputType = {
     id: number
     trip_plan_id: string
     task_type: string
-    status: $Enums.plan_task_status
-    input_data: JsonValue
-    output_data: JsonValue | null
+    status: string
+    input_data: string
+    output_data: string | null
     error_message: string | null
-    created_at: Date | null
-    updated_at: Date | null
-    _count: Plan_tasksCountAggregateOutputType | null
-    _avg: Plan_tasksAvgAggregateOutputType | null
-    _sum: Plan_tasksSumAggregateOutputType | null
-    _min: Plan_tasksMinAggregateOutputType | null
-    _max: Plan_tasksMaxAggregateOutputType | null
+    created_at: string | null
+    updated_at: string | null
+    _count: PlanTaskCountAggregateOutputType | null
+    _avg: PlanTaskAvgAggregateOutputType | null
+    _sum: PlanTaskSumAggregateOutputType | null
+    _min: PlanTaskMinAggregateOutputType | null
+    _max: PlanTaskMaxAggregateOutputType | null
   }
 
-  type GetPlan_tasksGroupByPayload<T extends plan_tasksGroupByArgs> = Prisma.PrismaPromise<
+  type GetPlanTaskGroupByPayload<T extends PlanTaskGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Plan_tasksGroupByOutputType, T['by']> &
+      PickEnumerable<PlanTaskGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Plan_tasksGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof PlanTaskGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Plan_tasksGroupByOutputType[P]>
-            : GetScalarType<T[P], Plan_tasksGroupByOutputType[P]>
+              : GetScalarType<T[P], PlanTaskGroupByOutputType[P]>
+            : GetScalarType<T[P], PlanTaskGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type plan_tasksSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PlanTaskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     trip_plan_id?: boolean
     task_type?: boolean
@@ -11110,9 +11368,9 @@ export namespace Prisma {
     error_message?: boolean
     created_at?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["plan_tasks"]>
+  }, ExtArgs["result"]["planTask"]>
 
-  export type plan_tasksSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PlanTaskSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     trip_plan_id?: boolean
     task_type?: boolean
@@ -11122,9 +11380,9 @@ export namespace Prisma {
     error_message?: boolean
     created_at?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["plan_tasks"]>
+  }, ExtArgs["result"]["planTask"]>
 
-  export type plan_tasksSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PlanTaskSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     trip_plan_id?: boolean
     task_type?: boolean
@@ -11134,9 +11392,9 @@ export namespace Prisma {
     error_message?: boolean
     created_at?: boolean
     updated_at?: boolean
-  }, ExtArgs["result"]["plan_tasks"]>
+  }, ExtArgs["result"]["planTask"]>
 
-  export type plan_tasksSelectScalar = {
+  export type PlanTaskSelectScalar = {
     id?: boolean
     trip_plan_id?: boolean
     task_type?: boolean
@@ -11148,151 +11406,151 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type plan_tasksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "trip_plan_id" | "task_type" | "status" | "input_data" | "output_data" | "error_message" | "created_at" | "updated_at", ExtArgs["result"]["plan_tasks"]>
+  export type PlanTaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "trip_plan_id" | "task_type" | "status" | "input_data" | "output_data" | "error_message" | "created_at" | "updated_at", ExtArgs["result"]["planTask"]>
 
-  export type $plan_tasksPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "plan_tasks"
+  export type $PlanTaskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlanTask"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
       trip_plan_id: string
       task_type: string
-      status: $Enums.plan_task_status
-      input_data: Prisma.JsonValue
-      output_data: Prisma.JsonValue | null
+      status: string
+      input_data: string
+      output_data: string | null
       error_message: string | null
-      created_at: Date | null
-      updated_at: Date | null
-    }, ExtArgs["result"]["plan_tasks"]>
+      created_at: string | null
+      updated_at: string | null
+    }, ExtArgs["result"]["planTask"]>
     composites: {}
   }
 
-  type plan_tasksGetPayload<S extends boolean | null | undefined | plan_tasksDefaultArgs> = $Result.GetResult<Prisma.$plan_tasksPayload, S>
+  type PlanTaskGetPayload<S extends boolean | null | undefined | PlanTaskDefaultArgs> = $Result.GetResult<Prisma.$PlanTaskPayload, S>
 
-  type plan_tasksCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<plan_tasksFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Plan_tasksCountAggregateInputType | true
+  type PlanTaskCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PlanTaskFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PlanTaskCountAggregateInputType | true
     }
 
-  export interface plan_tasksDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['plan_tasks'], meta: { name: 'plan_tasks' } }
+  export interface PlanTaskDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlanTask'], meta: { name: 'PlanTask' } }
     /**
-     * Find zero or one Plan_tasks that matches the filter.
-     * @param {plan_tasksFindUniqueArgs} args - Arguments to find a Plan_tasks
+     * Find zero or one PlanTask that matches the filter.
+     * @param {PlanTaskFindUniqueArgs} args - Arguments to find a PlanTask
      * @example
-     * // Get one Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.findUnique({
+     * // Get one PlanTask
+     * const planTask = await prisma.planTask.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends plan_tasksFindUniqueArgs>(args: SelectSubset<T, plan_tasksFindUniqueArgs<ExtArgs>>): Prisma__plan_tasksClient<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends PlanTaskFindUniqueArgs>(args: SelectSubset<T, PlanTaskFindUniqueArgs<ExtArgs>>): Prisma__PlanTaskClient<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Plan_tasks that matches the filter or throw an error with `error.code='P2025'`
+     * Find one PlanTask that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {plan_tasksFindUniqueOrThrowArgs} args - Arguments to find a Plan_tasks
+     * @param {PlanTaskFindUniqueOrThrowArgs} args - Arguments to find a PlanTask
      * @example
-     * // Get one Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.findUniqueOrThrow({
+     * // Get one PlanTask
+     * const planTask = await prisma.planTask.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends plan_tasksFindUniqueOrThrowArgs>(args: SelectSubset<T, plan_tasksFindUniqueOrThrowArgs<ExtArgs>>): Prisma__plan_tasksClient<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends PlanTaskFindUniqueOrThrowArgs>(args: SelectSubset<T, PlanTaskFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlanTaskClient<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Plan_tasks that matches the filter.
+     * Find the first PlanTask that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {plan_tasksFindFirstArgs} args - Arguments to find a Plan_tasks
+     * @param {PlanTaskFindFirstArgs} args - Arguments to find a PlanTask
      * @example
-     * // Get one Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.findFirst({
+     * // Get one PlanTask
+     * const planTask = await prisma.planTask.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends plan_tasksFindFirstArgs>(args?: SelectSubset<T, plan_tasksFindFirstArgs<ExtArgs>>): Prisma__plan_tasksClient<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends PlanTaskFindFirstArgs>(args?: SelectSubset<T, PlanTaskFindFirstArgs<ExtArgs>>): Prisma__PlanTaskClient<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Plan_tasks that matches the filter or
+     * Find the first PlanTask that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {plan_tasksFindFirstOrThrowArgs} args - Arguments to find a Plan_tasks
+     * @param {PlanTaskFindFirstOrThrowArgs} args - Arguments to find a PlanTask
      * @example
-     * // Get one Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.findFirstOrThrow({
+     * // Get one PlanTask
+     * const planTask = await prisma.planTask.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends plan_tasksFindFirstOrThrowArgs>(args?: SelectSubset<T, plan_tasksFindFirstOrThrowArgs<ExtArgs>>): Prisma__plan_tasksClient<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends PlanTaskFindFirstOrThrowArgs>(args?: SelectSubset<T, PlanTaskFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlanTaskClient<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Plan_tasks that matches the filter.
+     * Find zero or more PlanTasks that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {plan_tasksFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {PlanTaskFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.findMany()
+     * // Get all PlanTasks
+     * const planTasks = await prisma.planTask.findMany()
      * 
-     * // Get first 10 Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.findMany({ take: 10 })
+     * // Get first 10 PlanTasks
+     * const planTasks = await prisma.planTask.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const plan_tasksWithIdOnly = await prisma.plan_tasks.findMany({ select: { id: true } })
+     * const planTaskWithIdOnly = await prisma.planTask.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends plan_tasksFindManyArgs>(args?: SelectSubset<T, plan_tasksFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends PlanTaskFindManyArgs>(args?: SelectSubset<T, PlanTaskFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Plan_tasks.
-     * @param {plan_tasksCreateArgs} args - Arguments to create a Plan_tasks.
+     * Create a PlanTask.
+     * @param {PlanTaskCreateArgs} args - Arguments to create a PlanTask.
      * @example
-     * // Create one Plan_tasks
-     * const Plan_tasks = await prisma.plan_tasks.create({
+     * // Create one PlanTask
+     * const PlanTask = await prisma.planTask.create({
      *   data: {
-     *     // ... data to create a Plan_tasks
+     *     // ... data to create a PlanTask
      *   }
      * })
      * 
      */
-    create<T extends plan_tasksCreateArgs>(args: SelectSubset<T, plan_tasksCreateArgs<ExtArgs>>): Prisma__plan_tasksClient<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends PlanTaskCreateArgs>(args: SelectSubset<T, PlanTaskCreateArgs<ExtArgs>>): Prisma__PlanTaskClient<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Plan_tasks.
-     * @param {plan_tasksCreateManyArgs} args - Arguments to create many Plan_tasks.
+     * Create many PlanTasks.
+     * @param {PlanTaskCreateManyArgs} args - Arguments to create many PlanTasks.
      * @example
-     * // Create many Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.createMany({
+     * // Create many PlanTasks
+     * const planTask = await prisma.planTask.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends plan_tasksCreateManyArgs>(args?: SelectSubset<T, plan_tasksCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends PlanTaskCreateManyArgs>(args?: SelectSubset<T, PlanTaskCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Plan_tasks and returns the data saved in the database.
-     * @param {plan_tasksCreateManyAndReturnArgs} args - Arguments to create many Plan_tasks.
+     * Create many PlanTasks and returns the data saved in the database.
+     * @param {PlanTaskCreateManyAndReturnArgs} args - Arguments to create many PlanTasks.
      * @example
-     * // Create many Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.createManyAndReturn({
+     * // Create many PlanTasks
+     * const planTask = await prisma.planTask.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Plan_tasks and only return the `id`
-     * const plan_tasksWithIdOnly = await prisma.plan_tasks.createManyAndReturn({
+     * // Create many PlanTasks and only return the `id`
+     * const planTaskWithIdOnly = await prisma.planTask.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -11302,28 +11560,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends plan_tasksCreateManyAndReturnArgs>(args?: SelectSubset<T, plan_tasksCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends PlanTaskCreateManyAndReturnArgs>(args?: SelectSubset<T, PlanTaskCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Plan_tasks.
-     * @param {plan_tasksDeleteArgs} args - Arguments to delete one Plan_tasks.
+     * Delete a PlanTask.
+     * @param {PlanTaskDeleteArgs} args - Arguments to delete one PlanTask.
      * @example
-     * // Delete one Plan_tasks
-     * const Plan_tasks = await prisma.plan_tasks.delete({
+     * // Delete one PlanTask
+     * const PlanTask = await prisma.planTask.delete({
      *   where: {
-     *     // ... filter to delete one Plan_tasks
+     *     // ... filter to delete one PlanTask
      *   }
      * })
      * 
      */
-    delete<T extends plan_tasksDeleteArgs>(args: SelectSubset<T, plan_tasksDeleteArgs<ExtArgs>>): Prisma__plan_tasksClient<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends PlanTaskDeleteArgs>(args: SelectSubset<T, PlanTaskDeleteArgs<ExtArgs>>): Prisma__PlanTaskClient<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Plan_tasks.
-     * @param {plan_tasksUpdateArgs} args - Arguments to update one Plan_tasks.
+     * Update one PlanTask.
+     * @param {PlanTaskUpdateArgs} args - Arguments to update one PlanTask.
      * @example
-     * // Update one Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.update({
+     * // Update one PlanTask
+     * const planTask = await prisma.planTask.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -11333,30 +11591,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends plan_tasksUpdateArgs>(args: SelectSubset<T, plan_tasksUpdateArgs<ExtArgs>>): Prisma__plan_tasksClient<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends PlanTaskUpdateArgs>(args: SelectSubset<T, PlanTaskUpdateArgs<ExtArgs>>): Prisma__PlanTaskClient<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Plan_tasks.
-     * @param {plan_tasksDeleteManyArgs} args - Arguments to filter Plan_tasks to delete.
+     * Delete zero or more PlanTasks.
+     * @param {PlanTaskDeleteManyArgs} args - Arguments to filter PlanTasks to delete.
      * @example
-     * // Delete a few Plan_tasks
-     * const { count } = await prisma.plan_tasks.deleteMany({
+     * // Delete a few PlanTasks
+     * const { count } = await prisma.planTask.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends plan_tasksDeleteManyArgs>(args?: SelectSubset<T, plan_tasksDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends PlanTaskDeleteManyArgs>(args?: SelectSubset<T, PlanTaskDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Plan_tasks.
+     * Update zero or more PlanTasks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {plan_tasksUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {PlanTaskUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.updateMany({
+     * // Update many PlanTasks
+     * const planTask = await prisma.planTask.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -11366,14 +11624,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends plan_tasksUpdateManyArgs>(args: SelectSubset<T, plan_tasksUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends PlanTaskUpdateManyArgs>(args: SelectSubset<T, PlanTaskUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Plan_tasks and returns the data updated in the database.
-     * @param {plan_tasksUpdateManyAndReturnArgs} args - Arguments to update many Plan_tasks.
+     * Update zero or more PlanTasks and returns the data updated in the database.
+     * @param {PlanTaskUpdateManyAndReturnArgs} args - Arguments to update many PlanTasks.
      * @example
-     * // Update many Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.updateManyAndReturn({
+     * // Update many PlanTasks
+     * const planTask = await prisma.planTask.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -11382,8 +11640,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Plan_tasks and only return the `id`
-     * const plan_tasksWithIdOnly = await prisma.plan_tasks.updateManyAndReturn({
+     * // Update zero or more PlanTasks and only return the `id`
+     * const planTaskWithIdOnly = await prisma.planTask.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -11396,56 +11654,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends plan_tasksUpdateManyAndReturnArgs>(args: SelectSubset<T, plan_tasksUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends PlanTaskUpdateManyAndReturnArgs>(args: SelectSubset<T, PlanTaskUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Plan_tasks.
-     * @param {plan_tasksUpsertArgs} args - Arguments to update or create a Plan_tasks.
+     * Create or update one PlanTask.
+     * @param {PlanTaskUpsertArgs} args - Arguments to update or create a PlanTask.
      * @example
-     * // Update or create a Plan_tasks
-     * const plan_tasks = await prisma.plan_tasks.upsert({
+     * // Update or create a PlanTask
+     * const planTask = await prisma.planTask.upsert({
      *   create: {
-     *     // ... data to create a Plan_tasks
+     *     // ... data to create a PlanTask
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Plan_tasks we want to update
+     *     // ... the filter for the PlanTask we want to update
      *   }
      * })
      */
-    upsert<T extends plan_tasksUpsertArgs>(args: SelectSubset<T, plan_tasksUpsertArgs<ExtArgs>>): Prisma__plan_tasksClient<$Result.GetResult<Prisma.$plan_tasksPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends PlanTaskUpsertArgs>(args: SelectSubset<T, PlanTaskUpsertArgs<ExtArgs>>): Prisma__PlanTaskClient<$Result.GetResult<Prisma.$PlanTaskPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Plan_tasks.
+     * Count the number of PlanTasks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {plan_tasksCountArgs} args - Arguments to filter Plan_tasks to count.
+     * @param {PlanTaskCountArgs} args - Arguments to filter PlanTasks to count.
      * @example
-     * // Count the number of Plan_tasks
-     * const count = await prisma.plan_tasks.count({
+     * // Count the number of PlanTasks
+     * const count = await prisma.planTask.count({
      *   where: {
-     *     // ... the filter for the Plan_tasks we want to count
+     *     // ... the filter for the PlanTasks we want to count
      *   }
      * })
     **/
-    count<T extends plan_tasksCountArgs>(
-      args?: Subset<T, plan_tasksCountArgs>,
+    count<T extends PlanTaskCountArgs>(
+      args?: Subset<T, PlanTaskCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Plan_tasksCountAggregateOutputType>
+          : GetScalarType<T['select'], PlanTaskCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Plan_tasks.
+     * Allows you to perform aggregations operations on a PlanTask.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Plan_tasksAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {PlanTaskAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -11465,13 +11723,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Plan_tasksAggregateArgs>(args: Subset<T, Plan_tasksAggregateArgs>): Prisma.PrismaPromise<GetPlan_tasksAggregateType<T>>
+    aggregate<T extends PlanTaskAggregateArgs>(args: Subset<T, PlanTaskAggregateArgs>): Prisma.PrismaPromise<GetPlanTaskAggregateType<T>>
 
     /**
-     * Group by Plan_tasks.
+     * Group by PlanTask.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {plan_tasksGroupByArgs} args - Group by arguments.
+     * @param {PlanTaskGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -11486,14 +11744,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends plan_tasksGroupByArgs,
+      T extends PlanTaskGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: plan_tasksGroupByArgs['orderBy'] }
-        : { orderBy?: plan_tasksGroupByArgs['orderBy'] },
+        ? { orderBy: PlanTaskGroupByArgs['orderBy'] }
+        : { orderBy?: PlanTaskGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -11542,20 +11800,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, plan_tasksGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlan_tasksGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, PlanTaskGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlanTaskGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the plan_tasks model
+   * Fields of the PlanTask model
    */
-  readonly fields: plan_tasksFieldRefs;
+  readonly fields: PlanTaskFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for plan_tasks.
+   * The delegate class that acts as a "Promise-like" for PlanTask.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__plan_tasksClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PlanTaskClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -11583,381 +11841,379 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the plan_tasks model
+   * Fields of the PlanTask model
    */
-  interface plan_tasksFieldRefs {
-    readonly id: FieldRef<"plan_tasks", 'Int'>
-    readonly trip_plan_id: FieldRef<"plan_tasks", 'String'>
-    readonly task_type: FieldRef<"plan_tasks", 'String'>
-    readonly status: FieldRef<"plan_tasks", 'plan_task_status'>
-    readonly input_data: FieldRef<"plan_tasks", 'Json'>
-    readonly output_data: FieldRef<"plan_tasks", 'Json'>
-    readonly error_message: FieldRef<"plan_tasks", 'String'>
-    readonly created_at: FieldRef<"plan_tasks", 'DateTime'>
-    readonly updated_at: FieldRef<"plan_tasks", 'DateTime'>
+  interface PlanTaskFieldRefs {
+    readonly id: FieldRef<"PlanTask", 'Int'>
+    readonly trip_plan_id: FieldRef<"PlanTask", 'String'>
+    readonly task_type: FieldRef<"PlanTask", 'String'>
+    readonly status: FieldRef<"PlanTask", 'String'>
+    readonly input_data: FieldRef<"PlanTask", 'String'>
+    readonly output_data: FieldRef<"PlanTask", 'String'>
+    readonly error_message: FieldRef<"PlanTask", 'String'>
+    readonly created_at: FieldRef<"PlanTask", 'String'>
+    readonly updated_at: FieldRef<"PlanTask", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * plan_tasks findUnique
+   * PlanTask findUnique
    */
-  export type plan_tasksFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * Filter, which plan_tasks to fetch.
+     * Filter, which PlanTask to fetch.
      */
-    where: plan_tasksWhereUniqueInput
+    where: PlanTaskWhereUniqueInput
   }
 
   /**
-   * plan_tasks findUniqueOrThrow
+   * PlanTask findUniqueOrThrow
    */
-  export type plan_tasksFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * Filter, which plan_tasks to fetch.
+     * Filter, which PlanTask to fetch.
      */
-    where: plan_tasksWhereUniqueInput
+    where: PlanTaskWhereUniqueInput
   }
 
   /**
-   * plan_tasks findFirst
+   * PlanTask findFirst
    */
-  export type plan_tasksFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * Filter, which plan_tasks to fetch.
+     * Filter, which PlanTask to fetch.
      */
-    where?: plan_tasksWhereInput
+    where?: PlanTaskWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of plan_tasks to fetch.
+     * Determine the order of PlanTasks to fetch.
      */
-    orderBy?: plan_tasksOrderByWithRelationInput | plan_tasksOrderByWithRelationInput[]
+    orderBy?: PlanTaskOrderByWithRelationInput | PlanTaskOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for plan_tasks.
+     * Sets the position for searching for PlanTasks.
      */
-    cursor?: plan_tasksWhereUniqueInput
+    cursor?: PlanTaskWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` plan_tasks from the position of the cursor.
+     * Take `±n` PlanTasks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` plan_tasks.
+     * Skip the first `n` PlanTasks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of plan_tasks.
+     * Filter by unique combinations of PlanTasks.
      */
-    distinct?: Plan_tasksScalarFieldEnum | Plan_tasksScalarFieldEnum[]
+    distinct?: PlanTaskScalarFieldEnum | PlanTaskScalarFieldEnum[]
   }
 
   /**
-   * plan_tasks findFirstOrThrow
+   * PlanTask findFirstOrThrow
    */
-  export type plan_tasksFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * Filter, which plan_tasks to fetch.
+     * Filter, which PlanTask to fetch.
      */
-    where?: plan_tasksWhereInput
+    where?: PlanTaskWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of plan_tasks to fetch.
+     * Determine the order of PlanTasks to fetch.
      */
-    orderBy?: plan_tasksOrderByWithRelationInput | plan_tasksOrderByWithRelationInput[]
+    orderBy?: PlanTaskOrderByWithRelationInput | PlanTaskOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for plan_tasks.
+     * Sets the position for searching for PlanTasks.
      */
-    cursor?: plan_tasksWhereUniqueInput
+    cursor?: PlanTaskWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` plan_tasks from the position of the cursor.
+     * Take `±n` PlanTasks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` plan_tasks.
+     * Skip the first `n` PlanTasks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of plan_tasks.
+     * Filter by unique combinations of PlanTasks.
      */
-    distinct?: Plan_tasksScalarFieldEnum | Plan_tasksScalarFieldEnum[]
+    distinct?: PlanTaskScalarFieldEnum | PlanTaskScalarFieldEnum[]
   }
 
   /**
-   * plan_tasks findMany
+   * PlanTask findMany
    */
-  export type plan_tasksFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * Filter, which plan_tasks to fetch.
+     * Filter, which PlanTasks to fetch.
      */
-    where?: plan_tasksWhereInput
+    where?: PlanTaskWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of plan_tasks to fetch.
+     * Determine the order of PlanTasks to fetch.
      */
-    orderBy?: plan_tasksOrderByWithRelationInput | plan_tasksOrderByWithRelationInput[]
+    orderBy?: PlanTaskOrderByWithRelationInput | PlanTaskOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing plan_tasks.
+     * Sets the position for listing PlanTasks.
      */
-    cursor?: plan_tasksWhereUniqueInput
+    cursor?: PlanTaskWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` plan_tasks from the position of the cursor.
+     * Take `±n` PlanTasks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` plan_tasks.
+     * Skip the first `n` PlanTasks.
      */
     skip?: number
-    distinct?: Plan_tasksScalarFieldEnum | Plan_tasksScalarFieldEnum[]
+    distinct?: PlanTaskScalarFieldEnum | PlanTaskScalarFieldEnum[]
   }
 
   /**
-   * plan_tasks create
+   * PlanTask create
    */
-  export type plan_tasksCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * The data needed to create a plan_tasks.
+     * The data needed to create a PlanTask.
      */
-    data: XOR<plan_tasksCreateInput, plan_tasksUncheckedCreateInput>
+    data: XOR<PlanTaskCreateInput, PlanTaskUncheckedCreateInput>
   }
 
   /**
-   * plan_tasks createMany
+   * PlanTask createMany
    */
-  export type plan_tasksCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many plan_tasks.
+     * The data used to create many PlanTasks.
      */
-    data: plan_tasksCreateManyInput | plan_tasksCreateManyInput[]
-    skipDuplicates?: boolean
+    data: PlanTaskCreateManyInput | PlanTaskCreateManyInput[]
   }
 
   /**
-   * plan_tasks createManyAndReturn
+   * PlanTask createManyAndReturn
    */
-  export type plan_tasksCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelectCreateManyAndReturn<ExtArgs> | null
+    select?: PlanTaskSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * The data used to create many plan_tasks.
+     * The data used to create many PlanTasks.
      */
-    data: plan_tasksCreateManyInput | plan_tasksCreateManyInput[]
-    skipDuplicates?: boolean
+    data: PlanTaskCreateManyInput | PlanTaskCreateManyInput[]
   }
 
   /**
-   * plan_tasks update
+   * PlanTask update
    */
-  export type plan_tasksUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * The data needed to update a plan_tasks.
+     * The data needed to update a PlanTask.
      */
-    data: XOR<plan_tasksUpdateInput, plan_tasksUncheckedUpdateInput>
+    data: XOR<PlanTaskUpdateInput, PlanTaskUncheckedUpdateInput>
     /**
-     * Choose, which plan_tasks to update.
+     * Choose, which PlanTask to update.
      */
-    where: plan_tasksWhereUniqueInput
+    where: PlanTaskWhereUniqueInput
   }
 
   /**
-   * plan_tasks updateMany
+   * PlanTask updateMany
    */
-  export type plan_tasksUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update plan_tasks.
+     * The data used to update PlanTasks.
      */
-    data: XOR<plan_tasksUpdateManyMutationInput, plan_tasksUncheckedUpdateManyInput>
+    data: XOR<PlanTaskUpdateManyMutationInput, PlanTaskUncheckedUpdateManyInput>
     /**
-     * Filter which plan_tasks to update
+     * Filter which PlanTasks to update
      */
-    where?: plan_tasksWhereInput
+    where?: PlanTaskWhereInput
     /**
-     * Limit how many plan_tasks to update.
+     * Limit how many PlanTasks to update.
      */
     limit?: number
   }
 
   /**
-   * plan_tasks updateManyAndReturn
+   * PlanTask updateManyAndReturn
    */
-  export type plan_tasksUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: PlanTaskSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * The data used to update plan_tasks.
+     * The data used to update PlanTasks.
      */
-    data: XOR<plan_tasksUpdateManyMutationInput, plan_tasksUncheckedUpdateManyInput>
+    data: XOR<PlanTaskUpdateManyMutationInput, PlanTaskUncheckedUpdateManyInput>
     /**
-     * Filter which plan_tasks to update
+     * Filter which PlanTasks to update
      */
-    where?: plan_tasksWhereInput
+    where?: PlanTaskWhereInput
     /**
-     * Limit how many plan_tasks to update.
+     * Limit how many PlanTasks to update.
      */
     limit?: number
   }
 
   /**
-   * plan_tasks upsert
+   * PlanTask upsert
    */
-  export type plan_tasksUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * The filter to search for the plan_tasks to update in case it exists.
+     * The filter to search for the PlanTask to update in case it exists.
      */
-    where: plan_tasksWhereUniqueInput
+    where: PlanTaskWhereUniqueInput
     /**
-     * In case the plan_tasks found by the `where` argument doesn't exist, create a new plan_tasks with this data.
+     * In case the PlanTask found by the `where` argument doesn't exist, create a new PlanTask with this data.
      */
-    create: XOR<plan_tasksCreateInput, plan_tasksUncheckedCreateInput>
+    create: XOR<PlanTaskCreateInput, PlanTaskUncheckedCreateInput>
     /**
-     * In case the plan_tasks was found with the provided `where` argument, update it with this data.
+     * In case the PlanTask was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<plan_tasksUpdateInput, plan_tasksUncheckedUpdateInput>
+    update: XOR<PlanTaskUpdateInput, PlanTaskUncheckedUpdateInput>
   }
 
   /**
-   * plan_tasks delete
+   * PlanTask delete
    */
-  export type plan_tasksDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
     /**
-     * Filter which plan_tasks to delete.
+     * Filter which PlanTask to delete.
      */
-    where: plan_tasksWhereUniqueInput
+    where: PlanTaskWhereUniqueInput
   }
 
   /**
-   * plan_tasks deleteMany
+   * PlanTask deleteMany
    */
-  export type plan_tasksDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which plan_tasks to delete
+     * Filter which PlanTasks to delete
      */
-    where?: plan_tasksWhereInput
+    where?: PlanTaskWhereInput
     /**
-     * Limit how many plan_tasks to delete.
+     * Limit how many PlanTasks to delete.
      */
     limit?: number
   }
 
   /**
-   * plan_tasks without action
+   * PlanTask without action
    */
-  export type plan_tasksDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PlanTaskDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the plan_tasks
+     * Select specific fields to fetch from the PlanTask
      */
-    select?: plan_tasksSelect<ExtArgs> | null
+    select?: PlanTaskSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the plan_tasks
+     * Omit specific fields from the PlanTask
      */
-    omit?: plan_tasksOmit<ExtArgs> | null
+    omit?: PlanTaskOmit<ExtArgs> | null
   }
 
 
@@ -11991,8 +12247,8 @@ export namespace Prisma {
     publicKey: string | null
     scope: string | null
     status: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    createdAt: string | null
+    updatedAt: string | null
   }
 
   export type PaymentMandateMaxAggregateOutputType = {
@@ -12005,8 +12261,8 @@ export namespace Prisma {
     publicKey: string | null
     scope: string | null
     status: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    createdAt: string | null
+    updatedAt: string | null
   }
 
   export type PaymentMandateCountAggregateOutputType = {
@@ -12172,8 +12428,8 @@ export namespace Prisma {
     publicKey: string
     scope: string
     status: string
-    createdAt: Date
-    updatedAt: Date
+    createdAt: string | null
+    updatedAt: string | null
     _count: PaymentMandateCountAggregateOutputType | null
     _avg: PaymentMandateAvgAggregateOutputType | null
     _sum: PaymentMandateSumAggregateOutputType | null
@@ -12266,8 +12522,8 @@ export namespace Prisma {
       publicKey: string
       scope: string
       status: string
-      createdAt: Date
-      updatedAt: Date
+      createdAt: string | null
+      updatedAt: string | null
     }, ExtArgs["result"]["paymentMandate"]>
     composites: {}
   }
@@ -12700,8 +12956,8 @@ export namespace Prisma {
     readonly publicKey: FieldRef<"PaymentMandate", 'String'>
     readonly scope: FieldRef<"PaymentMandate", 'String'>
     readonly status: FieldRef<"PaymentMandate", 'String'>
-    readonly createdAt: FieldRef<"PaymentMandate", 'DateTime'>
-    readonly updatedAt: FieldRef<"PaymentMandate", 'DateTime'>
+    readonly createdAt: FieldRef<"PaymentMandate", 'String'>
+    readonly updatedAt: FieldRef<"PaymentMandate", 'String'>
   }
     
 
@@ -12907,7 +13163,6 @@ export namespace Prisma {
      * The data used to create many PaymentMandates.
      */
     data: PaymentMandateCreateManyInput | PaymentMandateCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -12926,7 +13181,6 @@ export namespace Prisma {
      * The data used to create many PaymentMandates.
      */
     data: PaymentMandateCreateManyInput | PaymentMandateCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -13102,8 +13356,10 @@ export namespace Prisma {
     user1Amount: number | null
     user2Amount: number | null
     status: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    escrowStatus: string | null
+    splitMode: string | null
+    createdAt: string | null
+    updatedAt: string | null
   }
 
   export type TransactionSplitMaxAggregateOutputType = {
@@ -13116,8 +13372,10 @@ export namespace Prisma {
     user1Amount: number | null
     user2Amount: number | null
     status: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    escrowStatus: string | null
+    splitMode: string | null
+    createdAt: string | null
+    updatedAt: string | null
   }
 
   export type TransactionSplitCountAggregateOutputType = {
@@ -13130,6 +13388,8 @@ export namespace Prisma {
     user1Amount: number
     user2Amount: number
     status: number
+    escrowStatus: number
+    splitMode: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -13158,6 +13418,8 @@ export namespace Prisma {
     user1Amount?: true
     user2Amount?: true
     status?: true
+    escrowStatus?: true
+    splitMode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -13172,6 +13434,8 @@ export namespace Prisma {
     user1Amount?: true
     user2Amount?: true
     status?: true
+    escrowStatus?: true
+    splitMode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -13186,6 +13450,8 @@ export namespace Prisma {
     user1Amount?: true
     user2Amount?: true
     status?: true
+    escrowStatus?: true
+    splitMode?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -13287,8 +13553,10 @@ export namespace Prisma {
     user1Amount: number
     user2Amount: number
     status: string
-    createdAt: Date
-    updatedAt: Date
+    escrowStatus: string
+    splitMode: string
+    createdAt: string | null
+    updatedAt: string | null
     _count: TransactionSplitCountAggregateOutputType | null
     _avg: TransactionSplitAvgAggregateOutputType | null
     _sum: TransactionSplitSumAggregateOutputType | null
@@ -13320,6 +13588,8 @@ export namespace Prisma {
     user1Amount?: boolean
     user2Amount?: boolean
     status?: boolean
+    escrowStatus?: boolean
+    splitMode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["transactionSplit"]>
@@ -13334,6 +13604,8 @@ export namespace Prisma {
     user1Amount?: boolean
     user2Amount?: boolean
     status?: boolean
+    escrowStatus?: boolean
+    splitMode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["transactionSplit"]>
@@ -13348,6 +13620,8 @@ export namespace Prisma {
     user1Amount?: boolean
     user2Amount?: boolean
     status?: boolean
+    escrowStatus?: boolean
+    splitMode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["transactionSplit"]>
@@ -13362,11 +13636,13 @@ export namespace Prisma {
     user1Amount?: boolean
     user2Amount?: boolean
     status?: boolean
+    escrowStatus?: boolean
+    splitMode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TransactionSplitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tripPlanId" | "totalAmount" | "currency" | "user1Id" | "user2Id" | "user1Amount" | "user2Amount" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["transactionSplit"]>
+  export type TransactionSplitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tripPlanId" | "totalAmount" | "currency" | "user1Id" | "user2Id" | "user1Amount" | "user2Amount" | "status" | "escrowStatus" | "splitMode" | "createdAt" | "updatedAt", ExtArgs["result"]["transactionSplit"]>
 
   export type $TransactionSplitPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TransactionSplit"
@@ -13381,8 +13657,10 @@ export namespace Prisma {
       user1Amount: number
       user2Amount: number
       status: string
-      createdAt: Date
-      updatedAt: Date
+      escrowStatus: string
+      splitMode: string
+      createdAt: string | null
+      updatedAt: string | null
     }, ExtArgs["result"]["transactionSplit"]>
     composites: {}
   }
@@ -13815,8 +14093,10 @@ export namespace Prisma {
     readonly user1Amount: FieldRef<"TransactionSplit", 'Float'>
     readonly user2Amount: FieldRef<"TransactionSplit", 'Float'>
     readonly status: FieldRef<"TransactionSplit", 'String'>
-    readonly createdAt: FieldRef<"TransactionSplit", 'DateTime'>
-    readonly updatedAt: FieldRef<"TransactionSplit", 'DateTime'>
+    readonly escrowStatus: FieldRef<"TransactionSplit", 'String'>
+    readonly splitMode: FieldRef<"TransactionSplit", 'String'>
+    readonly createdAt: FieldRef<"TransactionSplit", 'String'>
+    readonly updatedAt: FieldRef<"TransactionSplit", 'String'>
   }
     
 
@@ -14022,7 +14302,6 @@ export namespace Prisma {
      * The data used to create many TransactionSplits.
      */
     data: TransactionSplitCreateManyInput | TransactionSplitCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -14041,7 +14320,6 @@ export namespace Prisma {
      * The data used to create many TransactionSplits.
      */
     data: TransactionSplitCreateManyInput | TransactionSplitCreateManyInput[]
-    skipDuplicates?: boolean
   }
 
   /**
@@ -14184,13 +14462,3186 @@ export namespace Prisma {
 
 
   /**
+   * Model UserRating
+   */
+
+  export type AggregateUserRating = {
+    _count: UserRatingCountAggregateOutputType | null
+    _avg: UserRatingAvgAggregateOutputType | null
+    _sum: UserRatingSumAggregateOutputType | null
+    _min: UserRatingMinAggregateOutputType | null
+    _max: UserRatingMaxAggregateOutputType | null
+  }
+
+  export type UserRatingAvgAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type UserRatingSumAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type UserRatingMinAggregateOutputType = {
+    id: string | null
+    raterId: string | null
+    rateeId: string | null
+    rating: number | null
+    tags: string | null
+    comment: string | null
+    createdAt: string | null
+  }
+
+  export type UserRatingMaxAggregateOutputType = {
+    id: string | null
+    raterId: string | null
+    rateeId: string | null
+    rating: number | null
+    tags: string | null
+    comment: string | null
+    createdAt: string | null
+  }
+
+  export type UserRatingCountAggregateOutputType = {
+    id: number
+    raterId: number
+    rateeId: number
+    rating: number
+    tags: number
+    comment: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type UserRatingAvgAggregateInputType = {
+    rating?: true
+  }
+
+  export type UserRatingSumAggregateInputType = {
+    rating?: true
+  }
+
+  export type UserRatingMinAggregateInputType = {
+    id?: true
+    raterId?: true
+    rateeId?: true
+    rating?: true
+    tags?: true
+    comment?: true
+    createdAt?: true
+  }
+
+  export type UserRatingMaxAggregateInputType = {
+    id?: true
+    raterId?: true
+    rateeId?: true
+    rating?: true
+    tags?: true
+    comment?: true
+    createdAt?: true
+  }
+
+  export type UserRatingCountAggregateInputType = {
+    id?: true
+    raterId?: true
+    rateeId?: true
+    rating?: true
+    tags?: true
+    comment?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type UserRatingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserRating to aggregate.
+     */
+    where?: UserRatingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserRatings to fetch.
+     */
+    orderBy?: UserRatingOrderByWithRelationInput | UserRatingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserRatingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserRatings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserRatings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserRatings
+    **/
+    _count?: true | UserRatingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserRatingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserRatingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserRatingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserRatingMaxAggregateInputType
+  }
+
+  export type GetUserRatingAggregateType<T extends UserRatingAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserRating]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserRating[P]>
+      : GetScalarType<T[P], AggregateUserRating[P]>
+  }
+
+
+
+
+  export type UserRatingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserRatingWhereInput
+    orderBy?: UserRatingOrderByWithAggregationInput | UserRatingOrderByWithAggregationInput[]
+    by: UserRatingScalarFieldEnum[] | UserRatingScalarFieldEnum
+    having?: UserRatingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserRatingCountAggregateInputType | true
+    _avg?: UserRatingAvgAggregateInputType
+    _sum?: UserRatingSumAggregateInputType
+    _min?: UserRatingMinAggregateInputType
+    _max?: UserRatingMaxAggregateInputType
+  }
+
+  export type UserRatingGroupByOutputType = {
+    id: string
+    raterId: string
+    rateeId: string
+    rating: number
+    tags: string
+    comment: string | null
+    createdAt: string | null
+    _count: UserRatingCountAggregateOutputType | null
+    _avg: UserRatingAvgAggregateOutputType | null
+    _sum: UserRatingSumAggregateOutputType | null
+    _min: UserRatingMinAggregateOutputType | null
+    _max: UserRatingMaxAggregateOutputType | null
+  }
+
+  type GetUserRatingGroupByPayload<T extends UserRatingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserRatingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserRatingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserRatingGroupByOutputType[P]>
+            : GetScalarType<T[P], UserRatingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserRatingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    raterId?: boolean
+    rateeId?: boolean
+    rating?: boolean
+    tags?: boolean
+    comment?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["userRating"]>
+
+  export type UserRatingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    raterId?: boolean
+    rateeId?: boolean
+    rating?: boolean
+    tags?: boolean
+    comment?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["userRating"]>
+
+  export type UserRatingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    raterId?: boolean
+    rateeId?: boolean
+    rating?: boolean
+    tags?: boolean
+    comment?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["userRating"]>
+
+  export type UserRatingSelectScalar = {
+    id?: boolean
+    raterId?: boolean
+    rateeId?: boolean
+    rating?: boolean
+    tags?: boolean
+    comment?: boolean
+    createdAt?: boolean
+  }
+
+  export type UserRatingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "raterId" | "rateeId" | "rating" | "tags" | "comment" | "createdAt", ExtArgs["result"]["userRating"]>
+
+  export type $UserRatingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserRating"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      raterId: string
+      rateeId: string
+      rating: number
+      tags: string
+      comment: string | null
+      createdAt: string | null
+    }, ExtArgs["result"]["userRating"]>
+    composites: {}
+  }
+
+  type UserRatingGetPayload<S extends boolean | null | undefined | UserRatingDefaultArgs> = $Result.GetResult<Prisma.$UserRatingPayload, S>
+
+  type UserRatingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserRatingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserRatingCountAggregateInputType | true
+    }
+
+  export interface UserRatingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserRating'], meta: { name: 'UserRating' } }
+    /**
+     * Find zero or one UserRating that matches the filter.
+     * @param {UserRatingFindUniqueArgs} args - Arguments to find a UserRating
+     * @example
+     * // Get one UserRating
+     * const userRating = await prisma.userRating.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserRatingFindUniqueArgs>(args: SelectSubset<T, UserRatingFindUniqueArgs<ExtArgs>>): Prisma__UserRatingClient<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserRating that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserRatingFindUniqueOrThrowArgs} args - Arguments to find a UserRating
+     * @example
+     * // Get one UserRating
+     * const userRating = await prisma.userRating.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserRatingFindUniqueOrThrowArgs>(args: SelectSubset<T, UserRatingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserRatingClient<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserRating that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRatingFindFirstArgs} args - Arguments to find a UserRating
+     * @example
+     * // Get one UserRating
+     * const userRating = await prisma.userRating.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserRatingFindFirstArgs>(args?: SelectSubset<T, UserRatingFindFirstArgs<ExtArgs>>): Prisma__UserRatingClient<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserRating that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRatingFindFirstOrThrowArgs} args - Arguments to find a UserRating
+     * @example
+     * // Get one UserRating
+     * const userRating = await prisma.userRating.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserRatingFindFirstOrThrowArgs>(args?: SelectSubset<T, UserRatingFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserRatingClient<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserRatings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRatingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserRatings
+     * const userRatings = await prisma.userRating.findMany()
+     * 
+     * // Get first 10 UserRatings
+     * const userRatings = await prisma.userRating.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userRatingWithIdOnly = await prisma.userRating.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserRatingFindManyArgs>(args?: SelectSubset<T, UserRatingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserRating.
+     * @param {UserRatingCreateArgs} args - Arguments to create a UserRating.
+     * @example
+     * // Create one UserRating
+     * const UserRating = await prisma.userRating.create({
+     *   data: {
+     *     // ... data to create a UserRating
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserRatingCreateArgs>(args: SelectSubset<T, UserRatingCreateArgs<ExtArgs>>): Prisma__UserRatingClient<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserRatings.
+     * @param {UserRatingCreateManyArgs} args - Arguments to create many UserRatings.
+     * @example
+     * // Create many UserRatings
+     * const userRating = await prisma.userRating.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserRatingCreateManyArgs>(args?: SelectSubset<T, UserRatingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserRatings and returns the data saved in the database.
+     * @param {UserRatingCreateManyAndReturnArgs} args - Arguments to create many UserRatings.
+     * @example
+     * // Create many UserRatings
+     * const userRating = await prisma.userRating.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserRatings and only return the `id`
+     * const userRatingWithIdOnly = await prisma.userRating.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserRatingCreateManyAndReturnArgs>(args?: SelectSubset<T, UserRatingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserRating.
+     * @param {UserRatingDeleteArgs} args - Arguments to delete one UserRating.
+     * @example
+     * // Delete one UserRating
+     * const UserRating = await prisma.userRating.delete({
+     *   where: {
+     *     // ... filter to delete one UserRating
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserRatingDeleteArgs>(args: SelectSubset<T, UserRatingDeleteArgs<ExtArgs>>): Prisma__UserRatingClient<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserRating.
+     * @param {UserRatingUpdateArgs} args - Arguments to update one UserRating.
+     * @example
+     * // Update one UserRating
+     * const userRating = await prisma.userRating.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserRatingUpdateArgs>(args: SelectSubset<T, UserRatingUpdateArgs<ExtArgs>>): Prisma__UserRatingClient<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserRatings.
+     * @param {UserRatingDeleteManyArgs} args - Arguments to filter UserRatings to delete.
+     * @example
+     * // Delete a few UserRatings
+     * const { count } = await prisma.userRating.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserRatingDeleteManyArgs>(args?: SelectSubset<T, UserRatingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserRatings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRatingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserRatings
+     * const userRating = await prisma.userRating.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserRatingUpdateManyArgs>(args: SelectSubset<T, UserRatingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserRatings and returns the data updated in the database.
+     * @param {UserRatingUpdateManyAndReturnArgs} args - Arguments to update many UserRatings.
+     * @example
+     * // Update many UserRatings
+     * const userRating = await prisma.userRating.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserRatings and only return the `id`
+     * const userRatingWithIdOnly = await prisma.userRating.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserRatingUpdateManyAndReturnArgs>(args: SelectSubset<T, UserRatingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserRating.
+     * @param {UserRatingUpsertArgs} args - Arguments to update or create a UserRating.
+     * @example
+     * // Update or create a UserRating
+     * const userRating = await prisma.userRating.upsert({
+     *   create: {
+     *     // ... data to create a UserRating
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserRating we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserRatingUpsertArgs>(args: SelectSubset<T, UserRatingUpsertArgs<ExtArgs>>): Prisma__UserRatingClient<$Result.GetResult<Prisma.$UserRatingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserRatings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRatingCountArgs} args - Arguments to filter UserRatings to count.
+     * @example
+     * // Count the number of UserRatings
+     * const count = await prisma.userRating.count({
+     *   where: {
+     *     // ... the filter for the UserRatings we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserRatingCountArgs>(
+      args?: Subset<T, UserRatingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserRatingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserRating.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRatingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserRatingAggregateArgs>(args: Subset<T, UserRatingAggregateArgs>): Prisma.PrismaPromise<GetUserRatingAggregateType<T>>
+
+    /**
+     * Group by UserRating.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserRatingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserRatingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserRatingGroupByArgs['orderBy'] }
+        : { orderBy?: UserRatingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserRatingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserRatingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserRating model
+   */
+  readonly fields: UserRatingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserRating.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserRatingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserRating model
+   */
+  interface UserRatingFieldRefs {
+    readonly id: FieldRef<"UserRating", 'String'>
+    readonly raterId: FieldRef<"UserRating", 'String'>
+    readonly rateeId: FieldRef<"UserRating", 'String'>
+    readonly rating: FieldRef<"UserRating", 'Int'>
+    readonly tags: FieldRef<"UserRating", 'String'>
+    readonly comment: FieldRef<"UserRating", 'String'>
+    readonly createdAt: FieldRef<"UserRating", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserRating findUnique
+   */
+  export type UserRatingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * Filter, which UserRating to fetch.
+     */
+    where: UserRatingWhereUniqueInput
+  }
+
+  /**
+   * UserRating findUniqueOrThrow
+   */
+  export type UserRatingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * Filter, which UserRating to fetch.
+     */
+    where: UserRatingWhereUniqueInput
+  }
+
+  /**
+   * UserRating findFirst
+   */
+  export type UserRatingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * Filter, which UserRating to fetch.
+     */
+    where?: UserRatingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserRatings to fetch.
+     */
+    orderBy?: UserRatingOrderByWithRelationInput | UserRatingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserRatings.
+     */
+    cursor?: UserRatingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserRatings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserRatings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserRatings.
+     */
+    distinct?: UserRatingScalarFieldEnum | UserRatingScalarFieldEnum[]
+  }
+
+  /**
+   * UserRating findFirstOrThrow
+   */
+  export type UserRatingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * Filter, which UserRating to fetch.
+     */
+    where?: UserRatingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserRatings to fetch.
+     */
+    orderBy?: UserRatingOrderByWithRelationInput | UserRatingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserRatings.
+     */
+    cursor?: UserRatingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserRatings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserRatings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserRatings.
+     */
+    distinct?: UserRatingScalarFieldEnum | UserRatingScalarFieldEnum[]
+  }
+
+  /**
+   * UserRating findMany
+   */
+  export type UserRatingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * Filter, which UserRatings to fetch.
+     */
+    where?: UserRatingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserRatings to fetch.
+     */
+    orderBy?: UserRatingOrderByWithRelationInput | UserRatingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserRatings.
+     */
+    cursor?: UserRatingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserRatings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserRatings.
+     */
+    skip?: number
+    distinct?: UserRatingScalarFieldEnum | UserRatingScalarFieldEnum[]
+  }
+
+  /**
+   * UserRating create
+   */
+  export type UserRatingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * The data needed to create a UserRating.
+     */
+    data: XOR<UserRatingCreateInput, UserRatingUncheckedCreateInput>
+  }
+
+  /**
+   * UserRating createMany
+   */
+  export type UserRatingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserRatings.
+     */
+    data: UserRatingCreateManyInput | UserRatingCreateManyInput[]
+  }
+
+  /**
+   * UserRating createManyAndReturn
+   */
+  export type UserRatingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserRatings.
+     */
+    data: UserRatingCreateManyInput | UserRatingCreateManyInput[]
+  }
+
+  /**
+   * UserRating update
+   */
+  export type UserRatingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * The data needed to update a UserRating.
+     */
+    data: XOR<UserRatingUpdateInput, UserRatingUncheckedUpdateInput>
+    /**
+     * Choose, which UserRating to update.
+     */
+    where: UserRatingWhereUniqueInput
+  }
+
+  /**
+   * UserRating updateMany
+   */
+  export type UserRatingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserRatings.
+     */
+    data: XOR<UserRatingUpdateManyMutationInput, UserRatingUncheckedUpdateManyInput>
+    /**
+     * Filter which UserRatings to update
+     */
+    where?: UserRatingWhereInput
+    /**
+     * Limit how many UserRatings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserRating updateManyAndReturn
+   */
+  export type UserRatingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * The data used to update UserRatings.
+     */
+    data: XOR<UserRatingUpdateManyMutationInput, UserRatingUncheckedUpdateManyInput>
+    /**
+     * Filter which UserRatings to update
+     */
+    where?: UserRatingWhereInput
+    /**
+     * Limit how many UserRatings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserRating upsert
+   */
+  export type UserRatingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * The filter to search for the UserRating to update in case it exists.
+     */
+    where: UserRatingWhereUniqueInput
+    /**
+     * In case the UserRating found by the `where` argument doesn't exist, create a new UserRating with this data.
+     */
+    create: XOR<UserRatingCreateInput, UserRatingUncheckedCreateInput>
+    /**
+     * In case the UserRating was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserRatingUpdateInput, UserRatingUncheckedUpdateInput>
+  }
+
+  /**
+   * UserRating delete
+   */
+  export type UserRatingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+    /**
+     * Filter which UserRating to delete.
+     */
+    where: UserRatingWhereUniqueInput
+  }
+
+  /**
+   * UserRating deleteMany
+   */
+  export type UserRatingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserRatings to delete
+     */
+    where?: UserRatingWhereInput
+    /**
+     * Limit how many UserRatings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserRating without action
+   */
+  export type UserRatingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserRating
+     */
+    select?: UserRatingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserRating
+     */
+    omit?: UserRatingOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LocationDare
+   */
+
+  export type AggregateLocationDare = {
+    _count: LocationDareCountAggregateOutputType | null
+    _avg: LocationDareAvgAggregateOutputType | null
+    _sum: LocationDareSumAggregateOutputType | null
+    _min: LocationDareMinAggregateOutputType | null
+    _max: LocationDareMaxAggregateOutputType | null
+  }
+
+  export type LocationDareAvgAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
+    radiusMeters: number | null
+    pointsReward: number | null
+  }
+
+  export type LocationDareSumAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
+    radiusMeters: number | null
+    pointsReward: number | null
+  }
+
+  export type LocationDareMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    latitude: number | null
+    longitude: number | null
+    radiusMeters: number | null
+    pointsReward: number | null
+    targetCity: string | null
+    isSponsored: boolean | null
+    sponsorName: string | null
+  }
+
+  export type LocationDareMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    latitude: number | null
+    longitude: number | null
+    radiusMeters: number | null
+    pointsReward: number | null
+    targetCity: string | null
+    isSponsored: boolean | null
+    sponsorName: string | null
+  }
+
+  export type LocationDareCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    latitude: number
+    longitude: number
+    radiusMeters: number
+    pointsReward: number
+    targetCity: number
+    isSponsored: number
+    sponsorName: number
+    _all: number
+  }
+
+
+  export type LocationDareAvgAggregateInputType = {
+    latitude?: true
+    longitude?: true
+    radiusMeters?: true
+    pointsReward?: true
+  }
+
+  export type LocationDareSumAggregateInputType = {
+    latitude?: true
+    longitude?: true
+    radiusMeters?: true
+    pointsReward?: true
+  }
+
+  export type LocationDareMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    latitude?: true
+    longitude?: true
+    radiusMeters?: true
+    pointsReward?: true
+    targetCity?: true
+    isSponsored?: true
+    sponsorName?: true
+  }
+
+  export type LocationDareMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    latitude?: true
+    longitude?: true
+    radiusMeters?: true
+    pointsReward?: true
+    targetCity?: true
+    isSponsored?: true
+    sponsorName?: true
+  }
+
+  export type LocationDareCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    latitude?: true
+    longitude?: true
+    radiusMeters?: true
+    pointsReward?: true
+    targetCity?: true
+    isSponsored?: true
+    sponsorName?: true
+    _all?: true
+  }
+
+  export type LocationDareAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LocationDare to aggregate.
+     */
+    where?: LocationDareWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LocationDares to fetch.
+     */
+    orderBy?: LocationDareOrderByWithRelationInput | LocationDareOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LocationDareWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LocationDares from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LocationDares.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LocationDares
+    **/
+    _count?: true | LocationDareCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LocationDareAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LocationDareSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LocationDareMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LocationDareMaxAggregateInputType
+  }
+
+  export type GetLocationDareAggregateType<T extends LocationDareAggregateArgs> = {
+        [P in keyof T & keyof AggregateLocationDare]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLocationDare[P]>
+      : GetScalarType<T[P], AggregateLocationDare[P]>
+  }
+
+
+
+
+  export type LocationDareGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LocationDareWhereInput
+    orderBy?: LocationDareOrderByWithAggregationInput | LocationDareOrderByWithAggregationInput[]
+    by: LocationDareScalarFieldEnum[] | LocationDareScalarFieldEnum
+    having?: LocationDareScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LocationDareCountAggregateInputType | true
+    _avg?: LocationDareAvgAggregateInputType
+    _sum?: LocationDareSumAggregateInputType
+    _min?: LocationDareMinAggregateInputType
+    _max?: LocationDareMaxAggregateInputType
+  }
+
+  export type LocationDareGroupByOutputType = {
+    id: string
+    title: string
+    description: string
+    latitude: number
+    longitude: number
+    radiusMeters: number
+    pointsReward: number
+    targetCity: string
+    isSponsored: boolean
+    sponsorName: string | null
+    _count: LocationDareCountAggregateOutputType | null
+    _avg: LocationDareAvgAggregateOutputType | null
+    _sum: LocationDareSumAggregateOutputType | null
+    _min: LocationDareMinAggregateOutputType | null
+    _max: LocationDareMaxAggregateOutputType | null
+  }
+
+  type GetLocationDareGroupByPayload<T extends LocationDareGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LocationDareGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LocationDareGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LocationDareGroupByOutputType[P]>
+            : GetScalarType<T[P], LocationDareGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LocationDareSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    radiusMeters?: boolean
+    pointsReward?: boolean
+    targetCity?: boolean
+    isSponsored?: boolean
+    sponsorName?: boolean
+  }, ExtArgs["result"]["locationDare"]>
+
+  export type LocationDareSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    radiusMeters?: boolean
+    pointsReward?: boolean
+    targetCity?: boolean
+    isSponsored?: boolean
+    sponsorName?: boolean
+  }, ExtArgs["result"]["locationDare"]>
+
+  export type LocationDareSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    radiusMeters?: boolean
+    pointsReward?: boolean
+    targetCity?: boolean
+    isSponsored?: boolean
+    sponsorName?: boolean
+  }, ExtArgs["result"]["locationDare"]>
+
+  export type LocationDareSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    radiusMeters?: boolean
+    pointsReward?: boolean
+    targetCity?: boolean
+    isSponsored?: boolean
+    sponsorName?: boolean
+  }
+
+  export type LocationDareOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "latitude" | "longitude" | "radiusMeters" | "pointsReward" | "targetCity" | "isSponsored" | "sponsorName", ExtArgs["result"]["locationDare"]>
+
+  export type $LocationDarePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LocationDare"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string
+      latitude: number
+      longitude: number
+      radiusMeters: number
+      pointsReward: number
+      targetCity: string
+      isSponsored: boolean
+      sponsorName: string | null
+    }, ExtArgs["result"]["locationDare"]>
+    composites: {}
+  }
+
+  type LocationDareGetPayload<S extends boolean | null | undefined | LocationDareDefaultArgs> = $Result.GetResult<Prisma.$LocationDarePayload, S>
+
+  type LocationDareCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LocationDareFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LocationDareCountAggregateInputType | true
+    }
+
+  export interface LocationDareDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LocationDare'], meta: { name: 'LocationDare' } }
+    /**
+     * Find zero or one LocationDare that matches the filter.
+     * @param {LocationDareFindUniqueArgs} args - Arguments to find a LocationDare
+     * @example
+     * // Get one LocationDare
+     * const locationDare = await prisma.locationDare.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LocationDareFindUniqueArgs>(args: SelectSubset<T, LocationDareFindUniqueArgs<ExtArgs>>): Prisma__LocationDareClient<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LocationDare that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LocationDareFindUniqueOrThrowArgs} args - Arguments to find a LocationDare
+     * @example
+     * // Get one LocationDare
+     * const locationDare = await prisma.locationDare.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LocationDareFindUniqueOrThrowArgs>(args: SelectSubset<T, LocationDareFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LocationDareClient<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LocationDare that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationDareFindFirstArgs} args - Arguments to find a LocationDare
+     * @example
+     * // Get one LocationDare
+     * const locationDare = await prisma.locationDare.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LocationDareFindFirstArgs>(args?: SelectSubset<T, LocationDareFindFirstArgs<ExtArgs>>): Prisma__LocationDareClient<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LocationDare that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationDareFindFirstOrThrowArgs} args - Arguments to find a LocationDare
+     * @example
+     * // Get one LocationDare
+     * const locationDare = await prisma.locationDare.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LocationDareFindFirstOrThrowArgs>(args?: SelectSubset<T, LocationDareFindFirstOrThrowArgs<ExtArgs>>): Prisma__LocationDareClient<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LocationDares that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationDareFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LocationDares
+     * const locationDares = await prisma.locationDare.findMany()
+     * 
+     * // Get first 10 LocationDares
+     * const locationDares = await prisma.locationDare.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const locationDareWithIdOnly = await prisma.locationDare.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LocationDareFindManyArgs>(args?: SelectSubset<T, LocationDareFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LocationDare.
+     * @param {LocationDareCreateArgs} args - Arguments to create a LocationDare.
+     * @example
+     * // Create one LocationDare
+     * const LocationDare = await prisma.locationDare.create({
+     *   data: {
+     *     // ... data to create a LocationDare
+     *   }
+     * })
+     * 
+     */
+    create<T extends LocationDareCreateArgs>(args: SelectSubset<T, LocationDareCreateArgs<ExtArgs>>): Prisma__LocationDareClient<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LocationDares.
+     * @param {LocationDareCreateManyArgs} args - Arguments to create many LocationDares.
+     * @example
+     * // Create many LocationDares
+     * const locationDare = await prisma.locationDare.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LocationDareCreateManyArgs>(args?: SelectSubset<T, LocationDareCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LocationDares and returns the data saved in the database.
+     * @param {LocationDareCreateManyAndReturnArgs} args - Arguments to create many LocationDares.
+     * @example
+     * // Create many LocationDares
+     * const locationDare = await prisma.locationDare.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LocationDares and only return the `id`
+     * const locationDareWithIdOnly = await prisma.locationDare.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LocationDareCreateManyAndReturnArgs>(args?: SelectSubset<T, LocationDareCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LocationDare.
+     * @param {LocationDareDeleteArgs} args - Arguments to delete one LocationDare.
+     * @example
+     * // Delete one LocationDare
+     * const LocationDare = await prisma.locationDare.delete({
+     *   where: {
+     *     // ... filter to delete one LocationDare
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LocationDareDeleteArgs>(args: SelectSubset<T, LocationDareDeleteArgs<ExtArgs>>): Prisma__LocationDareClient<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LocationDare.
+     * @param {LocationDareUpdateArgs} args - Arguments to update one LocationDare.
+     * @example
+     * // Update one LocationDare
+     * const locationDare = await prisma.locationDare.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LocationDareUpdateArgs>(args: SelectSubset<T, LocationDareUpdateArgs<ExtArgs>>): Prisma__LocationDareClient<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LocationDares.
+     * @param {LocationDareDeleteManyArgs} args - Arguments to filter LocationDares to delete.
+     * @example
+     * // Delete a few LocationDares
+     * const { count } = await prisma.locationDare.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LocationDareDeleteManyArgs>(args?: SelectSubset<T, LocationDareDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LocationDares.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationDareUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LocationDares
+     * const locationDare = await prisma.locationDare.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LocationDareUpdateManyArgs>(args: SelectSubset<T, LocationDareUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LocationDares and returns the data updated in the database.
+     * @param {LocationDareUpdateManyAndReturnArgs} args - Arguments to update many LocationDares.
+     * @example
+     * // Update many LocationDares
+     * const locationDare = await prisma.locationDare.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LocationDares and only return the `id`
+     * const locationDareWithIdOnly = await prisma.locationDare.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LocationDareUpdateManyAndReturnArgs>(args: SelectSubset<T, LocationDareUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LocationDare.
+     * @param {LocationDareUpsertArgs} args - Arguments to update or create a LocationDare.
+     * @example
+     * // Update or create a LocationDare
+     * const locationDare = await prisma.locationDare.upsert({
+     *   create: {
+     *     // ... data to create a LocationDare
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LocationDare we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LocationDareUpsertArgs>(args: SelectSubset<T, LocationDareUpsertArgs<ExtArgs>>): Prisma__LocationDareClient<$Result.GetResult<Prisma.$LocationDarePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LocationDares.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationDareCountArgs} args - Arguments to filter LocationDares to count.
+     * @example
+     * // Count the number of LocationDares
+     * const count = await prisma.locationDare.count({
+     *   where: {
+     *     // ... the filter for the LocationDares we want to count
+     *   }
+     * })
+    **/
+    count<T extends LocationDareCountArgs>(
+      args?: Subset<T, LocationDareCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LocationDareCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LocationDare.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationDareAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LocationDareAggregateArgs>(args: Subset<T, LocationDareAggregateArgs>): Prisma.PrismaPromise<GetLocationDareAggregateType<T>>
+
+    /**
+     * Group by LocationDare.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationDareGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LocationDareGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LocationDareGroupByArgs['orderBy'] }
+        : { orderBy?: LocationDareGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LocationDareGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLocationDareGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LocationDare model
+   */
+  readonly fields: LocationDareFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LocationDare.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LocationDareClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LocationDare model
+   */
+  interface LocationDareFieldRefs {
+    readonly id: FieldRef<"LocationDare", 'String'>
+    readonly title: FieldRef<"LocationDare", 'String'>
+    readonly description: FieldRef<"LocationDare", 'String'>
+    readonly latitude: FieldRef<"LocationDare", 'Float'>
+    readonly longitude: FieldRef<"LocationDare", 'Float'>
+    readonly radiusMeters: FieldRef<"LocationDare", 'Float'>
+    readonly pointsReward: FieldRef<"LocationDare", 'Int'>
+    readonly targetCity: FieldRef<"LocationDare", 'String'>
+    readonly isSponsored: FieldRef<"LocationDare", 'Boolean'>
+    readonly sponsorName: FieldRef<"LocationDare", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LocationDare findUnique
+   */
+  export type LocationDareFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationDare to fetch.
+     */
+    where: LocationDareWhereUniqueInput
+  }
+
+  /**
+   * LocationDare findUniqueOrThrow
+   */
+  export type LocationDareFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationDare to fetch.
+     */
+    where: LocationDareWhereUniqueInput
+  }
+
+  /**
+   * LocationDare findFirst
+   */
+  export type LocationDareFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationDare to fetch.
+     */
+    where?: LocationDareWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LocationDares to fetch.
+     */
+    orderBy?: LocationDareOrderByWithRelationInput | LocationDareOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LocationDares.
+     */
+    cursor?: LocationDareWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LocationDares from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LocationDares.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LocationDares.
+     */
+    distinct?: LocationDareScalarFieldEnum | LocationDareScalarFieldEnum[]
+  }
+
+  /**
+   * LocationDare findFirstOrThrow
+   */
+  export type LocationDareFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationDare to fetch.
+     */
+    where?: LocationDareWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LocationDares to fetch.
+     */
+    orderBy?: LocationDareOrderByWithRelationInput | LocationDareOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LocationDares.
+     */
+    cursor?: LocationDareWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LocationDares from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LocationDares.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LocationDares.
+     */
+    distinct?: LocationDareScalarFieldEnum | LocationDareScalarFieldEnum[]
+  }
+
+  /**
+   * LocationDare findMany
+   */
+  export type LocationDareFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationDares to fetch.
+     */
+    where?: LocationDareWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LocationDares to fetch.
+     */
+    orderBy?: LocationDareOrderByWithRelationInput | LocationDareOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LocationDares.
+     */
+    cursor?: LocationDareWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LocationDares from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LocationDares.
+     */
+    skip?: number
+    distinct?: LocationDareScalarFieldEnum | LocationDareScalarFieldEnum[]
+  }
+
+  /**
+   * LocationDare create
+   */
+  export type LocationDareCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * The data needed to create a LocationDare.
+     */
+    data: XOR<LocationDareCreateInput, LocationDareUncheckedCreateInput>
+  }
+
+  /**
+   * LocationDare createMany
+   */
+  export type LocationDareCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LocationDares.
+     */
+    data: LocationDareCreateManyInput | LocationDareCreateManyInput[]
+  }
+
+  /**
+   * LocationDare createManyAndReturn
+   */
+  export type LocationDareCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * The data used to create many LocationDares.
+     */
+    data: LocationDareCreateManyInput | LocationDareCreateManyInput[]
+  }
+
+  /**
+   * LocationDare update
+   */
+  export type LocationDareUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * The data needed to update a LocationDare.
+     */
+    data: XOR<LocationDareUpdateInput, LocationDareUncheckedUpdateInput>
+    /**
+     * Choose, which LocationDare to update.
+     */
+    where: LocationDareWhereUniqueInput
+  }
+
+  /**
+   * LocationDare updateMany
+   */
+  export type LocationDareUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LocationDares.
+     */
+    data: XOR<LocationDareUpdateManyMutationInput, LocationDareUncheckedUpdateManyInput>
+    /**
+     * Filter which LocationDares to update
+     */
+    where?: LocationDareWhereInput
+    /**
+     * Limit how many LocationDares to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LocationDare updateManyAndReturn
+   */
+  export type LocationDareUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * The data used to update LocationDares.
+     */
+    data: XOR<LocationDareUpdateManyMutationInput, LocationDareUncheckedUpdateManyInput>
+    /**
+     * Filter which LocationDares to update
+     */
+    where?: LocationDareWhereInput
+    /**
+     * Limit how many LocationDares to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LocationDare upsert
+   */
+  export type LocationDareUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * The filter to search for the LocationDare to update in case it exists.
+     */
+    where: LocationDareWhereUniqueInput
+    /**
+     * In case the LocationDare found by the `where` argument doesn't exist, create a new LocationDare with this data.
+     */
+    create: XOR<LocationDareCreateInput, LocationDareUncheckedCreateInput>
+    /**
+     * In case the LocationDare was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LocationDareUpdateInput, LocationDareUncheckedUpdateInput>
+  }
+
+  /**
+   * LocationDare delete
+   */
+  export type LocationDareDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+    /**
+     * Filter which LocationDare to delete.
+     */
+    where: LocationDareWhereUniqueInput
+  }
+
+  /**
+   * LocationDare deleteMany
+   */
+  export type LocationDareDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LocationDares to delete
+     */
+    where?: LocationDareWhereInput
+    /**
+     * Limit how many LocationDares to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LocationDare without action
+   */
+  export type LocationDareDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationDare
+     */
+    select?: LocationDareSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationDare
+     */
+    omit?: LocationDareOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserDareStatus
+   */
+
+  export type AggregateUserDareStatus = {
+    _count: UserDareStatusCountAggregateOutputType | null
+    _min: UserDareStatusMinAggregateOutputType | null
+    _max: UserDareStatusMaxAggregateOutputType | null
+  }
+
+  export type UserDareStatusMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    companionId: string | null
+    dareId: string | null
+    status: string | null
+    completedAt: string | null
+    createdAt: string | null
+  }
+
+  export type UserDareStatusMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    companionId: string | null
+    dareId: string | null
+    status: string | null
+    completedAt: string | null
+    createdAt: string | null
+  }
+
+  export type UserDareStatusCountAggregateOutputType = {
+    id: number
+    userId: number
+    companionId: number
+    dareId: number
+    status: number
+    completedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type UserDareStatusMinAggregateInputType = {
+    id?: true
+    userId?: true
+    companionId?: true
+    dareId?: true
+    status?: true
+    completedAt?: true
+    createdAt?: true
+  }
+
+  export type UserDareStatusMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    companionId?: true
+    dareId?: true
+    status?: true
+    completedAt?: true
+    createdAt?: true
+  }
+
+  export type UserDareStatusCountAggregateInputType = {
+    id?: true
+    userId?: true
+    companionId?: true
+    dareId?: true
+    status?: true
+    completedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type UserDareStatusAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserDareStatus to aggregate.
+     */
+    where?: UserDareStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserDareStatuses to fetch.
+     */
+    orderBy?: UserDareStatusOrderByWithRelationInput | UserDareStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserDareStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserDareStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserDareStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserDareStatuses
+    **/
+    _count?: true | UserDareStatusCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserDareStatusMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserDareStatusMaxAggregateInputType
+  }
+
+  export type GetUserDareStatusAggregateType<T extends UserDareStatusAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserDareStatus]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserDareStatus[P]>
+      : GetScalarType<T[P], AggregateUserDareStatus[P]>
+  }
+
+
+
+
+  export type UserDareStatusGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserDareStatusWhereInput
+    orderBy?: UserDareStatusOrderByWithAggregationInput | UserDareStatusOrderByWithAggregationInput[]
+    by: UserDareStatusScalarFieldEnum[] | UserDareStatusScalarFieldEnum
+    having?: UserDareStatusScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserDareStatusCountAggregateInputType | true
+    _min?: UserDareStatusMinAggregateInputType
+    _max?: UserDareStatusMaxAggregateInputType
+  }
+
+  export type UserDareStatusGroupByOutputType = {
+    id: string
+    userId: string
+    companionId: string | null
+    dareId: string
+    status: string
+    completedAt: string | null
+    createdAt: string | null
+    _count: UserDareStatusCountAggregateOutputType | null
+    _min: UserDareStatusMinAggregateOutputType | null
+    _max: UserDareStatusMaxAggregateOutputType | null
+  }
+
+  type GetUserDareStatusGroupByPayload<T extends UserDareStatusGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserDareStatusGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserDareStatusGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserDareStatusGroupByOutputType[P]>
+            : GetScalarType<T[P], UserDareStatusGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserDareStatusSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    companionId?: boolean
+    dareId?: boolean
+    status?: boolean
+    completedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["userDareStatus"]>
+
+  export type UserDareStatusSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    companionId?: boolean
+    dareId?: boolean
+    status?: boolean
+    completedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["userDareStatus"]>
+
+  export type UserDareStatusSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    companionId?: boolean
+    dareId?: boolean
+    status?: boolean
+    completedAt?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["userDareStatus"]>
+
+  export type UserDareStatusSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    companionId?: boolean
+    dareId?: boolean
+    status?: boolean
+    completedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type UserDareStatusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "companionId" | "dareId" | "status" | "completedAt" | "createdAt", ExtArgs["result"]["userDareStatus"]>
+
+  export type $UserDareStatusPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserDareStatus"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      companionId: string | null
+      dareId: string
+      status: string
+      completedAt: string | null
+      createdAt: string | null
+    }, ExtArgs["result"]["userDareStatus"]>
+    composites: {}
+  }
+
+  type UserDareStatusGetPayload<S extends boolean | null | undefined | UserDareStatusDefaultArgs> = $Result.GetResult<Prisma.$UserDareStatusPayload, S>
+
+  type UserDareStatusCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserDareStatusFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserDareStatusCountAggregateInputType | true
+    }
+
+  export interface UserDareStatusDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserDareStatus'], meta: { name: 'UserDareStatus' } }
+    /**
+     * Find zero or one UserDareStatus that matches the filter.
+     * @param {UserDareStatusFindUniqueArgs} args - Arguments to find a UserDareStatus
+     * @example
+     * // Get one UserDareStatus
+     * const userDareStatus = await prisma.userDareStatus.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserDareStatusFindUniqueArgs>(args: SelectSubset<T, UserDareStatusFindUniqueArgs<ExtArgs>>): Prisma__UserDareStatusClient<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserDareStatus that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserDareStatusFindUniqueOrThrowArgs} args - Arguments to find a UserDareStatus
+     * @example
+     * // Get one UserDareStatus
+     * const userDareStatus = await prisma.userDareStatus.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserDareStatusFindUniqueOrThrowArgs>(args: SelectSubset<T, UserDareStatusFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserDareStatusClient<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserDareStatus that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserDareStatusFindFirstArgs} args - Arguments to find a UserDareStatus
+     * @example
+     * // Get one UserDareStatus
+     * const userDareStatus = await prisma.userDareStatus.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserDareStatusFindFirstArgs>(args?: SelectSubset<T, UserDareStatusFindFirstArgs<ExtArgs>>): Prisma__UserDareStatusClient<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserDareStatus that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserDareStatusFindFirstOrThrowArgs} args - Arguments to find a UserDareStatus
+     * @example
+     * // Get one UserDareStatus
+     * const userDareStatus = await prisma.userDareStatus.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserDareStatusFindFirstOrThrowArgs>(args?: SelectSubset<T, UserDareStatusFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserDareStatusClient<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserDareStatuses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserDareStatusFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserDareStatuses
+     * const userDareStatuses = await prisma.userDareStatus.findMany()
+     * 
+     * // Get first 10 UserDareStatuses
+     * const userDareStatuses = await prisma.userDareStatus.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userDareStatusWithIdOnly = await prisma.userDareStatus.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserDareStatusFindManyArgs>(args?: SelectSubset<T, UserDareStatusFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserDareStatus.
+     * @param {UserDareStatusCreateArgs} args - Arguments to create a UserDareStatus.
+     * @example
+     * // Create one UserDareStatus
+     * const UserDareStatus = await prisma.userDareStatus.create({
+     *   data: {
+     *     // ... data to create a UserDareStatus
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserDareStatusCreateArgs>(args: SelectSubset<T, UserDareStatusCreateArgs<ExtArgs>>): Prisma__UserDareStatusClient<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserDareStatuses.
+     * @param {UserDareStatusCreateManyArgs} args - Arguments to create many UserDareStatuses.
+     * @example
+     * // Create many UserDareStatuses
+     * const userDareStatus = await prisma.userDareStatus.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserDareStatusCreateManyArgs>(args?: SelectSubset<T, UserDareStatusCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserDareStatuses and returns the data saved in the database.
+     * @param {UserDareStatusCreateManyAndReturnArgs} args - Arguments to create many UserDareStatuses.
+     * @example
+     * // Create many UserDareStatuses
+     * const userDareStatus = await prisma.userDareStatus.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserDareStatuses and only return the `id`
+     * const userDareStatusWithIdOnly = await prisma.userDareStatus.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserDareStatusCreateManyAndReturnArgs>(args?: SelectSubset<T, UserDareStatusCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserDareStatus.
+     * @param {UserDareStatusDeleteArgs} args - Arguments to delete one UserDareStatus.
+     * @example
+     * // Delete one UserDareStatus
+     * const UserDareStatus = await prisma.userDareStatus.delete({
+     *   where: {
+     *     // ... filter to delete one UserDareStatus
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserDareStatusDeleteArgs>(args: SelectSubset<T, UserDareStatusDeleteArgs<ExtArgs>>): Prisma__UserDareStatusClient<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserDareStatus.
+     * @param {UserDareStatusUpdateArgs} args - Arguments to update one UserDareStatus.
+     * @example
+     * // Update one UserDareStatus
+     * const userDareStatus = await prisma.userDareStatus.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserDareStatusUpdateArgs>(args: SelectSubset<T, UserDareStatusUpdateArgs<ExtArgs>>): Prisma__UserDareStatusClient<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserDareStatuses.
+     * @param {UserDareStatusDeleteManyArgs} args - Arguments to filter UserDareStatuses to delete.
+     * @example
+     * // Delete a few UserDareStatuses
+     * const { count } = await prisma.userDareStatus.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserDareStatusDeleteManyArgs>(args?: SelectSubset<T, UserDareStatusDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserDareStatuses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserDareStatusUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserDareStatuses
+     * const userDareStatus = await prisma.userDareStatus.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserDareStatusUpdateManyArgs>(args: SelectSubset<T, UserDareStatusUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserDareStatuses and returns the data updated in the database.
+     * @param {UserDareStatusUpdateManyAndReturnArgs} args - Arguments to update many UserDareStatuses.
+     * @example
+     * // Update many UserDareStatuses
+     * const userDareStatus = await prisma.userDareStatus.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserDareStatuses and only return the `id`
+     * const userDareStatusWithIdOnly = await prisma.userDareStatus.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserDareStatusUpdateManyAndReturnArgs>(args: SelectSubset<T, UserDareStatusUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserDareStatus.
+     * @param {UserDareStatusUpsertArgs} args - Arguments to update or create a UserDareStatus.
+     * @example
+     * // Update or create a UserDareStatus
+     * const userDareStatus = await prisma.userDareStatus.upsert({
+     *   create: {
+     *     // ... data to create a UserDareStatus
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserDareStatus we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserDareStatusUpsertArgs>(args: SelectSubset<T, UserDareStatusUpsertArgs<ExtArgs>>): Prisma__UserDareStatusClient<$Result.GetResult<Prisma.$UserDareStatusPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserDareStatuses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserDareStatusCountArgs} args - Arguments to filter UserDareStatuses to count.
+     * @example
+     * // Count the number of UserDareStatuses
+     * const count = await prisma.userDareStatus.count({
+     *   where: {
+     *     // ... the filter for the UserDareStatuses we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserDareStatusCountArgs>(
+      args?: Subset<T, UserDareStatusCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserDareStatusCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserDareStatus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserDareStatusAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserDareStatusAggregateArgs>(args: Subset<T, UserDareStatusAggregateArgs>): Prisma.PrismaPromise<GetUserDareStatusAggregateType<T>>
+
+    /**
+     * Group by UserDareStatus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserDareStatusGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserDareStatusGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserDareStatusGroupByArgs['orderBy'] }
+        : { orderBy?: UserDareStatusGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserDareStatusGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserDareStatusGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserDareStatus model
+   */
+  readonly fields: UserDareStatusFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserDareStatus.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserDareStatusClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserDareStatus model
+   */
+  interface UserDareStatusFieldRefs {
+    readonly id: FieldRef<"UserDareStatus", 'String'>
+    readonly userId: FieldRef<"UserDareStatus", 'String'>
+    readonly companionId: FieldRef<"UserDareStatus", 'String'>
+    readonly dareId: FieldRef<"UserDareStatus", 'String'>
+    readonly status: FieldRef<"UserDareStatus", 'String'>
+    readonly completedAt: FieldRef<"UserDareStatus", 'String'>
+    readonly createdAt: FieldRef<"UserDareStatus", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserDareStatus findUnique
+   */
+  export type UserDareStatusFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which UserDareStatus to fetch.
+     */
+    where: UserDareStatusWhereUniqueInput
+  }
+
+  /**
+   * UserDareStatus findUniqueOrThrow
+   */
+  export type UserDareStatusFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which UserDareStatus to fetch.
+     */
+    where: UserDareStatusWhereUniqueInput
+  }
+
+  /**
+   * UserDareStatus findFirst
+   */
+  export type UserDareStatusFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which UserDareStatus to fetch.
+     */
+    where?: UserDareStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserDareStatuses to fetch.
+     */
+    orderBy?: UserDareStatusOrderByWithRelationInput | UserDareStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserDareStatuses.
+     */
+    cursor?: UserDareStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserDareStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserDareStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserDareStatuses.
+     */
+    distinct?: UserDareStatusScalarFieldEnum | UserDareStatusScalarFieldEnum[]
+  }
+
+  /**
+   * UserDareStatus findFirstOrThrow
+   */
+  export type UserDareStatusFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which UserDareStatus to fetch.
+     */
+    where?: UserDareStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserDareStatuses to fetch.
+     */
+    orderBy?: UserDareStatusOrderByWithRelationInput | UserDareStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserDareStatuses.
+     */
+    cursor?: UserDareStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserDareStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserDareStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserDareStatuses.
+     */
+    distinct?: UserDareStatusScalarFieldEnum | UserDareStatusScalarFieldEnum[]
+  }
+
+  /**
+   * UserDareStatus findMany
+   */
+  export type UserDareStatusFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which UserDareStatuses to fetch.
+     */
+    where?: UserDareStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserDareStatuses to fetch.
+     */
+    orderBy?: UserDareStatusOrderByWithRelationInput | UserDareStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserDareStatuses.
+     */
+    cursor?: UserDareStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserDareStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserDareStatuses.
+     */
+    skip?: number
+    distinct?: UserDareStatusScalarFieldEnum | UserDareStatusScalarFieldEnum[]
+  }
+
+  /**
+   * UserDareStatus create
+   */
+  export type UserDareStatusCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * The data needed to create a UserDareStatus.
+     */
+    data: XOR<UserDareStatusCreateInput, UserDareStatusUncheckedCreateInput>
+  }
+
+  /**
+   * UserDareStatus createMany
+   */
+  export type UserDareStatusCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserDareStatuses.
+     */
+    data: UserDareStatusCreateManyInput | UserDareStatusCreateManyInput[]
+  }
+
+  /**
+   * UserDareStatus createManyAndReturn
+   */
+  export type UserDareStatusCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserDareStatuses.
+     */
+    data: UserDareStatusCreateManyInput | UserDareStatusCreateManyInput[]
+  }
+
+  /**
+   * UserDareStatus update
+   */
+  export type UserDareStatusUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * The data needed to update a UserDareStatus.
+     */
+    data: XOR<UserDareStatusUpdateInput, UserDareStatusUncheckedUpdateInput>
+    /**
+     * Choose, which UserDareStatus to update.
+     */
+    where: UserDareStatusWhereUniqueInput
+  }
+
+  /**
+   * UserDareStatus updateMany
+   */
+  export type UserDareStatusUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserDareStatuses.
+     */
+    data: XOR<UserDareStatusUpdateManyMutationInput, UserDareStatusUncheckedUpdateManyInput>
+    /**
+     * Filter which UserDareStatuses to update
+     */
+    where?: UserDareStatusWhereInput
+    /**
+     * Limit how many UserDareStatuses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserDareStatus updateManyAndReturn
+   */
+  export type UserDareStatusUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * The data used to update UserDareStatuses.
+     */
+    data: XOR<UserDareStatusUpdateManyMutationInput, UserDareStatusUncheckedUpdateManyInput>
+    /**
+     * Filter which UserDareStatuses to update
+     */
+    where?: UserDareStatusWhereInput
+    /**
+     * Limit how many UserDareStatuses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserDareStatus upsert
+   */
+  export type UserDareStatusUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * The filter to search for the UserDareStatus to update in case it exists.
+     */
+    where: UserDareStatusWhereUniqueInput
+    /**
+     * In case the UserDareStatus found by the `where` argument doesn't exist, create a new UserDareStatus with this data.
+     */
+    create: XOR<UserDareStatusCreateInput, UserDareStatusUncheckedCreateInput>
+    /**
+     * In case the UserDareStatus was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserDareStatusUpdateInput, UserDareStatusUncheckedUpdateInput>
+  }
+
+  /**
+   * UserDareStatus delete
+   */
+  export type UserDareStatusDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+    /**
+     * Filter which UserDareStatus to delete.
+     */
+    where: UserDareStatusWhereUniqueInput
+  }
+
+  /**
+   * UserDareStatus deleteMany
+   */
+  export type UserDareStatusDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserDareStatuses to delete
+     */
+    where?: UserDareStatusWhereInput
+    /**
+     * Limit how many UserDareStatuses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserDareStatus without action
+   */
+  export type UserDareStatusDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDareStatus
+     */
+    select?: UserDareStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserDareStatus
+     */
+    omit?: UserDareStatusOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
   export const TransactionIsolationLevel: {
-    ReadUncommitted: 'ReadUncommitted',
-    ReadCommitted: 'ReadCommitted',
-    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
   };
 
@@ -14325,7 +17776,7 @@ export namespace Prisma {
   export type TripPlanScalarFieldEnum = (typeof TripPlanScalarFieldEnum)[keyof typeof TripPlanScalarFieldEnum]
 
 
-  export const Plan_tasksScalarFieldEnum: {
+  export const PlanTaskScalarFieldEnum: {
     id: 'id',
     trip_plan_id: 'trip_plan_id',
     task_type: 'task_type',
@@ -14337,7 +17788,7 @@ export namespace Prisma {
     updated_at: 'updated_at'
   };
 
-  export type Plan_tasksScalarFieldEnum = (typeof Plan_tasksScalarFieldEnum)[keyof typeof Plan_tasksScalarFieldEnum]
+  export type PlanTaskScalarFieldEnum = (typeof PlanTaskScalarFieldEnum)[keyof typeof PlanTaskScalarFieldEnum]
 
 
   export const PaymentMandateScalarFieldEnum: {
@@ -14367,11 +17818,55 @@ export namespace Prisma {
     user1Amount: 'user1Amount',
     user2Amount: 'user2Amount',
     status: 'status',
+    escrowStatus: 'escrowStatus',
+    splitMode: 'splitMode',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type TransactionSplitScalarFieldEnum = (typeof TransactionSplitScalarFieldEnum)[keyof typeof TransactionSplitScalarFieldEnum]
+
+
+  export const UserRatingScalarFieldEnum: {
+    id: 'id',
+    raterId: 'raterId',
+    rateeId: 'rateeId',
+    rating: 'rating',
+    tags: 'tags',
+    comment: 'comment',
+    createdAt: 'createdAt'
+  };
+
+  export type UserRatingScalarFieldEnum = (typeof UserRatingScalarFieldEnum)[keyof typeof UserRatingScalarFieldEnum]
+
+
+  export const LocationDareScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    latitude: 'latitude',
+    longitude: 'longitude',
+    radiusMeters: 'radiusMeters',
+    pointsReward: 'pointsReward',
+    targetCity: 'targetCity',
+    isSponsored: 'isSponsored',
+    sponsorName: 'sponsorName'
+  };
+
+  export type LocationDareScalarFieldEnum = (typeof LocationDareScalarFieldEnum)[keyof typeof LocationDareScalarFieldEnum]
+
+
+  export const UserDareStatusScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    companionId: 'companionId',
+    dareId: 'dareId',
+    status: 'status',
+    completedAt: 'completedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type UserDareStatusScalarFieldEnum = (typeof UserDareStatusScalarFieldEnum)[keyof typeof UserDareStatusScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14382,44 +17877,12 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const JsonNullValueInput: {
-    JsonNull: typeof JsonNull
-  };
-
-  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
-
-
-  export const NullableJsonNullValueInput: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull
-  };
-
-  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
-
-
-  export const QueryMode: {
-    default: 'default',
-    insensitive: 'insensitive'
-  };
-
-  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
   export const NullsOrder: {
     first: 'first',
     last: 'last'
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-  export const JsonNullValueFilter: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull,
-    AnyNull: typeof AnyNull
-  };
-
-  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -14431,13 +17894,6 @@ export namespace Prisma {
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
-    
-
-
-  /**
-   * Reference to a field of type 'String[]'
-   */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
     
 
 
@@ -14456,13 +17912,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -14470,51 +17919,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'plan_task_status'
-   */
-  export type Enumplan_task_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'plan_task_status'>
-    
-
-
-  /**
-   * Reference to a field of type 'plan_task_status[]'
-   */
-  export type ListEnumplan_task_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'plan_task_status[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
   /**
    * Deep Input Types
@@ -14870,10 +18277,10 @@ export namespace Prisma {
     status?: StringFilter<"TripPlanStatus"> | string
     currentStep?: StringNullableFilter<"TripPlanStatus"> | string | null
     error?: StringNullableFilter<"TripPlanStatus"> | string | null
-    startedAt?: DateTimeNullableFilter<"TripPlanStatus"> | Date | string | null
-    completedAt?: DateTimeNullableFilter<"TripPlanStatus"> | Date | string | null
-    createdAt?: DateTimeFilter<"TripPlanStatus"> | Date | string
-    updatedAt?: DateTimeFilter<"TripPlanStatus"> | Date | string
+    startedAt?: StringNullableFilter<"TripPlanStatus"> | string | null
+    completedAt?: StringNullableFilter<"TripPlanStatus"> | string | null
+    createdAt?: StringNullableFilter<"TripPlanStatus"> | string | null
+    updatedAt?: StringNullableFilter<"TripPlanStatus"> | string | null
     tripPlan?: XOR<TripPlanScalarRelationFilter, TripPlanWhereInput>
   }
 
@@ -14885,8 +18292,8 @@ export namespace Prisma {
     error?: SortOrderInput | SortOrder
     startedAt?: SortOrderInput | SortOrder
     completedAt?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     tripPlan?: TripPlanOrderByWithRelationInput
   }
 
@@ -14899,10 +18306,10 @@ export namespace Prisma {
     status?: StringFilter<"TripPlanStatus"> | string
     currentStep?: StringNullableFilter<"TripPlanStatus"> | string | null
     error?: StringNullableFilter<"TripPlanStatus"> | string | null
-    startedAt?: DateTimeNullableFilter<"TripPlanStatus"> | Date | string | null
-    completedAt?: DateTimeNullableFilter<"TripPlanStatus"> | Date | string | null
-    createdAt?: DateTimeFilter<"TripPlanStatus"> | Date | string
-    updatedAt?: DateTimeFilter<"TripPlanStatus"> | Date | string
+    startedAt?: StringNullableFilter<"TripPlanStatus"> | string | null
+    completedAt?: StringNullableFilter<"TripPlanStatus"> | string | null
+    createdAt?: StringNullableFilter<"TripPlanStatus"> | string | null
+    updatedAt?: StringNullableFilter<"TripPlanStatus"> | string | null
     tripPlan?: XOR<TripPlanScalarRelationFilter, TripPlanWhereInput>
   }, "id" | "tripPlanId">
 
@@ -14914,8 +18321,8 @@ export namespace Prisma {
     error?: SortOrderInput | SortOrder
     startedAt?: SortOrderInput | SortOrder
     completedAt?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     _count?: TripPlanStatusCountOrderByAggregateInput
     _max?: TripPlanStatusMaxOrderByAggregateInput
     _min?: TripPlanStatusMinOrderByAggregateInput
@@ -14930,10 +18337,10 @@ export namespace Prisma {
     status?: StringWithAggregatesFilter<"TripPlanStatus"> | string
     currentStep?: StringNullableWithAggregatesFilter<"TripPlanStatus"> | string | null
     error?: StringNullableWithAggregatesFilter<"TripPlanStatus"> | string | null
-    startedAt?: DateTimeNullableWithAggregatesFilter<"TripPlanStatus"> | Date | string | null
-    completedAt?: DateTimeNullableWithAggregatesFilter<"TripPlanStatus"> | Date | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"TripPlanStatus"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"TripPlanStatus"> | Date | string
+    startedAt?: StringNullableWithAggregatesFilter<"TripPlanStatus"> | string | null
+    completedAt?: StringNullableWithAggregatesFilter<"TripPlanStatus"> | string | null
+    createdAt?: StringNullableWithAggregatesFilter<"TripPlanStatus"> | string | null
+    updatedAt?: StringNullableWithAggregatesFilter<"TripPlanStatus"> | string | null
   }
 
   export type TripPlanOutputWhereInput = {
@@ -14944,8 +18351,8 @@ export namespace Prisma {
     tripPlanId?: StringFilter<"TripPlanOutput"> | string
     itinerary?: StringFilter<"TripPlanOutput"> | string
     summary?: StringNullableFilter<"TripPlanOutput"> | string | null
-    createdAt?: DateTimeFilter<"TripPlanOutput"> | Date | string
-    updatedAt?: DateTimeFilter<"TripPlanOutput"> | Date | string
+    createdAt?: StringNullableFilter<"TripPlanOutput"> | string | null
+    updatedAt?: StringNullableFilter<"TripPlanOutput"> | string | null
     tripPlan?: XOR<TripPlanScalarRelationFilter, TripPlanWhereInput>
   }
 
@@ -14954,8 +18361,8 @@ export namespace Prisma {
     tripPlanId?: SortOrder
     itinerary?: SortOrder
     summary?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     tripPlan?: TripPlanOrderByWithRelationInput
   }
 
@@ -14967,8 +18374,8 @@ export namespace Prisma {
     NOT?: TripPlanOutputWhereInput | TripPlanOutputWhereInput[]
     itinerary?: StringFilter<"TripPlanOutput"> | string
     summary?: StringNullableFilter<"TripPlanOutput"> | string | null
-    createdAt?: DateTimeFilter<"TripPlanOutput"> | Date | string
-    updatedAt?: DateTimeFilter<"TripPlanOutput"> | Date | string
+    createdAt?: StringNullableFilter<"TripPlanOutput"> | string | null
+    updatedAt?: StringNullableFilter<"TripPlanOutput"> | string | null
     tripPlan?: XOR<TripPlanScalarRelationFilter, TripPlanWhereInput>
   }, "id" | "tripPlanId">
 
@@ -14977,8 +18384,8 @@ export namespace Prisma {
     tripPlanId?: SortOrder
     itinerary?: SortOrder
     summary?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     _count?: TripPlanOutputCountOrderByAggregateInput
     _max?: TripPlanOutputMaxOrderByAggregateInput
     _min?: TripPlanOutputMinOrderByAggregateInput
@@ -14992,8 +18399,8 @@ export namespace Prisma {
     tripPlanId?: StringWithAggregatesFilter<"TripPlanOutput"> | string
     itinerary?: StringWithAggregatesFilter<"TripPlanOutput"> | string
     summary?: StringNullableWithAggregatesFilter<"TripPlanOutput"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"TripPlanOutput"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"TripPlanOutput"> | Date | string
+    createdAt?: StringNullableWithAggregatesFilter<"TripPlanOutput"> | string | null
+    updatedAt?: StringNullableWithAggregatesFilter<"TripPlanOutput"> | string | null
   }
 
   export type TripPlanWhereInput = {
@@ -15011,16 +18418,16 @@ export namespace Prisma {
     experiencingWith?: StringFilter<"TripPlan"> | string
     adults?: IntFilter<"TripPlan"> | number
     children?: IntFilter<"TripPlan"> | number
-    ageGroups?: StringNullableListFilter<"TripPlan">
+    ageGroups?: StringFilter<"TripPlan"> | string
     budget?: FloatFilter<"TripPlan"> | number
     budgetCurrency?: StringFilter<"TripPlan"> | string
     experienceStyle?: StringFilter<"TripPlan"> | string
     budgetFlexible?: BoolFilter<"TripPlan"> | boolean
-    vibes?: StringNullableListFilter<"TripPlan">
-    priorities?: StringNullableListFilter<"TripPlan">
+    vibes?: StringFilter<"TripPlan"> | string
+    priorities?: StringFilter<"TripPlan"> | string
     interests?: StringNullableFilter<"TripPlan"> | string | null
     rooms?: IntFilter<"TripPlan"> | number
-    pace?: IntNullableListFilter<"TripPlan">
+    pace?: StringFilter<"TripPlan"> | string
     beenThereBefore?: StringNullableFilter<"TripPlan"> | string | null
     lovedPlaces?: StringNullableFilter<"TripPlan"> | string | null
     additionalInfo?: StringNullableFilter<"TripPlan"> | string | null
@@ -15080,16 +18487,16 @@ export namespace Prisma {
     experiencingWith?: StringFilter<"TripPlan"> | string
     adults?: IntFilter<"TripPlan"> | number
     children?: IntFilter<"TripPlan"> | number
-    ageGroups?: StringNullableListFilter<"TripPlan">
+    ageGroups?: StringFilter<"TripPlan"> | string
     budget?: FloatFilter<"TripPlan"> | number
     budgetCurrency?: StringFilter<"TripPlan"> | string
     experienceStyle?: StringFilter<"TripPlan"> | string
     budgetFlexible?: BoolFilter<"TripPlan"> | boolean
-    vibes?: StringNullableListFilter<"TripPlan">
-    priorities?: StringNullableListFilter<"TripPlan">
+    vibes?: StringFilter<"TripPlan"> | string
+    priorities?: StringFilter<"TripPlan"> | string
     interests?: StringNullableFilter<"TripPlan"> | string | null
     rooms?: IntFilter<"TripPlan"> | number
-    pace?: IntNullableListFilter<"TripPlan">
+    pace?: StringFilter<"TripPlan"> | string
     beenThereBefore?: StringNullableFilter<"TripPlan"> | string | null
     lovedPlaces?: StringNullableFilter<"TripPlan"> | string | null
     additionalInfo?: StringNullableFilter<"TripPlan"> | string | null
@@ -15151,16 +18558,16 @@ export namespace Prisma {
     experiencingWith?: StringWithAggregatesFilter<"TripPlan"> | string
     adults?: IntWithAggregatesFilter<"TripPlan"> | number
     children?: IntWithAggregatesFilter<"TripPlan"> | number
-    ageGroups?: StringNullableListFilter<"TripPlan">
+    ageGroups?: StringWithAggregatesFilter<"TripPlan"> | string
     budget?: FloatWithAggregatesFilter<"TripPlan"> | number
     budgetCurrency?: StringWithAggregatesFilter<"TripPlan"> | string
     experienceStyle?: StringWithAggregatesFilter<"TripPlan"> | string
     budgetFlexible?: BoolWithAggregatesFilter<"TripPlan"> | boolean
-    vibes?: StringNullableListFilter<"TripPlan">
-    priorities?: StringNullableListFilter<"TripPlan">
+    vibes?: StringWithAggregatesFilter<"TripPlan"> | string
+    priorities?: StringWithAggregatesFilter<"TripPlan"> | string
     interests?: StringNullableWithAggregatesFilter<"TripPlan"> | string | null
     rooms?: IntWithAggregatesFilter<"TripPlan"> | number
-    pace?: IntNullableListFilter<"TripPlan">
+    pace?: StringWithAggregatesFilter<"TripPlan"> | string
     beenThereBefore?: StringNullableWithAggregatesFilter<"TripPlan"> | string | null
     lovedPlaces?: StringNullableWithAggregatesFilter<"TripPlan"> | string | null
     additionalInfo?: StringNullableWithAggregatesFilter<"TripPlan"> | string | null
@@ -15169,22 +18576,22 @@ export namespace Prisma {
     userId?: StringNullableWithAggregatesFilter<"TripPlan"> | string | null
   }
 
-  export type plan_tasksWhereInput = {
-    AND?: plan_tasksWhereInput | plan_tasksWhereInput[]
-    OR?: plan_tasksWhereInput[]
-    NOT?: plan_tasksWhereInput | plan_tasksWhereInput[]
-    id?: IntFilter<"plan_tasks"> | number
-    trip_plan_id?: StringFilter<"plan_tasks"> | string
-    task_type?: StringFilter<"plan_tasks"> | string
-    status?: Enumplan_task_statusFilter<"plan_tasks"> | $Enums.plan_task_status
-    input_data?: JsonFilter<"plan_tasks">
-    output_data?: JsonNullableFilter<"plan_tasks">
-    error_message?: StringNullableFilter<"plan_tasks"> | string | null
-    created_at?: DateTimeNullableFilter<"plan_tasks"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"plan_tasks"> | Date | string | null
+  export type PlanTaskWhereInput = {
+    AND?: PlanTaskWhereInput | PlanTaskWhereInput[]
+    OR?: PlanTaskWhereInput[]
+    NOT?: PlanTaskWhereInput | PlanTaskWhereInput[]
+    id?: IntFilter<"PlanTask"> | number
+    trip_plan_id?: StringFilter<"PlanTask"> | string
+    task_type?: StringFilter<"PlanTask"> | string
+    status?: StringFilter<"PlanTask"> | string
+    input_data?: StringFilter<"PlanTask"> | string
+    output_data?: StringNullableFilter<"PlanTask"> | string | null
+    error_message?: StringNullableFilter<"PlanTask"> | string | null
+    created_at?: StringNullableFilter<"PlanTask"> | string | null
+    updated_at?: StringNullableFilter<"PlanTask"> | string | null
   }
 
-  export type plan_tasksOrderByWithRelationInput = {
+  export type PlanTaskOrderByWithRelationInput = {
     id?: SortOrder
     trip_plan_id?: SortOrder
     task_type?: SortOrder
@@ -15196,22 +18603,22 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
   }
 
-  export type plan_tasksWhereUniqueInput = Prisma.AtLeast<{
+  export type PlanTaskWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: plan_tasksWhereInput | plan_tasksWhereInput[]
-    OR?: plan_tasksWhereInput[]
-    NOT?: plan_tasksWhereInput | plan_tasksWhereInput[]
-    trip_plan_id?: StringFilter<"plan_tasks"> | string
-    task_type?: StringFilter<"plan_tasks"> | string
-    status?: Enumplan_task_statusFilter<"plan_tasks"> | $Enums.plan_task_status
-    input_data?: JsonFilter<"plan_tasks">
-    output_data?: JsonNullableFilter<"plan_tasks">
-    error_message?: StringNullableFilter<"plan_tasks"> | string | null
-    created_at?: DateTimeNullableFilter<"plan_tasks"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"plan_tasks"> | Date | string | null
+    AND?: PlanTaskWhereInput | PlanTaskWhereInput[]
+    OR?: PlanTaskWhereInput[]
+    NOT?: PlanTaskWhereInput | PlanTaskWhereInput[]
+    trip_plan_id?: StringFilter<"PlanTask"> | string
+    task_type?: StringFilter<"PlanTask"> | string
+    status?: StringFilter<"PlanTask"> | string
+    input_data?: StringFilter<"PlanTask"> | string
+    output_data?: StringNullableFilter<"PlanTask"> | string | null
+    error_message?: StringNullableFilter<"PlanTask"> | string | null
+    created_at?: StringNullableFilter<"PlanTask"> | string | null
+    updated_at?: StringNullableFilter<"PlanTask"> | string | null
   }, "id">
 
-  export type plan_tasksOrderByWithAggregationInput = {
+  export type PlanTaskOrderByWithAggregationInput = {
     id?: SortOrder
     trip_plan_id?: SortOrder
     task_type?: SortOrder
@@ -15221,26 +18628,26 @@ export namespace Prisma {
     error_message?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
-    _count?: plan_tasksCountOrderByAggregateInput
-    _avg?: plan_tasksAvgOrderByAggregateInput
-    _max?: plan_tasksMaxOrderByAggregateInput
-    _min?: plan_tasksMinOrderByAggregateInput
-    _sum?: plan_tasksSumOrderByAggregateInput
+    _count?: PlanTaskCountOrderByAggregateInput
+    _avg?: PlanTaskAvgOrderByAggregateInput
+    _max?: PlanTaskMaxOrderByAggregateInput
+    _min?: PlanTaskMinOrderByAggregateInput
+    _sum?: PlanTaskSumOrderByAggregateInput
   }
 
-  export type plan_tasksScalarWhereWithAggregatesInput = {
-    AND?: plan_tasksScalarWhereWithAggregatesInput | plan_tasksScalarWhereWithAggregatesInput[]
-    OR?: plan_tasksScalarWhereWithAggregatesInput[]
-    NOT?: plan_tasksScalarWhereWithAggregatesInput | plan_tasksScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"plan_tasks"> | number
-    trip_plan_id?: StringWithAggregatesFilter<"plan_tasks"> | string
-    task_type?: StringWithAggregatesFilter<"plan_tasks"> | string
-    status?: Enumplan_task_statusWithAggregatesFilter<"plan_tasks"> | $Enums.plan_task_status
-    input_data?: JsonWithAggregatesFilter<"plan_tasks">
-    output_data?: JsonNullableWithAggregatesFilter<"plan_tasks">
-    error_message?: StringNullableWithAggregatesFilter<"plan_tasks"> | string | null
-    created_at?: DateTimeNullableWithAggregatesFilter<"plan_tasks"> | Date | string | null
-    updated_at?: DateTimeNullableWithAggregatesFilter<"plan_tasks"> | Date | string | null
+  export type PlanTaskScalarWhereWithAggregatesInput = {
+    AND?: PlanTaskScalarWhereWithAggregatesInput | PlanTaskScalarWhereWithAggregatesInput[]
+    OR?: PlanTaskScalarWhereWithAggregatesInput[]
+    NOT?: PlanTaskScalarWhereWithAggregatesInput | PlanTaskScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PlanTask"> | number
+    trip_plan_id?: StringWithAggregatesFilter<"PlanTask"> | string
+    task_type?: StringWithAggregatesFilter<"PlanTask"> | string
+    status?: StringWithAggregatesFilter<"PlanTask"> | string
+    input_data?: StringWithAggregatesFilter<"PlanTask"> | string
+    output_data?: StringNullableWithAggregatesFilter<"PlanTask"> | string | null
+    error_message?: StringNullableWithAggregatesFilter<"PlanTask"> | string | null
+    created_at?: StringNullableWithAggregatesFilter<"PlanTask"> | string | null
+    updated_at?: StringNullableWithAggregatesFilter<"PlanTask"> | string | null
   }
 
   export type PaymentMandateWhereInput = {
@@ -15256,8 +18663,8 @@ export namespace Prisma {
     publicKey?: StringFilter<"PaymentMandate"> | string
     scope?: StringFilter<"PaymentMandate"> | string
     status?: StringFilter<"PaymentMandate"> | string
-    createdAt?: DateTimeFilter<"PaymentMandate"> | Date | string
-    updatedAt?: DateTimeFilter<"PaymentMandate"> | Date | string
+    createdAt?: StringNullableFilter<"PaymentMandate"> | string | null
+    updatedAt?: StringNullableFilter<"PaymentMandate"> | string | null
   }
 
   export type PaymentMandateOrderByWithRelationInput = {
@@ -15270,8 +18677,8 @@ export namespace Prisma {
     publicKey?: SortOrder
     scope?: SortOrder
     status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
   }
 
   export type PaymentMandateWhereUniqueInput = Prisma.AtLeast<{
@@ -15287,8 +18694,8 @@ export namespace Prisma {
     publicKey?: StringFilter<"PaymentMandate"> | string
     scope?: StringFilter<"PaymentMandate"> | string
     status?: StringFilter<"PaymentMandate"> | string
-    createdAt?: DateTimeFilter<"PaymentMandate"> | Date | string
-    updatedAt?: DateTimeFilter<"PaymentMandate"> | Date | string
+    createdAt?: StringNullableFilter<"PaymentMandate"> | string | null
+    updatedAt?: StringNullableFilter<"PaymentMandate"> | string | null
   }, "id">
 
   export type PaymentMandateOrderByWithAggregationInput = {
@@ -15301,8 +18708,8 @@ export namespace Prisma {
     publicKey?: SortOrder
     scope?: SortOrder
     status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     _count?: PaymentMandateCountOrderByAggregateInput
     _avg?: PaymentMandateAvgOrderByAggregateInput
     _max?: PaymentMandateMaxOrderByAggregateInput
@@ -15323,8 +18730,8 @@ export namespace Prisma {
     publicKey?: StringWithAggregatesFilter<"PaymentMandate"> | string
     scope?: StringWithAggregatesFilter<"PaymentMandate"> | string
     status?: StringWithAggregatesFilter<"PaymentMandate"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"PaymentMandate"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"PaymentMandate"> | Date | string
+    createdAt?: StringNullableWithAggregatesFilter<"PaymentMandate"> | string | null
+    updatedAt?: StringNullableWithAggregatesFilter<"PaymentMandate"> | string | null
   }
 
   export type TransactionSplitWhereInput = {
@@ -15340,8 +18747,10 @@ export namespace Prisma {
     user1Amount?: FloatFilter<"TransactionSplit"> | number
     user2Amount?: FloatFilter<"TransactionSplit"> | number
     status?: StringFilter<"TransactionSplit"> | string
-    createdAt?: DateTimeFilter<"TransactionSplit"> | Date | string
-    updatedAt?: DateTimeFilter<"TransactionSplit"> | Date | string
+    escrowStatus?: StringFilter<"TransactionSplit"> | string
+    splitMode?: StringFilter<"TransactionSplit"> | string
+    createdAt?: StringNullableFilter<"TransactionSplit"> | string | null
+    updatedAt?: StringNullableFilter<"TransactionSplit"> | string | null
   }
 
   export type TransactionSplitOrderByWithRelationInput = {
@@ -15354,8 +18763,10 @@ export namespace Prisma {
     user1Amount?: SortOrder
     user2Amount?: SortOrder
     status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    escrowStatus?: SortOrder
+    splitMode?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
   }
 
   export type TransactionSplitWhereUniqueInput = Prisma.AtLeast<{
@@ -15371,8 +18782,10 @@ export namespace Prisma {
     user1Amount?: FloatFilter<"TransactionSplit"> | number
     user2Amount?: FloatFilter<"TransactionSplit"> | number
     status?: StringFilter<"TransactionSplit"> | string
-    createdAt?: DateTimeFilter<"TransactionSplit"> | Date | string
-    updatedAt?: DateTimeFilter<"TransactionSplit"> | Date | string
+    escrowStatus?: StringFilter<"TransactionSplit"> | string
+    splitMode?: StringFilter<"TransactionSplit"> | string
+    createdAt?: StringNullableFilter<"TransactionSplit"> | string | null
+    updatedAt?: StringNullableFilter<"TransactionSplit"> | string | null
   }, "id">
 
   export type TransactionSplitOrderByWithAggregationInput = {
@@ -15385,8 +18798,10 @@ export namespace Prisma {
     user1Amount?: SortOrder
     user2Amount?: SortOrder
     status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    escrowStatus?: SortOrder
+    splitMode?: SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     _count?: TransactionSplitCountOrderByAggregateInput
     _avg?: TransactionSplitAvgOrderByAggregateInput
     _max?: TransactionSplitMaxOrderByAggregateInput
@@ -15407,8 +18822,215 @@ export namespace Prisma {
     user1Amount?: FloatWithAggregatesFilter<"TransactionSplit"> | number
     user2Amount?: FloatWithAggregatesFilter<"TransactionSplit"> | number
     status?: StringWithAggregatesFilter<"TransactionSplit"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"TransactionSplit"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"TransactionSplit"> | Date | string
+    escrowStatus?: StringWithAggregatesFilter<"TransactionSplit"> | string
+    splitMode?: StringWithAggregatesFilter<"TransactionSplit"> | string
+    createdAt?: StringNullableWithAggregatesFilter<"TransactionSplit"> | string | null
+    updatedAt?: StringNullableWithAggregatesFilter<"TransactionSplit"> | string | null
+  }
+
+  export type UserRatingWhereInput = {
+    AND?: UserRatingWhereInput | UserRatingWhereInput[]
+    OR?: UserRatingWhereInput[]
+    NOT?: UserRatingWhereInput | UserRatingWhereInput[]
+    id?: StringFilter<"UserRating"> | string
+    raterId?: StringFilter<"UserRating"> | string
+    rateeId?: StringFilter<"UserRating"> | string
+    rating?: IntFilter<"UserRating"> | number
+    tags?: StringFilter<"UserRating"> | string
+    comment?: StringNullableFilter<"UserRating"> | string | null
+    createdAt?: StringNullableFilter<"UserRating"> | string | null
+  }
+
+  export type UserRatingOrderByWithRelationInput = {
+    id?: SortOrder
+    raterId?: SortOrder
+    rateeId?: SortOrder
+    rating?: SortOrder
+    tags?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    createdAt?: SortOrderInput | SortOrder
+  }
+
+  export type UserRatingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UserRatingWhereInput | UserRatingWhereInput[]
+    OR?: UserRatingWhereInput[]
+    NOT?: UserRatingWhereInput | UserRatingWhereInput[]
+    raterId?: StringFilter<"UserRating"> | string
+    rateeId?: StringFilter<"UserRating"> | string
+    rating?: IntFilter<"UserRating"> | number
+    tags?: StringFilter<"UserRating"> | string
+    comment?: StringNullableFilter<"UserRating"> | string | null
+    createdAt?: StringNullableFilter<"UserRating"> | string | null
+  }, "id">
+
+  export type UserRatingOrderByWithAggregationInput = {
+    id?: SortOrder
+    raterId?: SortOrder
+    rateeId?: SortOrder
+    rating?: SortOrder
+    tags?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    _count?: UserRatingCountOrderByAggregateInput
+    _avg?: UserRatingAvgOrderByAggregateInput
+    _max?: UserRatingMaxOrderByAggregateInput
+    _min?: UserRatingMinOrderByAggregateInput
+    _sum?: UserRatingSumOrderByAggregateInput
+  }
+
+  export type UserRatingScalarWhereWithAggregatesInput = {
+    AND?: UserRatingScalarWhereWithAggregatesInput | UserRatingScalarWhereWithAggregatesInput[]
+    OR?: UserRatingScalarWhereWithAggregatesInput[]
+    NOT?: UserRatingScalarWhereWithAggregatesInput | UserRatingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserRating"> | string
+    raterId?: StringWithAggregatesFilter<"UserRating"> | string
+    rateeId?: StringWithAggregatesFilter<"UserRating"> | string
+    rating?: IntWithAggregatesFilter<"UserRating"> | number
+    tags?: StringWithAggregatesFilter<"UserRating"> | string
+    comment?: StringNullableWithAggregatesFilter<"UserRating"> | string | null
+    createdAt?: StringNullableWithAggregatesFilter<"UserRating"> | string | null
+  }
+
+  export type LocationDareWhereInput = {
+    AND?: LocationDareWhereInput | LocationDareWhereInput[]
+    OR?: LocationDareWhereInput[]
+    NOT?: LocationDareWhereInput | LocationDareWhereInput[]
+    id?: StringFilter<"LocationDare"> | string
+    title?: StringFilter<"LocationDare"> | string
+    description?: StringFilter<"LocationDare"> | string
+    latitude?: FloatFilter<"LocationDare"> | number
+    longitude?: FloatFilter<"LocationDare"> | number
+    radiusMeters?: FloatFilter<"LocationDare"> | number
+    pointsReward?: IntFilter<"LocationDare"> | number
+    targetCity?: StringFilter<"LocationDare"> | string
+    isSponsored?: BoolFilter<"LocationDare"> | boolean
+    sponsorName?: StringNullableFilter<"LocationDare"> | string | null
+  }
+
+  export type LocationDareOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    radiusMeters?: SortOrder
+    pointsReward?: SortOrder
+    targetCity?: SortOrder
+    isSponsored?: SortOrder
+    sponsorName?: SortOrderInput | SortOrder
+  }
+
+  export type LocationDareWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LocationDareWhereInput | LocationDareWhereInput[]
+    OR?: LocationDareWhereInput[]
+    NOT?: LocationDareWhereInput | LocationDareWhereInput[]
+    title?: StringFilter<"LocationDare"> | string
+    description?: StringFilter<"LocationDare"> | string
+    latitude?: FloatFilter<"LocationDare"> | number
+    longitude?: FloatFilter<"LocationDare"> | number
+    radiusMeters?: FloatFilter<"LocationDare"> | number
+    pointsReward?: IntFilter<"LocationDare"> | number
+    targetCity?: StringFilter<"LocationDare"> | string
+    isSponsored?: BoolFilter<"LocationDare"> | boolean
+    sponsorName?: StringNullableFilter<"LocationDare"> | string | null
+  }, "id">
+
+  export type LocationDareOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    radiusMeters?: SortOrder
+    pointsReward?: SortOrder
+    targetCity?: SortOrder
+    isSponsored?: SortOrder
+    sponsorName?: SortOrderInput | SortOrder
+    _count?: LocationDareCountOrderByAggregateInput
+    _avg?: LocationDareAvgOrderByAggregateInput
+    _max?: LocationDareMaxOrderByAggregateInput
+    _min?: LocationDareMinOrderByAggregateInput
+    _sum?: LocationDareSumOrderByAggregateInput
+  }
+
+  export type LocationDareScalarWhereWithAggregatesInput = {
+    AND?: LocationDareScalarWhereWithAggregatesInput | LocationDareScalarWhereWithAggregatesInput[]
+    OR?: LocationDareScalarWhereWithAggregatesInput[]
+    NOT?: LocationDareScalarWhereWithAggregatesInput | LocationDareScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LocationDare"> | string
+    title?: StringWithAggregatesFilter<"LocationDare"> | string
+    description?: StringWithAggregatesFilter<"LocationDare"> | string
+    latitude?: FloatWithAggregatesFilter<"LocationDare"> | number
+    longitude?: FloatWithAggregatesFilter<"LocationDare"> | number
+    radiusMeters?: FloatWithAggregatesFilter<"LocationDare"> | number
+    pointsReward?: IntWithAggregatesFilter<"LocationDare"> | number
+    targetCity?: StringWithAggregatesFilter<"LocationDare"> | string
+    isSponsored?: BoolWithAggregatesFilter<"LocationDare"> | boolean
+    sponsorName?: StringNullableWithAggregatesFilter<"LocationDare"> | string | null
+  }
+
+  export type UserDareStatusWhereInput = {
+    AND?: UserDareStatusWhereInput | UserDareStatusWhereInput[]
+    OR?: UserDareStatusWhereInput[]
+    NOT?: UserDareStatusWhereInput | UserDareStatusWhereInput[]
+    id?: StringFilter<"UserDareStatus"> | string
+    userId?: StringFilter<"UserDareStatus"> | string
+    companionId?: StringNullableFilter<"UserDareStatus"> | string | null
+    dareId?: StringFilter<"UserDareStatus"> | string
+    status?: StringFilter<"UserDareStatus"> | string
+    completedAt?: StringNullableFilter<"UserDareStatus"> | string | null
+    createdAt?: StringNullableFilter<"UserDareStatus"> | string | null
+  }
+
+  export type UserDareStatusOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    companionId?: SortOrderInput | SortOrder
+    dareId?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrderInput | SortOrder
+  }
+
+  export type UserDareStatusWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UserDareStatusWhereInput | UserDareStatusWhereInput[]
+    OR?: UserDareStatusWhereInput[]
+    NOT?: UserDareStatusWhereInput | UserDareStatusWhereInput[]
+    userId?: StringFilter<"UserDareStatus"> | string
+    companionId?: StringNullableFilter<"UserDareStatus"> | string | null
+    dareId?: StringFilter<"UserDareStatus"> | string
+    status?: StringFilter<"UserDareStatus"> | string
+    completedAt?: StringNullableFilter<"UserDareStatus"> | string | null
+    createdAt?: StringNullableFilter<"UserDareStatus"> | string | null
+  }, "id">
+
+  export type UserDareStatusOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    companionId?: SortOrderInput | SortOrder
+    dareId?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrderInput | SortOrder
+    _count?: UserDareStatusCountOrderByAggregateInput
+    _max?: UserDareStatusMaxOrderByAggregateInput
+    _min?: UserDareStatusMinOrderByAggregateInput
+  }
+
+  export type UserDareStatusScalarWhereWithAggregatesInput = {
+    AND?: UserDareStatusScalarWhereWithAggregatesInput | UserDareStatusScalarWhereWithAggregatesInput[]
+    OR?: UserDareStatusScalarWhereWithAggregatesInput[]
+    NOT?: UserDareStatusScalarWhereWithAggregatesInput | UserDareStatusScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserDareStatus"> | string
+    userId?: StringWithAggregatesFilter<"UserDareStatus"> | string
+    companionId?: StringNullableWithAggregatesFilter<"UserDareStatus"> | string | null
+    dareId?: StringWithAggregatesFilter<"UserDareStatus"> | string
+    status?: StringWithAggregatesFilter<"UserDareStatus"> | string
+    completedAt?: StringNullableWithAggregatesFilter<"UserDareStatus"> | string | null
+    createdAt?: StringNullableWithAggregatesFilter<"UserDareStatus"> | string | null
   }
 
   export type UserCreateInput = {
@@ -15797,10 +19419,10 @@ export namespace Prisma {
     status?: string
     currentStep?: string | null
     error?: string | null
-    startedAt?: Date | string | null
-    completedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startedAt?: string | null
+    completedAt?: string | null
+    createdAt?: string | null
+    updatedAt?: string | null
     tripPlan: TripPlanCreateNestedOneWithoutStatusInput
   }
 
@@ -15810,10 +19432,10 @@ export namespace Prisma {
     status?: string
     currentStep?: string | null
     error?: string | null
-    startedAt?: Date | string | null
-    completedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startedAt?: string | null
+    completedAt?: string | null
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TripPlanStatusUpdateInput = {
@@ -15821,10 +19443,10 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentStep?: NullableStringFieldUpdateOperationsInput | string | null
     error?: NullableStringFieldUpdateOperationsInput | string | null
-    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
     tripPlan?: TripPlanUpdateOneRequiredWithoutStatusNestedInput
   }
 
@@ -15834,10 +19456,10 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentStep?: NullableStringFieldUpdateOperationsInput | string | null
     error?: NullableStringFieldUpdateOperationsInput | string | null
-    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripPlanStatusCreateManyInput = {
@@ -15846,10 +19468,10 @@ export namespace Prisma {
     status?: string
     currentStep?: string | null
     error?: string | null
-    startedAt?: Date | string | null
-    completedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startedAt?: string | null
+    completedAt?: string | null
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TripPlanStatusUpdateManyMutationInput = {
@@ -15857,10 +19479,10 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentStep?: NullableStringFieldUpdateOperationsInput | string | null
     error?: NullableStringFieldUpdateOperationsInput | string | null
-    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripPlanStatusUncheckedUpdateManyInput = {
@@ -15869,18 +19491,18 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentStep?: NullableStringFieldUpdateOperationsInput | string | null
     error?: NullableStringFieldUpdateOperationsInput | string | null
-    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripPlanOutputCreateInput = {
     id?: string
     itinerary: string
     summary?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: string | null
+    updatedAt?: string | null
     tripPlan: TripPlanCreateNestedOneWithoutOutputInput
   }
 
@@ -15889,16 +19511,16 @@ export namespace Prisma {
     tripPlanId: string
     itinerary: string
     summary?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TripPlanOutputUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     itinerary?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
     tripPlan?: TripPlanUpdateOneRequiredWithoutOutputNestedInput
   }
 
@@ -15907,8 +19529,8 @@ export namespace Prisma {
     tripPlanId?: StringFieldUpdateOperationsInput | string
     itinerary?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripPlanOutputCreateManyInput = {
@@ -15916,16 +19538,16 @@ export namespace Prisma {
     tripPlanId: string
     itinerary: string
     summary?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TripPlanOutputUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     itinerary?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripPlanOutputUncheckedUpdateManyInput = {
@@ -15933,8 +19555,8 @@ export namespace Prisma {
     tripPlanId?: StringFieldUpdateOperationsInput | string
     itinerary?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripPlanCreateInput = {
@@ -15949,16 +19571,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -15981,16 +19603,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -16013,16 +19635,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16045,16 +19667,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16077,16 +19699,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -16107,16 +19729,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16136,16 +19758,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16154,85 +19776,85 @@ export namespace Prisma {
     userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type plan_tasksCreateInput = {
+  export type PlanTaskCreateInput = {
     trip_plan_id: string
     task_type: string
-    status: $Enums.plan_task_status
-    input_data: JsonNullValueInput | InputJsonValue
-    output_data?: NullableJsonNullValueInput | InputJsonValue
+    status?: string
+    input_data?: string
+    output_data?: string | null
     error_message?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
+    created_at?: string | null
+    updated_at?: string | null
   }
 
-  export type plan_tasksUncheckedCreateInput = {
+  export type PlanTaskUncheckedCreateInput = {
     id?: number
     trip_plan_id: string
     task_type: string
-    status: $Enums.plan_task_status
-    input_data: JsonNullValueInput | InputJsonValue
-    output_data?: NullableJsonNullValueInput | InputJsonValue
+    status?: string
+    input_data?: string
+    output_data?: string | null
     error_message?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
+    created_at?: string | null
+    updated_at?: string | null
   }
 
-  export type plan_tasksUpdateInput = {
+  export type PlanTaskUpdateInput = {
     trip_plan_id?: StringFieldUpdateOperationsInput | string
     task_type?: StringFieldUpdateOperationsInput | string
-    status?: Enumplan_task_statusFieldUpdateOperationsInput | $Enums.plan_task_status
-    input_data?: JsonNullValueInput | InputJsonValue
-    output_data?: NullableJsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    input_data?: StringFieldUpdateOperationsInput | string
+    output_data?: NullableStringFieldUpdateOperationsInput | string | null
     error_message?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_at?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type plan_tasksUncheckedUpdateInput = {
+  export type PlanTaskUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     trip_plan_id?: StringFieldUpdateOperationsInput | string
     task_type?: StringFieldUpdateOperationsInput | string
-    status?: Enumplan_task_statusFieldUpdateOperationsInput | $Enums.plan_task_status
-    input_data?: JsonNullValueInput | InputJsonValue
-    output_data?: NullableJsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    input_data?: StringFieldUpdateOperationsInput | string
+    output_data?: NullableStringFieldUpdateOperationsInput | string | null
     error_message?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_at?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type plan_tasksCreateManyInput = {
+  export type PlanTaskCreateManyInput = {
     id?: number
     trip_plan_id: string
     task_type: string
-    status: $Enums.plan_task_status
-    input_data: JsonNullValueInput | InputJsonValue
-    output_data?: NullableJsonNullValueInput | InputJsonValue
+    status?: string
+    input_data?: string
+    output_data?: string | null
     error_message?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
+    created_at?: string | null
+    updated_at?: string | null
   }
 
-  export type plan_tasksUpdateManyMutationInput = {
+  export type PlanTaskUpdateManyMutationInput = {
     trip_plan_id?: StringFieldUpdateOperationsInput | string
     task_type?: StringFieldUpdateOperationsInput | string
-    status?: Enumplan_task_statusFieldUpdateOperationsInput | $Enums.plan_task_status
-    input_data?: JsonNullValueInput | InputJsonValue
-    output_data?: NullableJsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    input_data?: StringFieldUpdateOperationsInput | string
+    output_data?: NullableStringFieldUpdateOperationsInput | string | null
     error_message?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_at?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type plan_tasksUncheckedUpdateManyInput = {
+  export type PlanTaskUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     trip_plan_id?: StringFieldUpdateOperationsInput | string
     task_type?: StringFieldUpdateOperationsInput | string
-    status?: Enumplan_task_statusFieldUpdateOperationsInput | $Enums.plan_task_status
-    input_data?: JsonNullValueInput | InputJsonValue
-    output_data?: NullableJsonNullValueInput | InputJsonValue
+    status?: StringFieldUpdateOperationsInput | string
+    input_data?: StringFieldUpdateOperationsInput | string
+    output_data?: NullableStringFieldUpdateOperationsInput | string | null
     error_message?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_at?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PaymentMandateCreateInput = {
@@ -16245,8 +19867,8 @@ export namespace Prisma {
     publicKey: string
     scope: string
     status?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type PaymentMandateUncheckedCreateInput = {
@@ -16259,8 +19881,8 @@ export namespace Prisma {
     publicKey: string
     scope: string
     status?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type PaymentMandateUpdateInput = {
@@ -16273,8 +19895,8 @@ export namespace Prisma {
     publicKey?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PaymentMandateUncheckedUpdateInput = {
@@ -16287,8 +19909,8 @@ export namespace Prisma {
     publicKey?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PaymentMandateCreateManyInput = {
@@ -16301,8 +19923,8 @@ export namespace Prisma {
     publicKey: string
     scope: string
     status?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type PaymentMandateUpdateManyMutationInput = {
@@ -16315,8 +19937,8 @@ export namespace Prisma {
     publicKey?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PaymentMandateUncheckedUpdateManyInput = {
@@ -16329,8 +19951,8 @@ export namespace Prisma {
     publicKey?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TransactionSplitCreateInput = {
@@ -16343,8 +19965,10 @@ export namespace Prisma {
     user1Amount: number
     user2Amount: number
     status?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    escrowStatus?: string
+    splitMode?: string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TransactionSplitUncheckedCreateInput = {
@@ -16357,8 +19981,10 @@ export namespace Prisma {
     user1Amount: number
     user2Amount: number
     status?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    escrowStatus?: string
+    splitMode?: string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TransactionSplitUpdateInput = {
@@ -16371,8 +19997,10 @@ export namespace Prisma {
     user1Amount?: FloatFieldUpdateOperationsInput | number
     user2Amount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    escrowStatus?: StringFieldUpdateOperationsInput | string
+    splitMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TransactionSplitUncheckedUpdateInput = {
@@ -16385,8 +20013,10 @@ export namespace Prisma {
     user1Amount?: FloatFieldUpdateOperationsInput | number
     user2Amount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    escrowStatus?: StringFieldUpdateOperationsInput | string
+    splitMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TransactionSplitCreateManyInput = {
@@ -16399,8 +20029,10 @@ export namespace Prisma {
     user1Amount: number
     user2Amount: number
     status?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    escrowStatus?: string
+    splitMode?: string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TransactionSplitUpdateManyMutationInput = {
@@ -16413,8 +20045,10 @@ export namespace Prisma {
     user1Amount?: FloatFieldUpdateOperationsInput | number
     user2Amount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    escrowStatus?: StringFieldUpdateOperationsInput | string
+    splitMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TransactionSplitUncheckedUpdateManyInput = {
@@ -16427,14 +20061,247 @@ export namespace Prisma {
     user1Amount?: FloatFieldUpdateOperationsInput | number
     user2Amount?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    escrowStatus?: StringFieldUpdateOperationsInput | string
+    splitMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserRatingCreateInput = {
+    id?: string
+    raterId: string
+    rateeId: string
+    rating: number
+    tags?: string
+    comment?: string | null
+    createdAt?: string | null
+  }
+
+  export type UserRatingUncheckedCreateInput = {
+    id?: string
+    raterId: string
+    rateeId: string
+    rating: number
+    tags?: string
+    comment?: string | null
+    createdAt?: string | null
+  }
+
+  export type UserRatingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    raterId?: StringFieldUpdateOperationsInput | string
+    rateeId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    tags?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserRatingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    raterId?: StringFieldUpdateOperationsInput | string
+    rateeId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    tags?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserRatingCreateManyInput = {
+    id?: string
+    raterId: string
+    rateeId: string
+    rating: number
+    tags?: string
+    comment?: string | null
+    createdAt?: string | null
+  }
+
+  export type UserRatingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    raterId?: StringFieldUpdateOperationsInput | string
+    rateeId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    tags?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserRatingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    raterId?: StringFieldUpdateOperationsInput | string
+    rateeId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    tags?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LocationDareCreateInput = {
+    id?: string
+    title: string
+    description: string
+    latitude: number
+    longitude: number
+    radiusMeters?: number
+    pointsReward?: number
+    targetCity: string
+    isSponsored?: boolean
+    sponsorName?: string | null
+  }
+
+  export type LocationDareUncheckedCreateInput = {
+    id?: string
+    title: string
+    description: string
+    latitude: number
+    longitude: number
+    radiusMeters?: number
+    pointsReward?: number
+    targetCity: string
+    isSponsored?: boolean
+    sponsorName?: string | null
+  }
+
+  export type LocationDareUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    radiusMeters?: FloatFieldUpdateOperationsInput | number
+    pointsReward?: IntFieldUpdateOperationsInput | number
+    targetCity?: StringFieldUpdateOperationsInput | string
+    isSponsored?: BoolFieldUpdateOperationsInput | boolean
+    sponsorName?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LocationDareUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    radiusMeters?: FloatFieldUpdateOperationsInput | number
+    pointsReward?: IntFieldUpdateOperationsInput | number
+    targetCity?: StringFieldUpdateOperationsInput | string
+    isSponsored?: BoolFieldUpdateOperationsInput | boolean
+    sponsorName?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LocationDareCreateManyInput = {
+    id?: string
+    title: string
+    description: string
+    latitude: number
+    longitude: number
+    radiusMeters?: number
+    pointsReward?: number
+    targetCity: string
+    isSponsored?: boolean
+    sponsorName?: string | null
+  }
+
+  export type LocationDareUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    radiusMeters?: FloatFieldUpdateOperationsInput | number
+    pointsReward?: IntFieldUpdateOperationsInput | number
+    targetCity?: StringFieldUpdateOperationsInput | string
+    isSponsored?: BoolFieldUpdateOperationsInput | boolean
+    sponsorName?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LocationDareUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    radiusMeters?: FloatFieldUpdateOperationsInput | number
+    pointsReward?: IntFieldUpdateOperationsInput | number
+    targetCity?: StringFieldUpdateOperationsInput | string
+    isSponsored?: BoolFieldUpdateOperationsInput | boolean
+    sponsorName?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserDareStatusCreateInput = {
+    id?: string
+    userId: string
+    companionId?: string | null
+    dareId: string
+    status?: string
+    completedAt?: string | null
+    createdAt?: string | null
+  }
+
+  export type UserDareStatusUncheckedCreateInput = {
+    id?: string
+    userId: string
+    companionId?: string | null
+    dareId: string
+    status?: string
+    completedAt?: string | null
+    createdAt?: string | null
+  }
+
+  export type UserDareStatusUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    companionId?: NullableStringFieldUpdateOperationsInput | string | null
+    dareId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserDareStatusUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    companionId?: NullableStringFieldUpdateOperationsInput | string | null
+    dareId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserDareStatusCreateManyInput = {
+    id?: string
+    userId: string
+    companionId?: string | null
+    dareId: string
+    status?: string
+    completedAt?: string | null
+    createdAt?: string | null
+  }
+
+  export type UserDareStatusUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    companionId?: NullableStringFieldUpdateOperationsInput | string | null
+    dareId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserDareStatusUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    companionId?: NullableStringFieldUpdateOperationsInput | string | null
+    dareId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -16442,7 +20309,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -16453,8 +20319,8 @@ export namespace Prisma {
 
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -16462,14 +20328,13 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -16544,8 +20409,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -16553,7 +20418,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -16570,8 +20434,8 @@ export namespace Prisma {
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -16579,7 +20443,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
@@ -16588,8 +20451,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -16640,8 +20503,8 @@ export namespace Prisma {
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -16699,8 +20562,8 @@ export namespace Prisma {
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -16829,8 +20692,8 @@ export namespace Prisma {
 
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -16840,8 +20703,8 @@ export namespace Prisma {
 
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -16849,31 +20712,15 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
-  }
-
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type IntNullableListFilter<$PrismaModel = never> = {
-    equals?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    has?: number | IntFieldRefInput<$PrismaModel> | null
-    hasEvery?: number[] | ListIntFieldRefInput<$PrismaModel>
-    hasSome?: number[] | ListIntFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
   }
 
   export type UserNullableScalarRelationFilter = {
@@ -16927,7 +20774,6 @@ export namespace Prisma {
     children?: SortOrder
     budget?: SortOrder
     rooms?: SortOrder
-    pace?: SortOrder
   }
 
   export type TripPlanMaxOrderByAggregateInput = {
@@ -16942,12 +20788,16 @@ export namespace Prisma {
     experiencingWith?: SortOrder
     adults?: SortOrder
     children?: SortOrder
+    ageGroups?: SortOrder
     budget?: SortOrder
     budgetCurrency?: SortOrder
     experienceStyle?: SortOrder
     budgetFlexible?: SortOrder
+    vibes?: SortOrder
+    priorities?: SortOrder
     interests?: SortOrder
     rooms?: SortOrder
+    pace?: SortOrder
     beenThereBefore?: SortOrder
     lovedPlaces?: SortOrder
     additionalInfo?: SortOrder
@@ -16968,12 +20818,16 @@ export namespace Prisma {
     experiencingWith?: SortOrder
     adults?: SortOrder
     children?: SortOrder
+    ageGroups?: SortOrder
     budget?: SortOrder
     budgetCurrency?: SortOrder
     experienceStyle?: SortOrder
     budgetFlexible?: SortOrder
+    vibes?: SortOrder
+    priorities?: SortOrder
     interests?: SortOrder
     rooms?: SortOrder
+    pace?: SortOrder
     beenThereBefore?: SortOrder
     lovedPlaces?: SortOrder
     additionalInfo?: SortOrder
@@ -16988,13 +20842,12 @@ export namespace Prisma {
     children?: SortOrder
     budget?: SortOrder
     rooms?: SortOrder
-    pace?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -17009,8 +20862,8 @@ export namespace Prisma {
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -17025,8 +20878,8 @@ export namespace Prisma {
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -17039,60 +20892,7 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type Enumplan_task_statusFilter<$PrismaModel = never> = {
-    equals?: $Enums.plan_task_status | Enumplan_task_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.plan_task_status[] | ListEnumplan_task_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.plan_task_status[] | ListEnumplan_task_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumplan_task_statusFilter<$PrismaModel> | $Enums.plan_task_status
-  }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-  export type JsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-
-  export type plan_tasksCountOrderByAggregateInput = {
+  export type PlanTaskCountOrderByAggregateInput = {
     id?: SortOrder
     trip_plan_id?: SortOrder
     task_type?: SortOrder
@@ -17104,94 +20904,36 @@ export namespace Prisma {
     updated_at?: SortOrder
   }
 
-  export type plan_tasksAvgOrderByAggregateInput = {
+  export type PlanTaskAvgOrderByAggregateInput = {
     id?: SortOrder
   }
 
-  export type plan_tasksMaxOrderByAggregateInput = {
+  export type PlanTaskMaxOrderByAggregateInput = {
     id?: SortOrder
     trip_plan_id?: SortOrder
     task_type?: SortOrder
     status?: SortOrder
+    input_data?: SortOrder
+    output_data?: SortOrder
     error_message?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type plan_tasksMinOrderByAggregateInput = {
+  export type PlanTaskMinOrderByAggregateInput = {
     id?: SortOrder
     trip_plan_id?: SortOrder
     task_type?: SortOrder
     status?: SortOrder
+    input_data?: SortOrder
+    output_data?: SortOrder
     error_message?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type plan_tasksSumOrderByAggregateInput = {
+  export type PlanTaskSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type Enumplan_task_statusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.plan_task_status | Enumplan_task_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.plan_task_status[] | ListEnumplan_task_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.plan_task_status[] | ListEnumplan_task_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumplan_task_statusWithAggregatesFilter<$PrismaModel> | $Enums.plan_task_status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumplan_task_statusFilter<$PrismaModel>
-    _max?: NestedEnumplan_task_statusFilter<$PrismaModel>
-  }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
-  }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type PaymentMandateCountOrderByAggregateInput = {
@@ -17254,6 +20996,8 @@ export namespace Prisma {
     user1Amount?: SortOrder
     user2Amount?: SortOrder
     status?: SortOrder
+    escrowStatus?: SortOrder
+    splitMode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17274,6 +21018,8 @@ export namespace Prisma {
     user1Amount?: SortOrder
     user2Amount?: SortOrder
     status?: SortOrder
+    escrowStatus?: SortOrder
+    splitMode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17288,6 +21034,8 @@ export namespace Prisma {
     user1Amount?: SortOrder
     user2Amount?: SortOrder
     status?: SortOrder
+    escrowStatus?: SortOrder
+    splitMode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17296,6 +21044,127 @@ export namespace Prisma {
     totalAmount?: SortOrder
     user1Amount?: SortOrder
     user2Amount?: SortOrder
+  }
+
+  export type UserRatingCountOrderByAggregateInput = {
+    id?: SortOrder
+    raterId?: SortOrder
+    rateeId?: SortOrder
+    rating?: SortOrder
+    tags?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserRatingAvgOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type UserRatingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    raterId?: SortOrder
+    rateeId?: SortOrder
+    rating?: SortOrder
+    tags?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserRatingMinOrderByAggregateInput = {
+    id?: SortOrder
+    raterId?: SortOrder
+    rateeId?: SortOrder
+    rating?: SortOrder
+    tags?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserRatingSumOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type LocationDareCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    radiusMeters?: SortOrder
+    pointsReward?: SortOrder
+    targetCity?: SortOrder
+    isSponsored?: SortOrder
+    sponsorName?: SortOrder
+  }
+
+  export type LocationDareAvgOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
+    radiusMeters?: SortOrder
+    pointsReward?: SortOrder
+  }
+
+  export type LocationDareMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    radiusMeters?: SortOrder
+    pointsReward?: SortOrder
+    targetCity?: SortOrder
+    isSponsored?: SortOrder
+    sponsorName?: SortOrder
+  }
+
+  export type LocationDareMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    radiusMeters?: SortOrder
+    pointsReward?: SortOrder
+    targetCity?: SortOrder
+    isSponsored?: SortOrder
+    sponsorName?: SortOrder
+  }
+
+  export type LocationDareSumOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
+    radiusMeters?: SortOrder
+    pointsReward?: SortOrder
+  }
+
+  export type UserDareStatusCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    companionId?: SortOrder
+    dareId?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserDareStatusMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    companionId?: SortOrder
+    dareId?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserDareStatusMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    companionId?: SortOrder
+    dareId?: SortOrder
+    status?: SortOrder
+    completedAt?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type AccountCreateNestedManyWithoutUserInput = {
@@ -17500,22 +21369,6 @@ export namespace Prisma {
     update?: XOR<XOR<TripPlanUpdateToOneWithWhereWithoutOutputInput, TripPlanUpdateWithoutOutputInput>, TripPlanUncheckedUpdateWithoutOutputInput>
   }
 
-  export type TripPlanCreateageGroupsInput = {
-    set: string[]
-  }
-
-  export type TripPlanCreatevibesInput = {
-    set: string[]
-  }
-
-  export type TripPlanCreateprioritiesInput = {
-    set: string[]
-  }
-
-  export type TripPlanCreatepaceInput = {
-    set: number[]
-  }
-
   export type UserCreateNestedOneWithoutTripPlansInput = {
     create?: XOR<UserCreateWithoutTripPlansInput, UserUncheckedCreateWithoutTripPlansInput>
     connectOrCreate?: UserCreateOrConnectWithoutTripPlansInput
@@ -17562,32 +21415,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type TripPlanUpdateageGroupsInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type TripPlanUpdatevibesInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type TripPlanUpdateprioritiesInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type TripPlanUpdatepaceInput = {
-    set?: number[]
-    push?: number | number[]
   }
 
   export type UserUpdateOneWithoutTripPlansNestedInput = {
@@ -17640,14 +21473,10 @@ export namespace Prisma {
     update?: XOR<XOR<TripPlanOutputUpdateToOneWithWhereWithoutTripPlanInput, TripPlanOutputUpdateWithoutTripPlanInput>, TripPlanOutputUncheckedUpdateWithoutTripPlanInput>
   }
 
-  export type Enumplan_task_statusFieldUpdateOperationsInput = {
-    set?: $Enums.plan_task_status
-  }
-
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -17665,8 +21494,8 @@ export namespace Prisma {
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -17679,8 +21508,8 @@ export namespace Prisma {
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -17690,8 +21519,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -17707,8 +21536,8 @@ export namespace Prisma {
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -17726,8 +21555,8 @@ export namespace Prisma {
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -17743,8 +21572,8 @@ export namespace Prisma {
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -17754,8 +21583,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -17768,8 +21597,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -17779,8 +21608,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -17793,8 +21622,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -17804,8 +21633,8 @@ export namespace Prisma {
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -17820,8 +21649,8 @@ export namespace Prisma {
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -17831,8 +21660,8 @@ export namespace Prisma {
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -17847,8 +21676,8 @@ export namespace Prisma {
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -17859,69 +21688,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type NestedEnumplan_task_statusFilter<$PrismaModel = never> = {
-    equals?: $Enums.plan_task_status | Enumplan_task_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.plan_task_status[] | ListEnumplan_task_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.plan_task_status[] | ListEnumplan_task_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumplan_task_statusFilter<$PrismaModel> | $Enums.plan_task_status
-  }
-
-  export type NestedEnumplan_task_statusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.plan_task_status | Enumplan_task_statusFieldRefInput<$PrismaModel>
-    in?: $Enums.plan_task_status[] | ListEnumplan_task_statusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.plan_task_status[] | ListEnumplan_task_statusFieldRefInput<$PrismaModel>
-    not?: NestedEnumplan_task_statusWithAggregatesFilter<$PrismaModel> | $Enums.plan_task_status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumplan_task_statusFilter<$PrismaModel>
-    _max?: NestedEnumplan_task_statusFilter<$PrismaModel>
-  }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-  export type NestedJsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -17961,7 +21727,6 @@ export namespace Prisma {
 
   export type AccountCreateManyUserInputEnvelope = {
     data: AccountCreateManyUserInput | AccountCreateManyUserInput[]
-    skipDuplicates?: boolean
   }
 
   export type SessionCreateWithoutUserInput = {
@@ -17991,7 +21756,6 @@ export namespace Prisma {
 
   export type SessionCreateManyUserInputEnvelope = {
     data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
-    skipDuplicates?: boolean
   }
 
   export type TripPlanCreateWithoutUserInput = {
@@ -18006,16 +21770,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -18037,16 +21801,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -18063,7 +21827,6 @@ export namespace Prisma {
 
   export type TripPlanCreateManyUserInputEnvelope = {
     data: TripPlanCreateManyUserInput | TripPlanCreateManyUserInput[]
-    skipDuplicates?: boolean
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -18162,16 +21925,16 @@ export namespace Prisma {
     experiencingWith?: StringFilter<"TripPlan"> | string
     adults?: IntFilter<"TripPlan"> | number
     children?: IntFilter<"TripPlan"> | number
-    ageGroups?: StringNullableListFilter<"TripPlan">
+    ageGroups?: StringFilter<"TripPlan"> | string
     budget?: FloatFilter<"TripPlan"> | number
     budgetCurrency?: StringFilter<"TripPlan"> | string
     experienceStyle?: StringFilter<"TripPlan"> | string
     budgetFlexible?: BoolFilter<"TripPlan"> | boolean
-    vibes?: StringNullableListFilter<"TripPlan">
-    priorities?: StringNullableListFilter<"TripPlan">
+    vibes?: StringFilter<"TripPlan"> | string
+    priorities?: StringFilter<"TripPlan"> | string
     interests?: StringNullableFilter<"TripPlan"> | string | null
     rooms?: IntFilter<"TripPlan"> | number
-    pace?: IntNullableListFilter<"TripPlan">
+    pace?: StringFilter<"TripPlan"> | string
     beenThereBefore?: StringNullableFilter<"TripPlan"> | string | null
     lovedPlaces?: StringNullableFilter<"TripPlan"> | string | null
     additionalInfo?: StringNullableFilter<"TripPlan"> | string | null
@@ -18320,16 +22083,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -18351,16 +22114,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -18398,16 +22161,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18429,16 +22192,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18460,16 +22223,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -18491,16 +22254,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -18538,16 +22301,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18569,16 +22332,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18622,10 +22385,10 @@ export namespace Prisma {
     status?: string
     currentStep?: string | null
     error?: string | null
-    startedAt?: Date | string | null
-    completedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startedAt?: string | null
+    completedAt?: string | null
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TripPlanStatusUncheckedCreateWithoutTripPlanInput = {
@@ -18633,10 +22396,10 @@ export namespace Prisma {
     status?: string
     currentStep?: string | null
     error?: string | null
-    startedAt?: Date | string | null
-    completedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startedAt?: string | null
+    completedAt?: string | null
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TripPlanStatusCreateOrConnectWithoutTripPlanInput = {
@@ -18648,16 +22411,16 @@ export namespace Prisma {
     id?: string
     itinerary: string
     summary?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TripPlanOutputUncheckedCreateWithoutTripPlanInput = {
     id?: string
     itinerary: string
     summary?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: string | null
+    updatedAt?: string | null
   }
 
   export type TripPlanOutputCreateOrConnectWithoutTripPlanInput = {
@@ -18716,10 +22479,10 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentStep?: NullableStringFieldUpdateOperationsInput | string | null
     error?: NullableStringFieldUpdateOperationsInput | string | null
-    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripPlanStatusUncheckedUpdateWithoutTripPlanInput = {
@@ -18727,10 +22490,10 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentStep?: NullableStringFieldUpdateOperationsInput | string | null
     error?: NullableStringFieldUpdateOperationsInput | string | null
-    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    completedAt?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripPlanOutputUpsertWithoutTripPlanInput = {
@@ -18748,16 +22511,16 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     itinerary?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripPlanOutputUncheckedUpdateWithoutTripPlanInput = {
     id?: StringFieldUpdateOperationsInput | string
     itinerary?: StringFieldUpdateOperationsInput | string
     summary?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AccountCreateManyUserInput = {
@@ -18797,16 +22560,16 @@ export namespace Prisma {
     experiencingWith: string
     adults?: number
     children?: number
-    ageGroups?: TripPlanCreateageGroupsInput | string[]
+    ageGroups?: string
     budget: number
     budgetCurrency?: string
     experienceStyle: string
     budgetFlexible?: boolean
-    vibes?: TripPlanCreatevibesInput | string[]
-    priorities?: TripPlanCreateprioritiesInput | string[]
+    vibes?: string
+    priorities?: string
     interests?: string | null
     rooms?: number
-    pace?: TripPlanCreatepaceInput | number[]
+    pace?: string
     beenThereBefore?: string | null
     lovedPlaces?: string | null
     additionalInfo?: string | null
@@ -18901,16 +22664,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18932,16 +22695,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18963,16 +22726,16 @@ export namespace Prisma {
     experiencingWith?: StringFieldUpdateOperationsInput | string
     adults?: IntFieldUpdateOperationsInput | number
     children?: IntFieldUpdateOperationsInput | number
-    ageGroups?: TripPlanUpdateageGroupsInput | string[]
+    ageGroups?: StringFieldUpdateOperationsInput | string
     budget?: FloatFieldUpdateOperationsInput | number
     budgetCurrency?: StringFieldUpdateOperationsInput | string
     experienceStyle?: StringFieldUpdateOperationsInput | string
     budgetFlexible?: BoolFieldUpdateOperationsInput | boolean
-    vibes?: TripPlanUpdatevibesInput | string[]
-    priorities?: TripPlanUpdateprioritiesInput | string[]
+    vibes?: StringFieldUpdateOperationsInput | string
+    priorities?: StringFieldUpdateOperationsInput | string
     interests?: NullableStringFieldUpdateOperationsInput | string | null
     rooms?: IntFieldUpdateOperationsInput | number
-    pace?: TripPlanUpdatepaceInput | number[]
+    pace?: StringFieldUpdateOperationsInput | string
     beenThereBefore?: NullableStringFieldUpdateOperationsInput | string | null
     lovedPlaces?: NullableStringFieldUpdateOperationsInput | string | null
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null

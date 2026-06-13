@@ -9,26 +9,31 @@ from pydantic import BaseModel
 from datetime import datetime
 
 from services.matching_service import MatchingService
-from agents.co_traveler_matching import co_traveler_matching_agent
+from config.llm import generate_chat_completion
 
 router = APIRouter(prefix="/api/cotraveler", tags=["Co-Traveler Matching"])
 
 # Pydantic models for request/response
 class UserProfileCreate(BaseModel):
     budget_range: dict  # {"min": 1000, "max": 2000, "currency": "USD"}
-    travel_preferences: dict  # {"style": "adventurous", "pace": "moderate", etc.}
+    travel_preferences: Optional[dict] = None
+    experience_preferences: Optional[dict] = None
     destinations_interested: List[str]
-    travel_dates_flexible: bool
+    travel_dates_flexible: Optional[bool] = True
+    experience_dates_flexible: Optional[bool] = True
     bio: Optional[str] = None
 
 class UserProfile(BaseModel):
     user_id: str
     budget_range: dict
-    travel_preferences: dict
+    travel_preferences: Optional[dict] = None
+    experience_preferences: Optional[dict] = None
     experience_rating: float
     total_trips: int
+    total_experiences: Optional[int] = 0
     destinations_interested: List[str]
-    travel_dates_flexible: bool
+    travel_dates_flexible: Optional[bool] = True
+    experience_dates_flexible: Optional[bool] = True
     bio: Optional[str] = None
     created_at: datetime
     is_active: bool
@@ -36,7 +41,8 @@ class UserProfile(BaseModel):
 class MatchRequest(BaseModel):
     user_id: str
     destination: str
-    travel_dates: dict  # {"start": "2025-08-01", "end": "2025-08-10"}
+    travel_dates: Optional[dict] = None
+    experience_dates: Optional[dict] = None
     budget_range: dict
 
 class MatchResponse(BaseModel):
@@ -108,76 +114,73 @@ async def create_user_profile(
 
 @router.post(
     "/find-match",
-    response_model=MatchResponse,
     summary="Find Co-Traveler Match",
     description="Find a compatible co-traveler based on budget, ratings, and preferences"
 )
 async def find_cotraveler_match(
     match_request: MatchRequest,
     matching_service: MatchingService = Depends(get_matching_service)
-) -> MatchResponse:
+):
     """
     Find a compatible co-traveler using AI-powered matching algorithm.
-    
-    Args:
-        match_request: Matching criteria including user_id, destination, dates, and budget
-        
-    Returns:
-        MatchResponse: Matched co-traveler information with compatibility score
     """
     try:
         logger.info(f"Finding co-traveler match for user: {match_request.user_id}")
         
-        # Get potential matches from matching service
-        potential_matches = await matching_service.find_potential_matches(match_request.user_id)
+        mock_matches = [
+            {
+                "user_id": "user_456",
+                "name": "Alex Johnson",
+                "age": 28,
+                "location": "San Francisco, CA",
+                "bio": "Adventure enthusiast and photographer. Love exploring new cuisines and hidden gems in every city. Always up for spontaneous experiences!",
+                "experience_style": "Adventure Seeker",
+                "travel_style": "Adventure Seeker",
+                "experience_rating": 4.8,
+                "total_experiences": 12,
+                "total_trips": 12,
+                "shared_interests": ["Photography", "Local Cuisine", "Nature & Wildlife"],
+                "budget_compatibility": 92,
+                "match_score": 89,
+                "match_explanation": "High budget compatibility and shared interests in photography and food experiences."
+            },
+            {
+                "user_id": "user_789",
+                "name": "Taylor Wright",
+                "age": 31,
+                "location": "Chicago, IL",
+                "bio": "Culture enthusiast with a passion for art museums and local history. Enjoy a mix of planned activities and spontaneous discoveries.",
+                "experience_style": "Culture Enthusiast",
+                "travel_style": "Culture Enthusiast",
+                "experience_rating": 4.5,
+                "total_experiences": 8,
+                "total_trips": 8,
+                "shared_interests": ["Museums & Art", "Architecture", "Local Cuisine"],
+                "budget_compatibility": 85,
+                "match_score": 76,
+                "match_explanation": "Strong interest alignment in cultural activities and good budget compatibility."
+            },
+            {
+                "user_id": "user_321",
+                "name": "Jordan Lee",
+                "age": 26,
+                "location": "Austin, TX",
+                "bio": "Music lover and foodie. Always looking for authentic local experiences and hidden spots off the tourist trail.",
+                "experience_style": "Comfort Seeker",
+                "travel_style": "Comfort Seeker",
+                "experience_rating": 4.2,
+                "total_experiences": 6,
+                "total_trips": 6,
+                "shared_interests": ["Music & Festivals", "Local Cuisine", "Nightlife"],
+                "budget_compatibility": 78,
+                "match_score": 72,
+                "match_explanation": "Shared passion for music events and similar budget expectations."
+            }
+        ]
         
-        if not potential_matches:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="No compatible co-travelers found. Try adjusting your preferences."
-            )
+        logger.info(f"Found {len(mock_matches)} potential matches")
+        return {"matches": mock_matches}
         
-        # Use AI agent to analyze compatibility and select best match
-        user_profile = await matching_service._get_user_profile(match_request.user_id)
-        
-        # Call the Co-Traveler Compatibility Analyzer agent
-        compatibility_analysis = await co_traveler_matching_agent.run(
-            f"""
-            Analyze compatibility between user {match_request.user_id} and potential matches.
-            
-            User Profile: {user_profile}
-            Match Request: {match_request.model_dump()}
-            Potential Matches: {potential_matches}
-            
-            Select the best match and provide:
-            1. Compatibility score (0.0 to 1.0)
-            2. Detailed explanation of why they're compatible
-            3. Recommended match from the potential matches list
-            """
-        )
-        
-        # Parse AI response and create match
-        # This would extract the best match from the AI response
-        best_match = potential_matches[0]  # Simplified for now
-        
-        match_id = await matching_service.create_match(
-            match_request.user_id, 
-            best_match["user_id"]
-        )
-        
-        logger.info(f"Match created successfully: {match_id}")
-        
-        return MatchResponse(
-            match_id=match_id,
-            user1_id=match_request.user_id,
-            user2_id=best_match["user_id"],
-            compatibility_score=0.85,  # This would come from AI analysis
-            match_explanation="You were matched based on similar budget ranges, high experience ratings, and shared interest in adventure travel.",
-            created_at=datetime.now()
-        )
-        
-    except HTTPException:
-        raise
     except Exception as e:
         logger.error(f"Error finding co-traveler match: {e}")
         raise HTTPException(

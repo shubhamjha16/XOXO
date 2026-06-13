@@ -15,7 +15,7 @@ from services.plan_service import generate_travel_plan
 from services.matching_service import MatchingService
 from services.challenge_service import ChallengeService
 from repository.plan_task_repository import create_plan_task, update_task_status
-from agents.team import trip_planning_team
+from agents.langgraph_team import run_langgraph_workflow
 
 router = APIRouter(prefix="/api/social-plan", tags=["Social Travel Planning"])
 
@@ -107,16 +107,28 @@ async def create_social_travel_plan(
                         
                         logger.info(f"Co-traveler match created: {match_id}")
                 
-                # Step 2: Generate core travel plan using existing team
+                # Step 2: Generate core travel plan using LangGraph workflow
                 logger.info("Generating core travel itinerary")
-                core_plan_result = await trip_planning_team.run(
-                    f"""
-                    Create a detailed travel itinerary for:
-                    {request.enhanced_travel_plan.core_plan.model_dump()}
-                    
-                    {"Include considerations for two travelers sharing the experience." if cotraveler_match else ""}
-                    """
+                travel_request_str = f"""
+                Destination: {request.enhanced_travel_plan.core_plan.destination}
+                Dates: {request.enhanced_travel_plan.core_plan.travel_dates.start} to {request.enhanced_travel_plan.core_plan.travel_dates.end}
+                Budget: {request.enhanced_travel_plan.core_plan.budget} {request.enhanced_travel_plan.core_plan.budget_currency}
+                Style: {request.enhanced_travel_plan.core_plan.travel_style}
+                Interests: {request.enhanced_travel_plan.core_plan.interests}
+                Vibes: {', '.join(request.enhanced_travel_plan.core_plan.vibes)}
+                Priorities: {', '.join(request.enhanced_travel_plan.core_plan.priorities)}
+                Adults: {request.enhanced_travel_plan.core_plan.adults}, Children: {request.enhanced_travel_plan.core_plan.children}
+                Additional Info: {request.enhanced_travel_plan.core_plan.additional_info}
+                
+                {"Include considerations for two travelers sharing the experience." if cotraveler_match else ""}
+                """
+                
+                langgraph_result = await run_langgraph_workflow(
+                    trip_plan_id=request.trip_plan_id,
+                    travel_request_md=travel_request_str,
+                    destination=request.enhanced_travel_plan.core_plan.destination
                 )
+                core_plan_result = langgraph_result.get("accumulated_content", "") or "No itinerary generated."
                 
                 # Step 3: Generate adventure challenges (if requested)
                 if (request.enhanced_travel_plan.challenge_preferences and 

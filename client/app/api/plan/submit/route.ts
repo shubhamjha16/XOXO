@@ -24,16 +24,15 @@ interface TripFormData {
   beenThereBefore?: string;
   lovedPlaces?: string;
   additionalInfo?: string;
+  userId?: string | null;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const tripData: TripFormData = await request.json();
 
-    // Log the trip data for debugging
     console.log('Received trip planning data:', JSON.stringify(tripData, null, 2));
 
-    // Validate required fields
     if (!tripData.name || !tripData.destination || !tripData.startingLocation) {
       return NextResponse.json(
         {
@@ -44,7 +43,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Save to database
+    // SQLite stores arrays as JSON strings
     const savedTripPlan = await prisma.tripPlan.create({
       data: {
         name: tripData.name,
@@ -57,21 +56,20 @@ export async function POST(request: NextRequest) {
         experiencingWith: tripData.experiencingWith,
         adults: tripData.adults || 1,
         children: tripData.children || 0,
-        ageGroups: tripData.ageGroups || [],
+        ageGroups: JSON.stringify(tripData.ageGroups || []),
         budget: tripData.budget,
         budgetCurrency: tripData.budgetCurrency || "USD",
         experienceStyle: tripData.experienceStyle,
         budgetFlexible: tripData.budgetFlexible || false,
-        vibes: tripData.vibes || [],
-        priorities: tripData.priorities || [],
+        vibes: JSON.stringify(tripData.vibes || []),
+        priorities: JSON.stringify(tripData.priorities || []),
         interests: tripData.interests || null,
         rooms: tripData.rooms || 1,
-        pace: tripData.pace || [3],
+        pace: JSON.stringify(tripData.pace || [3]),
         beenThereBefore: tripData.beenThereBefore || null,
         lovedPlaces: tripData.lovedPlaces || null,
         additionalInfo: tripData.additionalInfo || null,
-        // userId can be added later when auth is implemented
-        userId: null
+        userId: tripData.userId || null,
       }
     });
 
@@ -106,38 +104,32 @@ export async function POST(request: NextRequest) {
         loved_places: tripData.lovedPlaces || "",
         additional_info: tripData.additionalInfo || ""
       }
+    };
+
+    // Try to call backend — don't fail if backend is down
+    try {
+      const backendUrl = process.env.BACKEND_API_URL || 'http://localhost:8000';
+      const backendResponse = await fetch(`${backendUrl}/api/plan/trigger`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody),
+        signal: AbortSignal.timeout(10000), // 10 second timeout
+      });
+
+      if (!backendResponse.ok) {
+        console.warn('Backend API error (non-fatal):', await backendResponse.text());
+      } else {
+        const responseData = await backendResponse.json();
+        console.log('Backend triggered successfully:', responseData);
+      }
+    } catch (backendErr) {
+      console.warn('Backend not reachable (non-fatal):', backendErr);
     }
-
-    console.log('Request body:', JSON.stringify(requestBody, null, 2));
-
-    // Call backend API to trigger trip planning
-    const backendResponse = await fetch(`${process.env.BACKEND_API_URL}/api/plan/trigger`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody)
-    });
-
-    if (!backendResponse.ok) {
-      console.error('Backend API error:', await backendResponse.text());
-      return NextResponse.json(
-        {
-          success: false,
-          message: 'Failed to trigger trip planning'
-        },
-        { status: 500 }
-      );
-    }
-
-    const responseData = await backendResponse.json();
-    console.log('Backend response:', JSON.stringify(responseData, null, 2));
 
     return NextResponse.json(
       {
         success: true,
-        message: 'Trip planning triggered successfully',
-        response: responseData,
+        message: 'Trip plan saved successfully',
         tripPlanId: savedTripPlan.id
       },
       { status: 200 }

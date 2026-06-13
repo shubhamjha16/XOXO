@@ -8,6 +8,11 @@ from services.safety_service import SafetyService
 
 router = APIRouter(prefix="/api/gamification", tags=["gamification"])
 
+# Dependency to adapt asynccontextmanager to FastAPI Depends
+async def get_db():
+    async with get_db_session() as session:
+        yield session
+
 # Models
 class DareCheckInRequest(BaseModel):
     user_id: str
@@ -34,7 +39,7 @@ async def get_nearby_dares(
     lat: float = Query(...),
     lng: float = Query(...),
     city: str = Query(...),
-    session: AsyncSession = Depends(get_db_session)
+    session: AsyncSession = Depends(get_db)
 ):
     service = DareService(session)
     try:
@@ -46,7 +51,7 @@ async def get_nearby_dares(
 @router.post("/dares/check-in")
 async def dare_check_in(
     request: DareCheckInRequest,
-    session: AsyncSession = Depends(get_db_session)
+    session: AsyncSession = Depends(get_db)
 ):
     service = DareService(session)
     result = await service.check_in_dare(
@@ -63,7 +68,7 @@ async def dare_check_in(
 @router.post("/safety/rate")
 async def submit_rating(
     request: UserRateRequest,
-    session: AsyncSession = Depends(get_db_session)
+    session: AsyncSession = Depends(get_db)
 ):
     service = SafetyService(session)
     result = await service.submit_rating(
@@ -80,7 +85,7 @@ async def submit_rating(
 @router.get("/safety/profile/{user_id}")
 async def get_safety_profile(
     user_id: str,
-    session: AsyncSession = Depends(get_db_session)
+    session: AsyncSession = Depends(get_db)
 ):
     service = SafetyService(session)
     try:
@@ -91,7 +96,7 @@ async def get_safety_profile(
 @router.post("/safety/escrow")
 async def update_escrow_status(
     request: EscrowActionRequest,
-    session: AsyncSession = Depends(get_db_session)
+    session: AsyncSession = Depends(get_db)
 ):
     service = SafetyService(session)
     result = await service.set_escrow_status(

@@ -33,6 +33,7 @@ import {
     Sparkles,
     Timer,
     Target,
+    Loader2,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -88,12 +89,122 @@ export default function ChallengesPage() {
     const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState("all");
 
+    // Geofenced Dares State
+    const [tripDestination, setTripDestination] = useState("Tokyo");
+    const [userCoords, setUserCoords] = useState<{ latitude: number; longitude: number } | null>({ latitude: 35.6586, longitude: 139.7454 });
+    const [isSimulated, setIsSimulated] = useState(true);
+    const [dares, setDares] = useState<any[]>([]);
+    const [daresLoading, setDaresLoading] = useState(false);
+
     useEffect(() => {
         if (tripId) {
             fetchChallenges();
             fetchProgress();
+            fetchTripDetails();
         }
     }, [tripId]);
+
+    const fetchTripDetails = async () => {
+        try {
+            const response = await fetch(`/api/plans/${tripId}`);
+            if (response.ok) {
+                const data = await response.json();
+                if (data.success && data.tripPlan) {
+                    setTripDestination(data.tripPlan.destination || "Tokyo");
+                }
+            }
+        } catch (e) {
+            console.error("Error fetching trip details:", e);
+        }
+    };
+
+    const fetchNearbyDares = async (lat: number, lng: number, city: string) => {
+        try {
+            setDaresLoading(true);
+            const response = await fetch(`/api/dares/nearby?lat=${lat}&lng=${lng}&city=${encodeURIComponent(city)}`);
+            if (response.ok) {
+                const data = await response.json();
+                setDares(data.dares || []);
+            }
+        } catch (error) {
+            console.error("Error fetching nearby dares:", error);
+        } finally {
+            setDaresLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (userCoords && tripDestination) {
+            fetchNearbyDares(userCoords.latitude, userCoords.longitude, tripDestination);
+        }
+    }, [userCoords?.latitude, userCoords?.longitude, tripDestination]);
+
+    const simulateLocation = (locationName: string) => {
+        let lat = 35.6586; // Tokyo Tower
+        let lng = 139.7454;
+        if (locationName === "shibuya") {
+            lat = 35.6595; // Shibuya Crossing
+            lng = 139.7005;
+        } else if (locationName === "hachiko") {
+            lat = 35.6591; // Hachiko
+            lng = 139.7007;
+        } else if (locationName === "far") {
+            lat = 35.6895; // Shinjuku (far from landmarks)
+            lng = 139.6917;
+        }
+        setUserCoords({ latitude: lat, longitude: lng });
+        setIsSimulated(true);
+        toast.info(`Simulated position: standing at ${locationName.toUpperCase()}`);
+    };
+
+    const useRealGPS = () => {
+        if (!navigator.geolocation) {
+            toast.error("Geolocation is not supported by your browser");
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                setUserCoords({ latitude: lat, longitude: lng });
+                setIsSimulated(false);
+                toast.success("Using real GPS coordinates");
+            },
+            (error) => {
+                console.error("GPS error:", error);
+                toast.error(`Failed to get location: ${error.message}`);
+            }
+        );
+    };
+
+    const handleGeofencedCheckIn = async (dareId: string, dareLat: number, dareLng: number) => {
+        try {
+            const response = await fetch("/api/dares/check-in", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    user_id: "user_123", // In a real app, retrieve from session
+                    companion_id: "user_456",
+                    dare_id: dareId,
+                    latitude: userCoords?.latitude || dareLat,
+                    longitude: userCoords?.longitude || dareLng
+                })
+            });
+            const result = await response.json();
+            if (result.success) {
+                toast.success(`Dare Completed! +${result.pointsReward} points awarded! 🌟🎉`);
+                if (userCoords) {
+                    await fetchNearbyDares(userCoords.latitude, userCoords.longitude, tripDestination);
+                }
+                await fetchProgress();
+            } else {
+                toast.error(result.message || "Failed to check in");
+            }
+        } catch (error) {
+            console.error("Error checking in:", error);
+            toast.error("Failed to check in");
+        }
+    };
 
     const fetchChallenges = async () => {
         try {
@@ -262,26 +373,124 @@ export default function ChallengesPage() {
 
             {/* Challenge Filters */}
             <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
-                <TabsList className="grid w-full grid-cols-5">
+                <TabsList className="grid w-full grid-cols-6">
                     <TabsTrigger value="all">All</TabsTrigger>
                     <TabsTrigger value="delivered">Active</TabsTrigger>
                     <TabsTrigger value="completed">Completed</TabsTrigger>
                     <TabsTrigger value="scheduled">Upcoming</TabsTrigger>
                     <TabsTrigger value="skipped">Skipped</TabsTrigger>
+                    <TabsTrigger value="geofenced">📍 Dares</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value={activeTab} className="mt-6">
-                    <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-xl font-semibold">
-                            {activeTab === "all"
-                                ? "All Challenges"
-                                : `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Challenges`}
-                        </h2>
-                        <Button onClick={generateMoreChallenges} variant="outline">
-                            <Sparkles className="w-4 h-4 mr-2" />
-                            Generate More
-                        </Button>
-                    </div>
+                    {activeTab === "geofenced" ? (
+                        <div className="space-y-6">
+                            {/* GPS simulation control panel */}
+                            <Card className="border-primary/20 bg-primary/5">
+                                <CardHeader className="pb-3">
+                                    <CardTitle className="text-lg flex items-center gap-2">
+                                        <MapPin className="w-5 h-5 text-primary" />
+                                        Gamified Geolocation Sandbox
+                                    </CardTitle>
+                                    <CardDescription>
+                                        Simulate standing at different locations in {tripDestination} to trigger geofence proximity unlocking (within 50-100m).
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent className="space-y-4">
+                                    <div className="flex flex-wrap gap-2">
+                                        <Button size="sm" variant={userCoords?.latitude === 35.6586 ? "default" : "outline"} onClick={() => simulateLocation("tokyo_tower")}>
+                                            🗼 Tokyo Tower
+                                        </Button>
+                                        <Button size="sm" variant={userCoords?.latitude === 35.6595 ? "default" : "outline"} onClick={() => simulateLocation("shibuya")}>
+                                            🚶 Shibuya Crossing
+                                        </Button>
+                                        <Button size="sm" variant={userCoords?.latitude === 35.6591 ? "default" : "outline"} onClick={() => simulateLocation("hachiko")}>
+                                            🐕 Hachiko Statue
+                                        </Button>
+                                        <Button size="sm" variant={userCoords?.latitude === 35.6895 ? "default" : "outline"} onClick={() => simulateLocation("far")}>
+                                            🏢 Shinjuku (Out of Range)
+                                        </Button>
+                                        <Button size="sm" variant={!isSimulated ? "default" : "outline"} onClick={useRealGPS} className="bg-green-600 hover:bg-green-700 text-white border-0">
+                                            📡 Use My Real GPS
+                                        </Button>
+                                    </div>
+                                    {userCoords && (
+                                        <div className="text-xs text-muted-foreground bg-background p-2 rounded border border-border">
+                                            <strong>Current Coordinates:</strong> Latitude: {userCoords.latitude.toFixed(5)}, Longitude: {userCoords.longitude.toFixed(5)} ({isSimulated ? "Simulated" : "Real GPS"})
+                                        </div>
+                                    )}
+                                </CardContent>
+                            </Card>
+
+                            {/* Dares list */}
+                            {daresLoading ? (
+                                <div className="text-center py-12">
+                                    <Loader2 size={32} className="animate-spin text-primary mx-auto mb-2" />
+                                    <p className="text-muted-foreground">Calculating distances...</p>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {dares.map((dare) => (
+                                        <Card key={dare.id} className={`hover:shadow-lg transition-all ${dare.isUnlocked ? "border-green-500/50 bg-green-50/10" : "opacity-80"}`}>
+                                            <CardHeader className="pb-2">
+                                                <div className="flex items-start justify-between">
+                                                    <Badge variant={dare.isSponsored ? "default" : "secondary"} className="text-xs">
+                                                        {dare.isSponsored ? `Sponsored by ${dare.sponsorName}` : "Location Quest"}
+                                                    </Badge>
+                                                    <div className="text-right">
+                                                        <span className="text-xs text-muted-foreground">Radius: {dare.radiusMeters}m</span>
+                                                    </div>
+                                                </div>
+                                                <CardTitle className="text-lg mt-2">{dare.title}</CardTitle>
+                                            </CardHeader>
+                                            <CardContent className="space-y-4 pb-6">
+                                                <p className="text-sm text-muted-foreground">{dare.description}</p>
+                                                
+                                                <div className="flex items-center justify-between text-sm border-t pt-4">
+                                                    <div className="flex items-center gap-1 font-medium">
+                                                        <Star className="w-4 h-4 text-yellow-500" />
+                                                        <span>{dare.pointsReward} pts</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-1">
+                                                        <MapPin className="w-4 h-4 text-primary" />
+                                                        <span className={dare.isUnlocked ? "text-green-600 font-bold" : "text-muted-foreground"}>
+                                                            {dare.distanceMeters > 1000 ? `${(dare.distanceMeters/1000).toFixed(1)} km` : `${dare.distanceMeters}m`} away
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="pt-2">
+                                                    {dare.isUnlocked ? (
+                                                        <Button className="w-full bg-green-600 hover:bg-green-700 text-white" onClick={() => handleGeofencedCheckIn(dare.id, dare.latitude, dare.longitude)}>
+                                                            <CheckCircle className="w-4 h-4 mr-2" />
+                                                            Check In & Claim Reward
+                                                        </Button>
+                                                    ) : (
+                                                        <Button className="w-full" variant="secondary" disabled>
+                                                            <Circle className="w-4 h-4 mr-2" />
+                                                            Locked (Walk Closer)
+                                                        </Button>
+                                                    )}
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <>
+                            <div className="flex justify-between items-center mb-6">
+                                <h2 className="text-xl font-semibold">
+                                    {activeTab === "all"
+                                        ? "All Challenges"
+                                        : `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Challenges`}
+                                </h2>
+                                <Button onClick={generateMoreChallenges} variant="outline">
+                                    <Sparkles className="w-4 h-4 mr-2" />
+                                    Generate More
+                                </Button>
+                            </div>
 
                     {/* Challenge Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

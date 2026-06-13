@@ -8,7 +8,7 @@ import aiohttp
 import json
 from datetime import datetime, timedelta
 
-BASE_URL = "http://localhost:8006"
+BASE_URL = "http://localhost:8000"
 
 class APITester:
     def __init__(self, base_url: str = BASE_URL):

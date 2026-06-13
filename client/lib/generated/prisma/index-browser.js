@@ -114,9 +114,6 @@ Prisma.NullTypes = {
  */
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
-  ReadUncommitted: 'ReadUncommitted',
-  ReadCommitted: 'ReadCommitted',
-  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -224,7 +221,7 @@ exports.Prisma.TripPlanScalarFieldEnum = {
   userId: 'userId'
 };
 
-exports.Prisma.Plan_tasksScalarFieldEnum = {
+exports.Prisma.PlanTaskScalarFieldEnum = {
   id: 'id',
   trip_plan_id: 'trip_plan_id',
   task_type: 'task_type',
@@ -260,8 +257,43 @@ exports.Prisma.TransactionSplitScalarFieldEnum = {
   user1Amount: 'user1Amount',
   user2Amount: 'user2Amount',
   status: 'status',
+  escrowStatus: 'escrowStatus',
+  splitMode: 'splitMode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserRatingScalarFieldEnum = {
+  id: 'id',
+  raterId: 'raterId',
+  rateeId: 'rateeId',
+  rating: 'rating',
+  tags: 'tags',
+  comment: 'comment',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.LocationDareScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  radiusMeters: 'radiusMeters',
+  pointsReward: 'pointsReward',
+  targetCity: 'targetCity',
+  isSponsored: 'isSponsored',
+  sponsorName: 'sponsorName'
+};
+
+exports.Prisma.UserDareStatusScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  companionId: 'companionId',
+  dareId: 'dareId',
+  status: 'status',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -269,36 +301,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
-};
-
-exports.Prisma.NullableJsonNullValueInput = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull
-};
-
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-};
-
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
 
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
-};
-exports.plan_task_status = exports.$Enums.plan_task_status = {
-  queued: 'queued',
-  in_progress: 'in_progress',
-  success: 'success',
-  error: 'error'
-};
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -309,9 +316,12 @@ exports.Prisma.ModelName = {
   TripPlanStatus: 'TripPlanStatus',
   TripPlanOutput: 'TripPlanOutput',
   TripPlan: 'TripPlan',
-  plan_tasks: 'plan_tasks',
+  PlanTask: 'PlanTask',
   PaymentMandate: 'PaymentMandate',
-  TransactionSplit: 'TransactionSplit'
+  TransactionSplit: 'TransactionSplit',
+  UserRating: 'UserRating',
+  LocationDare: 'LocationDare',
+  UserDareStatus: 'UserDareStatus'
 };
 
 /**

@@ -385,6 +385,17 @@ export default function TripDetailsPage() {
         console.log("Budget agent response:", budget_agent_response);
         console.log("Destination agent response:", destination_agent_response);
 
+        const parseJsonArray = (val: any) => {
+          if (!val) return [];
+          if (Array.isArray(val)) return val;
+          try {
+            return typeof val === "string" ? JSON.parse(val) : val;
+          } catch (e) {
+            console.error("Failed to parse JSON array:", val, e);
+            return [];
+          }
+        };
+
         const tripDetails: TripDetails = {
           id: tripPlan.id,
           name: tripPlan.name,
@@ -412,16 +423,16 @@ export default function TripDetailsPage() {
           experiencingWith: tripPlan.experiencingWith,
           adults: tripPlan.adults,
           children: tripPlan.children,
-          ageGroups: tripPlan.ageGroups as string[],
+          ageGroups: parseJsonArray(tripPlan.ageGroups),
           budget: tripPlan.budget,
           budgetCurrency: tripPlan.budgetCurrency,
           experienceStyle: tripPlan.experienceStyle,
           budgetFlexible: tripPlan.budgetFlexible,
-          vibes: tripPlan.vibes as string[],
-          priorities: tripPlan.priorities as string[],
+          vibes: parseJsonArray(tripPlan.vibes),
+          priorities: parseJsonArray(tripPlan.priorities),
           interests: tripPlan.interests ?? undefined,
           rooms: tripPlan.rooms,
-          pace: tripPlan.pace as number[],
+          pace: parseJsonArray(tripPlan.pace),
           beenThereBefore: tripPlan.beenThereBefore ?? undefined,
           lovedPlaces: tripPlan.lovedPlaces ?? undefined,
           additionalInfo: tripPlan.additionalInfo ?? undefined,

@@ -9,26 +9,30 @@ from pydantic import BaseModel
 from datetime import datetime
 
 from services.matching_service import MatchingService
-from agents.co_traveler_matching import co_traveler_matching_agent
 
 router = APIRouter(prefix="/api/coexperiencer", tags=["Co-Experiencer Matching"])
 
 # Pydantic models for request/response
 class UserProfileCreate(BaseModel):
     budget_range: dict  # {"min": 1000, "max": 2000, "currency": "USD"}
-    experience_preferences: dict  # {"style": "adventurous", "pace": "moderate", etc.}
+    experience_preferences: Optional[dict] = None
+    travel_preferences: Optional[dict] = None
     destinations_interested: List[str]
-    experience_dates_flexible: bool
+    experience_dates_flexible: Optional[bool] = True
+    travel_dates_flexible: Optional[bool] = True
     bio: Optional[str] = None
 
 class UserProfile(BaseModel):
     user_id: str
     budget_range: dict
-    experience_preferences: dict
+    experience_preferences: Optional[dict] = None
+    travel_preferences: Optional[dict] = None
     experience_rating: float
     total_experiences: int
+    total_trips: Optional[int] = 0
     destinations_interested: List[str]
-    experience_dates_flexible: bool
+    experience_dates_flexible: Optional[bool] = True
+    travel_dates_flexible: Optional[bool] = True
     bio: Optional[str] = None
     created_at: datetime
     is_active: bool

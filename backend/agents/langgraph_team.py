@@ -3,13 +3,13 @@ from langgraph.graph import StateGraph, END
 from loguru import logger
 import json
 
-from agents.destination import destination_agent
-from agents.flight import flight_search_agent
-from agents.hotel import hotel_search_agent
-from agents.food import dining_agent
-from agents.itinerary import itinerary_agent
-from agents.budget import budget_agent
+from config.llm import generate_chat_completion
 from repository.trip_plan_repository import update_trip_plan_status
+
+# Tool imports
+from tools.google_flight import get_google_flights
+from tools.kayak_hotel import kayak_hotel_url_generator
+from tools.scrape import scrape_website
 
 class TripPlanningState(TypedDict):
     trip_plan_id: str
@@ -30,6 +30,7 @@ class TripPlanningState(TypedDict):
     # Final combined JSON
     final_output: Optional[str]
 
+
 # Node 1: Destination Research
 async def destination_node(state: TripPlanningState) -> Dict[str, Any]:
     trip_plan_id = state["trip_plan_id"]
@@ -41,19 +42,22 @@ async def destination_node(state: TripPlanningState) -> Dict[str, Any]:
         current_step="Researching about the destination",
     )
     
-    res = await destination_agent.arun(
-        f"""
-        Please research about the destination {state['destination']}
+    prompt = f"""
+    Please research about the destination {state['destination']}
 
-        Below are user's travel request:
-        {state['travel_request_md']}
+    Below are the user's travel preferences:
+    {state['travel_request_md']}
 
-        Provide a very detailed research about the destination, its attractions, activities, and other relevant information that user might be interested in.
-
-        Give 10 attractions/activities that user might be interested in.
-        """
+    Provide detailed research about the destination, its top attractions, classic tourist landmarks, family-friendly experiences, and important visitor tips.
+    Output 10 structured attractions or activities.
+    """
+    
+    system_instruction = (
+        "You are a destination research expert. Focus on mainstream tourist attractions, classic sightseeing, "
+        "and family-friendly activities. Detail opening hours, typical entrance fees, and visit duration tips."
     )
-    content = res.messages[-1].content
+    
+    content = await generate_chat_completion(prompt, system_instruction=system_instruction)
     
     accumulated = f"""
     ## Destination Attractions:
@@ -66,6 +70,7 @@ async def destination_node(state: TripPlanningState) -> Dict[str, Any]:
         "accumulated_content": accumulated
     }
 
+
 # Node 2: Flight Search
 async def flight_node(state: TripPlanningState) -> Dict[str, Any]:
     trip_plan_id = state["trip_plan_id"]
@@ -77,19 +82,62 @@ async def flight_node(state: TripPlanningState) -> Dict[str, Any]:
         current_step="Searching for the best flights",
     )
     
-    res = await flight_search_agent.arun(
-        f"""
-        Please find flights according to the user's travel request:
-        {state['travel_request_md']}
+    # Extract flight query parameters from the state
+    extract_prompt = f"""
+    Extract the following parameters from the travel request:
+    - departure_airport (e.g. DEL, NRT)
+    - destination_airport (e.g. HND, JFK)
+    - date (YYYY-MM-DD format, estimate based on preferences if not specified)
+    - adults (default 1)
+    - children (default 0)
 
-        If user has not specified the exact flight date, please consider it by yourself based on the user's travel request.
+    Travel preferences:
+    {state['travel_request_md']}
 
-        Provide a very detailed research about the flights, its price, duration, and other relevant information that user might be interested in.
-
-        Give top 5 flights.
-        """
+    Respond ONLY with a JSON block like:
+    {{"departure_airport": "...", "destination_airport": "...", "date": "...", "adults": 1, "children": 0}}
+    """
+    
+    try:
+        json_res = await generate_chat_completion(extract_prompt, system_instruction="Extract JSON variables.")
+        # Strip code blocks if any
+        if "```json" in json_res:
+            json_res = json_res.split("```json")[1].split("```")[0].strip()
+        elif "```" in json_res:
+            json_res = json_res.split("```")[1].split("```")[0].strip()
+        params = json.loads(json_res)
+    except Exception as e:
+        logger.error(f"Error extracting flight params, using defaults: {e}")
+        params = {
+            "departure_airport": "DEL",
+            "destination_airport": "NRT",
+            "date": "2026-08-01",
+            "adults": 1,
+            "children": 0
+        }
+        
+    # Execute direct tool search
+    logger.info(f"Executing Google Flight Tool: {params}")
+    flights_list = get_google_flights.entrypoint(
+        departure=params.get("departure_airport", "DEL"),
+        destination=params.get("destination_airport", "NRT"),
+        date=params.get("date", "2026-08-01"),
+        adults=params.get("adults", 1),
+        children=params.get("children", 0)
     )
-    content = res.messages[-1].content
+    
+    prompt = f"""
+    Based on the Google Flights search results: {flights_list}
+    And the user's travel preferences:
+    {state['travel_request_md']}
+
+    Format and rank the top 5 flights detailing airline, flight number, times, duration, price, and layovers.
+    """
+    
+    content = await generate_chat_completion(
+        prompt, 
+        system_instruction="You are a flight analysis assistant. Organize flight options showing pricing, cabin class, and duration."
+    )
     
     accumulated = state.get("accumulated_content", "") + f"""
     ## Flight recommendations:
@@ -102,6 +150,7 @@ async def flight_node(state: TripPlanningState) -> Dict[str, Any]:
         "accumulated_content": accumulated
     }
 
+
 # Node 3: Hotel Search
 async def hotel_node(state: TripPlanningState) -> Dict[str, Any]:
     trip_plan_id = state["trip_plan_id"]
@@ -113,19 +162,74 @@ async def hotel_node(state: TripPlanningState) -> Dict[str, Any]:
         current_step="Searching for the best hotels",
     )
     
-    res = await hotel_search_agent.arun(
-        f"""
-        Please find hotels according to the user's travel request:
-        {state['travel_request_md']}
+    # Extract hotel query parameters from the state
+    extract_prompt = f"""
+    Extract the following parameters from the travel request:
+    - destination (city name)
+    - check_in (YYYY-MM-DD format)
+    - check_out (YYYY-MM-DD format)
+    - adults (default 1)
+    - children (default 0)
+    - rooms (default 1)
 
-        If user has not specified the exact hotel dates, please consider it by yourself based on the user's travel request.
+    Travel preferences:
+    {state['travel_request_md']}
 
-        Provide a very detailed research about the hotels, its price, amenities, and other relevant information that user might be interested in.
-
-        Give top 5 hotels.
-        """
+    Respond ONLY with a JSON block like:
+    {{"destination": "...", "check_in": "...", "check_out": "...", "adults": 1, "children": 0, "rooms": 1}}
+    """
+    
+    try:
+        json_res = await generate_chat_completion(extract_prompt, system_instruction="Extract JSON variables.")
+        if "```json" in json_res:
+            json_res = json_res.split("```json")[1].split("```")[0].strip()
+        elif "```" in json_res:
+            json_res = json_res.split("```")[1].split("```")[0].strip()
+        params = json.loads(json_res)
+    except Exception as e:
+        logger.error(f"Error extracting hotel params, using defaults: {e}")
+        params = {
+            "destination": state["destination"],
+            "check_in": "2026-08-01",
+            "check_out": "2026-08-07",
+            "adults": 1,
+            "children": 0,
+            "rooms": 1
+        }
+        
+    # Generate search url
+    search_url = kayak_hotel_url_generator.entrypoint(
+        destination=params.get("destination", state["destination"]),
+        check_in=params.get("check_in", "2026-08-01"),
+        check_out=params.get("check_out", "2026-08-07"),
+        adults=params.get("adults", 1),
+        children=params.get("children", 0),
+        rooms=params.get("rooms", 1)
     )
-    content = res.messages[-1].content
+    
+    # Fetch hotel results
+    hotel_info = ""
+    try:
+        logger.info(f"Scraping hotel search results from: {search_url}")
+        hotel_info = scrape_website.entrypoint(search_url)
+    except Exception as e:
+        logger.warning(f"Failed to scrape hotel page, falling back to simulated listing: {e}")
+        
+    prompt = f"""
+    Create a list of top 5 recommended hotels for a trip to {state['destination']}.
+    User preferences:
+    {state['travel_request_md']}
+    
+    Scraped Hotel Page Context:
+    {hotel_info if hotel_info else "No direct page details available. Recommend top hotels using local knowledge."}
+
+    Highlight hotel name, pricing range, ratings, amenities, and booking link ({search_url}).
+    """
+    
+    content = await generate_chat_completion(
+        prompt,
+        system_instruction="You are a hotel search assistant. Structure hotel lists detailing star rating, prices, and amenities."
+    )
     
     accumulated = state.get("accumulated_content", "") + f"""
     ## Hotel recommendations:
@@ -138,6 +242,7 @@ async def hotel_node(state: TripPlanningState) -> Dict[str, Any]:
         "accumulated_content": accumulated
     }
 
+
 # Node 4: Restaurant Search
 async def restaurant_node(state: TripPlanningState) -> Dict[str, Any]:
     trip_plan_id = state["trip_plan_id"]
@@ -149,19 +254,19 @@ async def restaurant_node(state: TripPlanningState) -> Dict[str, Any]:
         current_step="Searching for the best restaurants",
     )
     
-    res = await dining_agent.arun(
-        f"""
-        Please find restaurants according to the user's travel request:
-        {state['travel_request_md']}
+    prompt = f"""
+    Please find culinary highlights and restaurants for a trip to {state['destination']}.
+    User preferences:
+    {state['travel_request_md']}
 
-        If user has not specified the exact restaurant dates, please consider it by yourself based on the user's travel request.
-
-        Provide a very detailed research about the restaurants, its price, menu, and other relevant information that user might be interested in.
-
-        Give top 5 restaurants.
-        """
+    List top 5 restaurants detailing cuisine style, price level ($, $$, $$$), location, operating times, and menu recommendations.
+    Include 2 local food markets or culinary street experiences.
+    """
+    
+    content = await generate_chat_completion(
+        prompt,
+        system_instruction="You are a culinary guide. Group food choices by dining style, highlighting local specialties and reservation requirements."
     )
-    content = res.messages[-1].content
     
     accumulated = state.get("accumulated_content", "") + f"""
     ## Restaurant recommendations:
@@ -174,6 +279,7 @@ async def restaurant_node(state: TripPlanningState) -> Dict[str, Any]:
         "accumulated_content": accumulated
     }
 
+
 # Node 5: Itinerary Generation
 async def itinerary_node(state: TripPlanningState) -> Dict[str, Any]:
     trip_plan_id = state["trip_plan_id"]
@@ -185,16 +291,20 @@ async def itinerary_node(state: TripPlanningState) -> Dict[str, Any]:
         current_step="Creating the day-by-day itinerary",
     )
     
-    res = await itinerary_agent.arun(
-        f"""
-        Please create a detailed day-by-day itinerary for a trip to {state['destination']} for user's travel request:
-        {state['travel_request_md']}
+    prompt = f"""
+    Please create a detailed day-by-day itinerary for a trip to {state['destination']} for user's travel request:
+    {state['travel_request_md']}
 
-        Based on the following information:
-        {state['accumulated_content']}
-        """
+    Based on the following compiled recommendations:
+    {state['accumulated_content']}
+    """
+    
+    system_instruction = (
+        "You are an itinerary specialist. Organize travel plans in clear, hour-by-hour day schedules with emojis, "
+        "transit recommendations between locations, and buffer notes."
     )
-    content = res.messages[-1].content
+    
+    content = await generate_chat_completion(prompt, system_instruction=system_instruction)
     
     accumulated = state.get("accumulated_content", "") + f"""
     ## Day-by-day itinerary:
@@ -207,6 +317,7 @@ async def itinerary_node(state: TripPlanningState) -> Dict[str, Any]:
         "accumulated_content": accumulated
     }
 
+
 # Node 6: Budget Optimization
 async def budget_node(state: TripPlanningState) -> Dict[str, Any]:
     trip_plan_id = state["trip_plan_id"]
@@ -218,19 +329,25 @@ async def budget_node(state: TripPlanningState) -> Dict[str, Any]:
         current_step="Optimizing the budget",
     )
     
-    res = await budget_agent.arun(
-        f"""
-        Please optimize the budget according to the user's travel request:
-        {state['travel_request_md']}
+    prompt = f"""
+    Please review the budget for the user's travel request:
+    {state['travel_request_md']}
 
-        Based on the following information:
-        {state['accumulated_content']}
-        """
+    Based on the following travel details:
+    {state['accumulated_content']}
+
+    Suggest strategic budget optimizations (flights, lodging, food alternatives) and compile a breakdown of estimated expenses.
+    """
+    
+    content = await generate_chat_completion(
+        prompt,
+        system_instruction="You are a budget optimizer. Suggest price adjustments, package deals, and list estimated costs per category."
     )
-    content = res.messages[-1].content
+    
     return {
         "budget": content
     }
+
 
 # Build LangGraph Workflow
 workflow = StateGraph(TripPlanningState)
@@ -256,6 +373,7 @@ workflow.add_edge("budget", END)
 
 # Compile Graph
 compiled_graph = workflow.compile()
+
 
 # Runner function
 async def run_langgraph_workflow(trip_plan_id: str, travel_request_md: str, destination: str) -> Dict[str, Any]:

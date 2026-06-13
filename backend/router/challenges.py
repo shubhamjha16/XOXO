@@ -10,9 +10,10 @@ from datetime import datetime
 from enum import Enum
 
 from services.challenge_service import ChallengeService
-from agents.adventure_catalyst import adventure_catalyst_agent
+from config.llm import generate_chat_completion
 
 router = APIRouter(prefix="/api/challenges", tags=["Adventure Challenges"])
+
 
 # Enums
 class ChallengeDifficulty(str, Enum):
@@ -147,7 +148,10 @@ async def generate_challenges(
         - Local context and tips
         """
         
-        ai_response = await adventure_catalyst_agent.run(challenge_prompt)
+        ai_response = await generate_chat_completion(
+            challenge_prompt,
+            system_instruction="You generate personalized adventure challenges and dares for co-travelers during their journey."
+        )
         
         # Start challenge schedule using the service
         trip_id = await challenge_service.start_challenge_schedule(

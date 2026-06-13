@@ -50,7 +50,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     // First check if the plan exists
     const tripPlan = await prisma.tripPlan.findUnique({

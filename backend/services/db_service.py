@@ -7,8 +7,17 @@ and context managers for proper resource management.
 """
 
 import os
+import sqlite3
+import datetime
 from typing import Any, AsyncGenerator, Dict, Optional
 from contextlib import asynccontextmanager
+
+# Register SQLite datetime adapter to store dates in ISO-8601 format (with 'T' separator)
+# so that Prisma Client can parse them without throwing P2023 conversion errors.
+def adapt_datetime(val):
+    return val.isoformat()
+
+sqlite3.register_adapter(datetime.datetime, adapt_datetime)
 
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import (

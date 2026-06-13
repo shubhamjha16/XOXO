@@ -105,3 +105,26 @@ async def execute_split_payment(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Payment execution failed: {str(e)}"
         )
+
+class SignMandateRequest(BaseModel):
+    mandate: Dict[str, Any]
+    private_key: str
+
+@router.post(
+    "/sign-mandate",
+    summary="Sign AP2 Mandate",
+    description="Signs an AP2 mandate using the provided private key."
+)
+async def sign_mandate(request: SignMandateRequest):
+    try:
+        from tools.ap2_protocol import AP2PaymentMandate, sign_ap2_mandate
+        m = AP2PaymentMandate(**request.mandate)
+        sig = sign_ap2_mandate(m, request.private_key)
+        return {"success": True, "signature": sig}
+    except Exception as e:
+        logger.error(f"Error signing mandate: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
+

@@ -6,7 +6,7 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     // First check if the plan exists
     const tripPlan = await prisma.tripPlan.findUnique({
@@ -41,40 +41,61 @@ export async function POST(
       },
     });
 
-    // Prepare the request body for the backend API
+    // Safely parse JSON strings from SQLite
+    const parseJsonArray = (val: string | any, fallback: any = []) => {
+      if (typeof val === 'string') {
+        try {
+          return JSON.parse(val);
+        } catch (e) {
+          console.warn('Failed to parse JSON string:', val, e);
+          return fallback;
+        }
+      }
+      return val || fallback;
+    };
+
+    const parsedAgeGroups = parseJsonArray(tripPlan.ageGroups, []);
+    const parsedVibes = parseJsonArray(tripPlan.vibes, []);
+    const parsedPriorities = parseJsonArray(tripPlan.priorities, []);
+    const parsedPace = parseJsonArray(tripPlan.pace, [3]);
+
+    // Prepare the request body for the backend API (matches TravelPlanRequest model in backend)
     const requestBody = {
       trip_plan_id: id,
       travel_plan: {
         name: tripPlan.name,
         destination: tripPlan.destination,
         starting_location: tripPlan.startingLocation,
-        experience_dates: {
+        travel_dates: {
           start: tripPlan.experienceDatesStart,
           end: tripPlan.experienceDatesEnd || ""
         },
         date_input_type: tripPlan.dateInputType,
         duration: tripPlan.duration,
-        experiencing_with: tripPlan.experiencingWith,
+        traveling_with: tripPlan.experiencingWith,
         adults: tripPlan.adults,
         children: tripPlan.children,
-        age_groups: tripPlan.ageGroups,
+        age_groups: parsedAgeGroups,
         budget: tripPlan.budget,
         budget_currency: tripPlan.budgetCurrency,
-        experience_style: tripPlan.experienceStyle,
+        travel_style: tripPlan.experienceStyle,
         budget_flexible: tripPlan.budgetFlexible,
-        vibes: tripPlan.vibes,
-        priorities: tripPlan.priorities,
+        vibes: parsedVibes,
+        priorities: parsedPriorities,
         interests: tripPlan.interests || "",
         rooms: tripPlan.rooms,
-        pace: tripPlan.pace,
+        pace: parsedPace,
         been_there_before: tripPlan.beenThereBefore || "",
         loved_places: tripPlan.lovedPlaces || "",
         additional_info: tripPlan.additionalInfo || ""
       }
     };
 
+    console.log('Sending retry request to backend:', JSON.stringify(requestBody, null, 2));
+
     // Call backend API to trigger trip planning again
-    const backendResponse = await fetch(`${process.env.BACKEND_API_URL}/api/plan/trigger`, {
+    const backendUrl = process.env.BACKEND_API_URL || 'http://localhost:8000';
+    const backendResponse = await fetch(`${backendUrl}/api/plan/trigger`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -119,7 +140,7 @@ export async function POST(
     // Ensure we update the status to failed if there's an error
     try {
       await prisma.tripPlanStatus.update({
-        where: { tripPlanId: params.id },
+        where: { tripPlanId: id },
         data: {
           status: 'failed',
           currentStep: 'Error occurred while retrying',

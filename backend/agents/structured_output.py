@@ -1,11 +1,9 @@
-from typing import TypeVar, Type, Any
+from typing import TypeVar, Type
 from pydantic import BaseModel
-from agno.agent import Agent
 from loguru import logger
-from config.llm import model
+from config.llm import generate_chat_completion
 import json
 import re
-from pydantic import ValidationError
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -35,7 +33,7 @@ def clean_json_string(json_str: str) -> str:
 
 async def convert_to_model(input_text: str, target_model: Type[T]) -> str:
     """
-    Convert input text into a specified Pydantic model using an Agno agent.
+    Convert input text into a specified Pydantic model using direct LLM call.
 
     Args:
         input_text (str): The input text to convert
@@ -46,31 +44,7 @@ async def convert_to_model(input_text: str, target_model: Type[T]) -> str:
     """
 
     logger.info(
-        f"Converting input text to model: {target_model.__name__} : {input_text}"
-    )
-
-    structured_output_agent = Agent(
-        model=model,
-        description=(
-            "You are an expert at extracting structured travel planning information from unstructured, free-form user inputs. "
-            "Given a detailed user message, travel description, or conversation, your goal is to accurately populate a predefined trip schema. "
-        ),
-        instructions=[
-            "Your task is to convert the input text into a valid JSON that matches the model schema exactly.",
-            "You must return ONLY the JSON object that matches the schema exactly - no other output.",
-            "When formatting text fields, you must:",
-            "- Use minimal, consistent formatting throughout",
-            "- Apply appropriate list formatting",
-            "- Format dates, times and structured data consistently",
-            "- Structure text concisely and clearly",
-        ],
-        markdown=True,
-        expected_output="""
-            A valid JSON object that matches the provided schema.
-            Text fields should be clean and consistently formatted.
-            Do not include any explanations or additional text - return only the JSON object.
-            Without ```json or ```
-        """,
+        f"Converting input text to model: {target_model.__name__}"
     )
 
     schema = target_model.model_json_schema()
@@ -105,11 +79,16 @@ async def convert_to_model(input_text: str, target_model: Type[T]) -> str:
     {input_text}
     """
 
-    # Get structured response from the agent
+    system_instruction = (
+        "You are an expert at extracting structured travel planning information from unstructured, free-form inputs. "
+        "Return ONLY the raw JSON object matching the target schema. Do not include markdown code blocks or explanations."
+    )
+
+    # Get structured response from the model
     try:
-        response = await structured_output_agent.arun(prompt)
-        json_string = clean_json_string(response.content)
-        logger.info(f"Structured output agent response: {json_string}")
+        response = await generate_chat_completion(prompt, system_instruction=system_instruction, temperature=0.1)
+        json_string = clean_json_string(response)
+        logger.info(f"Structured output generator response: {json_string[:200]}...")
 
         # Parse the JSON string
         try:

@@ -47,13 +47,33 @@ export default function RateExperiencePage() {
 
         setIsSubmitting(true);
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            const response = await fetch("/api/cotraveller/rate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    match_id: "match_123", // In a real app, retrieve from routing / state
+                    rater_id: "user_123", // In a real app, retrieve from auth / session
+                    rating: Number(partnerRating),
+                    feedback: feedback || "Great trip!",
+                    categories: {
+                        communication: Number(partnerRating),
+                        reliability: Number(partnerRating),
+                        fun: Number(experienceRating)
+                    }
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to submit rating");
+            }
 
             toast.success("Experience rated successfully! Your rating has been updated.");
             router.push("/cotraveller/find");
         } catch (error) {
-            toast.error("Failed to submit rating");
+            console.error("Error submitting rating:", error);
+            toast.error("Failed to submit rating. Please try again.");
         } finally {
             setIsSubmitting(false);
         }

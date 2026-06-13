@@ -1,0 +1,229 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String     @id
+  name          String
+  email         String     @unique
+  emailVerified Boolean
+  image         String?
+  createdAt     DateTime
+  updatedAt     DateTime
+  accounts      Account[]
+  sessions      Session[]
+  tripPlans     TripPlan[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
+}
+
+model Jwks {
+  id         String   @id
+  publicKey  String
+  privateKey String
+  createdAt  DateTime
+
+  @@map("jwks")
+}
+
+model TripPlanStatus {
+  id          String    @id @default(cuid())
+  tripPlanId  String    @unique
+  status      String    @default("pending")
+  currentStep String?
+  error       String?
+  startedAt   String?
+  completedAt String?
+  createdAt   String?
+  updatedAt   String?
+
+  tripPlan TripPlan @relation(fields: [tripPlanId], references: [id], onDelete: Cascade)
+
+  @@map("trip_plan_status")
+}
+
+model TripPlanOutput {
+  id         String   @id @default(cuid())
+  tripPlanId String   @unique
+  tripPlan   TripPlan @relation(fields: [tripPlanId], references: [id], onDelete: Cascade)
+  itinerary  String
+  summary    String?
+  createdAt  String?
+  updatedAt  String?
+
+  @@map("trip_plan_output")
+}
+
+model TripPlan {
+  id                   String          @id @default(cuid())
+  name                 String
+  destination          String
+  startingLocation     String
+  experienceDatesStart String
+  experienceDatesEnd   String?
+  dateInputType        String          @default("picker")
+  duration             Int?
+  experiencingWith     String
+  adults               Int             @default(1)
+  children             Int             @default(0)
+  ageGroups            String          @default("[]")
+  budget               Float
+  budgetCurrency       String          @default("USD")
+  experienceStyle      String
+  budgetFlexible       Boolean         @default(false)
+  vibes                String          @default("[]")
+  priorities           String          @default("[]")
+  interests            String?
+  rooms                Int             @default(1)
+  pace                 String          @default("[3]")
+  beenThereBefore      String?
+  lovedPlaces          String?
+  additionalInfo       String?
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+  userId               String?
+  user                 User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status               TripPlanStatus?
+  output               TripPlanOutput?
+
+  @@map("trip_plan")
+}
+
+model PlanTask {
+  id            Int      @id @default(autoincrement())
+  trip_plan_id  String
+  task_type     String
+  status        String   @default("queued")
+  input_data    String   @default("{}")
+  output_data   String?
+  error_message String?
+  created_at    String?
+  updated_at    String?
+
+  @@index([status])
+  @@index([trip_plan_id])
+  @@map("plan_tasks")
+}
+
+model PaymentMandate {
+  id          String   @id @default(cuid())
+  userId      String
+  tripPlanId  String
+  limitAmount Float
+  currency    String   @default("USD")
+  signature   String
+  publicKey   String
+  scope       String
+  status      String   @default("active")
+  createdAt   String?
+  updatedAt   String?
+
+  @@map("payment_mandate")
+}
+
+model TransactionSplit {
+  id           String   @id @default(cuid())
+  tripPlanId   String
+  totalAmount  Float
+  currency     String   @default("USD")
+  user1Id      String
+  user2Id      String
+  user1Amount  Float
+  user2Amount  Float
+  status       String   @default("pending")
+  escrowStatus String   @default("held")
+  splitMode    String   @default("equal_split")
+  createdAt    String?
+  updatedAt    String?
+
+  @@map("transaction_split")
+}
+
+model UserRating {
+  id        String   @id @default(cuid())
+  raterId   String
+  rateeId   String
+  rating    Int
+  tags      String   @default("[]")
+  comment   String?
+  createdAt String?
+
+  @@map("user_rating")
+}
+
+model LocationDare {
+  id           String  @id @default(cuid())
+  title        String
+  description  String
+  latitude     Float
+  longitude    Float
+  radiusMeters Float   @default(50.0)
+  pointsReward Int     @default(100)
+  targetCity   String
+  isSponsored  Boolean @default(false)
+  sponsorName  String?
+
+  @@map("location_dare")
+}
+
+model UserDareStatus {
+  id          String    @id @default(cuid())
+  userId      String
+  companionId String?
+  dareId      String
+  status      String    @default("active")
+  completedAt String?
+  createdAt   String?
+
+  @@map("user_dare_status")
+}
